@@ -4,7 +4,7 @@
 
 */
 
-import PrimaryNavigation from '../../natura11y/modules/navigation/PrimaryNav';
+import PrimaryNavigation from '../../natura11y/modules/navigation/PrimaryNavigation';
 
 const Header = () => {
 
