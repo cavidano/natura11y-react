@@ -11,11 +11,11 @@ In this file:
 // A. Module Imports
 //////////////////////////////////////////////
 
-import './modules/accents';
+import './modules/accents/_style.scss';
 
-import './modules/accessibility';
+import './modules/accessibility/_style.scss';
 
-import './modules/accordion';
+import './modules/accordion/_style.scss';
 
 import './modules/alerts';
 
