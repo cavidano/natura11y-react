@@ -10,6 +10,7 @@ const App = () => {
 
   return (
 		<BrowserRouter>
+			
 			<Header />
 
 			<main className='App'>
@@ -18,6 +19,7 @@ const App = () => {
 					<Route path='/about' element={<About />} />
 				</Routes>
 			</main>
+
 		</BrowserRouter>
 	);
 }

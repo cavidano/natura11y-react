@@ -1,18 +1,32 @@
-
+import Backdrop from "./Backdrop/Backdrop";
 
 const Home = () => {
 	return (
-	<>
-		<h1>React Natura11y</h1>
+		<>
+			<div
+				className="container padding-y-4 grid grid--column-3--lg gap-1" style={{'--backdrop-fixed-height': '700px'}
+				}>
 
-		<div className="container narrow margin-y-6">
+				<Backdrop
+					title="Accordion"
+					imageURL='images/banner/accordion.jpg'
+					fixedHeight={true}
+				/>
 
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam suscipit expedita, quisquam minima dolores nihil possimus obcaecati iste beatae vero repellendus commodi ipsam harum cumque veritatis, libero hic eius et!
-		</p>
-		
-		</div>
-	</>
+				<Backdrop
+					title="Alerts"
+					imageURL='images/banner/alerts.jpg'
+					fixedHeight={true}
+				/>
+
+				<Backdrop
+					title="Backdrops"
+					imageURL='images/banner/backdrops.jpg'
+					fixedHeight={true}
+				/>
+			
+			</div>
+		</>
 	);
 };
 

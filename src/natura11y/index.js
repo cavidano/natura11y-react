@@ -23,7 +23,7 @@ import './modules/article';
 
 import './modules/aspect-ratios';
 
-import './modules/backdrops';
+import './modules/backdrops/_style.scss';
 
 import './modules/borders';
 

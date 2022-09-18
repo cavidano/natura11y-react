@@ -25,7 +25,7 @@ const PrimaryNavigation = ({ navType = 'inline' }) => {
 
 	return (
 
-		<div className={`primary-nav--${navType}--lg box-shadow-1`}>
+		<div className={`primary-nav--${navType}--lg border-bottom`}>
 			<div className='primary-nav__logo'>
 				<Link to='/' title='Home' data-logo='brand'>
 					<Brand />
