@@ -24,6 +24,7 @@ const Accordion = () => {
     }
 
   return (
+
     <div className='accordion'>
 
       <AccordionItem
@@ -78,6 +79,7 @@ const Accordion = () => {
       </AccordionItem>
       
     </div>
+    
   );
 
 }

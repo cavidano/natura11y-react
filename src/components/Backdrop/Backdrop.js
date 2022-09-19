@@ -6,11 +6,11 @@ const Backdrop = ( props ) => {
 		title = 'Backdrop Title',
 		imageURL = 'https://via.placeholder.com/1500x750',
 		imageAlt = 'Placeholder',
-		fixedHeight = false
+		fixedHeight = true
 	} = props
 
 	return (
-		<article className={`backdrop theme-dark ${fixedHeight ? 'backdrop--fixed' : ''}`}>
+		<article className={`backdrop theme-dark aspect-ratio-3x2 ${fixedHeight ? 'backdrop--fixed' : ''}`}>
 
 			<div className='backdrop__image'>
 				<img className='opacity-40' src={imageURL} alt={imageAlt} />
