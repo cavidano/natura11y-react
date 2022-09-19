@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 
+import { v4 as uuidv4 } from 'uuid';
+
+
 const AccordionItem = ( props ) => {
 
     const {
@@ -7,7 +10,7 @@ const AccordionItem = ( props ) => {
         children = (<p>Accordion Content</p>),
         activeAccordion = null,
         handleClick = handleClick,
-        id
+        id = uuidv4()
     } = props;
 
     useEffect(() => {
