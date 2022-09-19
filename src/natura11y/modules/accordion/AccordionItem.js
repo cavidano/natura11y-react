@@ -7,14 +7,14 @@ const AccordionItem = ( props ) => {
         children = (<p>Accordion Content</p>),
         activeAccordion = null,
         handleClick = handleClick,
-        idSuffix
+        id
     } = props;
 
     useEffect(() => {
 
         const currentPanel = accordionPanelRef.current;
 
-        activeAccordion === idSuffix ?
+        activeAccordion === id ?
             currentPanel.style.maxHeight = currentPanel.scrollHeight + 'px'
             : currentPanel.style.maxHeight = 0;
 
@@ -28,21 +28,21 @@ const AccordionItem = ( props ) => {
             <button
                 className='accordion__button h5'
                 ref={accordionButtonRef}
-                id={`${idSuffix}`}
+                id={`${id}`}
                 data-accordion='button'
                 aria-controls='acc-panel-example-01'
-                aria-expanded={activeAccordion === idSuffix ? true : false}
+                aria-expanded={activeAccordion === id ? true : false}
                 onClick={handleClick}
             >
                 {title}
             </button>
 
             <div
-                className={`accordion__panel ${activeAccordion === idSuffix ? 'shown' : ''}`}
+                className={`accordion__panel ${activeAccordion === id ? 'shown' : ''}`}
                 ref={accordionPanelRef}
-                id='acc-panel-example-01'
+                id={`acc-panel-${id}`}
                 data-accordion='panel'
-                aria-labelledby='acc-button-example-01'
+                aria-labelledby={`${id}`}
                 role='region'
             >
                 <div className='accordion__panel__content'>

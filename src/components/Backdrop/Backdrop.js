@@ -10,15 +10,15 @@ const Backdrop = ( props ) => {
 	} = props
 
 	return (
-		<article class={`backdrop theme-dark ${fixedHeight ? 'backdrop--fixed' : ''}`}>
+		<article className={`backdrop theme-dark ${fixedHeight ? 'backdrop--fixed' : ''}`}>
 
-			<div class='backdrop__image'>
-				<img class='opacity-40' src={imageURL} alt={imageAlt} />
+			<div className='backdrop__image'>
+				<img className='opacity-40' src={imageURL} alt={imageAlt} />
 			</div>
 
-			<div class='backdrop__cover align-content-end'>
-				<div class='container medium margin-y-4'>
-					<h1 class='text-shadow'>{title}</h1>
+			<div className='backdrop__cover align-content-end'>
+				<div className='container medium margin-y-4'>
+					<h1 className='text-shadow'>{title}</h1>
 				</div>
 			</div>
 		

@@ -14,6 +14,8 @@ const Accordion = () => {
 
       const clicked = e.target.getAttribute('id');
 
+        console.log('clicked', clicked)
+
         if (activeAccordion === clicked) {
             setActiveAccordion(null);
         } else {
@@ -28,7 +30,7 @@ const Accordion = () => {
         title='Danaus Plexippus'
         activeAccordion={activeAccordion}
         handleClick={handleClick}
-        idSuffix='accordion-example-01'
+        id='example-01'
         >
 
         <p>
@@ -45,7 +47,7 @@ const Accordion = () => {
         title='Papilio Polyxenes'
         activeAccordion={activeAccordion}
         handleClick={handleClick}
-        idSuffix='accordion-example-02'
+        id='example-02'
       >
 
         <p>
@@ -62,7 +64,7 @@ const Accordion = () => {
         title='Hyalophora Cecropia'
         activeAccordion={activeAccordion}
         handleClick={handleClick}
-        idSuffix='accordion-example-03'
+        id='example-03'
       >
 
         <p>
