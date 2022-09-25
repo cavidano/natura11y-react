@@ -4,20 +4,23 @@
 
 */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
 import Dropdown from './Dropdown';
 import Brand from './Brand';
 
-const PrimaryNavigation = ({ navType = 'inline' }) => {
+const PrimaryNavigation = ( props ) => {
+
+	const { 
+		navType = 'inline', // 'inline' or 'below'
+		breakpoint = 'lg' // breakpoint from mobile to desktop
+	} = props;
 
 	const menuButtonRef = useRef();
 
 	const [menuShow, setMenuShow] = useState(false);
-
-	useEffect(() => {}, []);
 
 	const handleClick = () => {
 		setMenuShow(!menuShow);
@@ -25,7 +28,8 @@ const PrimaryNavigation = ({ navType = 'inline' }) => {
 
 	return (
 
-		<div className={`primary-nav--${navType}--lg border-bottom`}>
+		<div className={`primary-nav--${navType}--${breakpoint}`}>
+		
 			<div className='primary-nav__logo'>
 				<Link to='/' title='Home' data-logo='brand'>
 					<Brand />
@@ -54,6 +58,7 @@ const PrimaryNavigation = ({ navType = 'inline' }) => {
 			</nav>
 
 			<div className='primary-nav__toggle'>
+
 				<button
 					ref={menuButtonRef}
 					onClick={handleClick}
@@ -65,14 +70,16 @@ const PrimaryNavigation = ({ navType = 'inline' }) => {
 						className={`icon ${menuShow ? 'icon-close' : 'icon-menu'}`}
 						aria-hidden='true'
 					></span>
+					
 				</button>
 			</div>
 
 			<div className='primary-nav__actions'>
 				<button className='button button--icon-only' aria-label='Language'>
-					<span className='icon icon-language'></span>
+					<span className='icon icon-mode-light-dark'></span>
 				</button>
 			</div>
+
 		</div>
         
 	);
