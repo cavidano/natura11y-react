@@ -9,8 +9,10 @@ const Backdrop = ( props ) => {
 		fixedHeight = false
 	} = props
 
+	let classFixed = fixedHeight ? 'backdrop--fixed' : '';
+
 	return (
-		<div class={`backdrop theme-dark ${fixedHeight ? 'backdrop--fixed' : ''}`}>
+		<div class={`backdrop ${classFixed}`}>
 
 			<div class='backdrop__image'>
 				<img class='opacity-40' src={imageURL} alt={imageAlt} />
