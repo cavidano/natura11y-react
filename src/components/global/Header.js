@@ -4,11 +4,11 @@
 
 */
 
-import PrimaryNavigation from '../../natura11y/modules/navigation/PrimaryNavigation';
+import PrimaryNavigation from '../../natura11y-components/navigation/PrimaryNavigation';
 
 const Header = () => {
 	return (
-      <PrimaryNavigation  />
+      <PrimaryNavigation />
   );
 };
 

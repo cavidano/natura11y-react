@@ -6,9 +6,9 @@
 
 import React, { useState } from 'react';
 
-import Accordion from '../natura11y/modules/accordion/Accordion';
-import Alert from '../natura11y/modules/alerts/Alert';
-import Modal from '../natura11y/modules/modal/Modal'
+import Accordion from '../natura11y-components/accordion/Accordion';
+import Alert from '../natura11y-components/alerts/Alert';
+import Modal from '../natura11y-components/modal/Modal'
 
 const About = () => {
 	const [showAlert, setShowAlert] = useState(true);

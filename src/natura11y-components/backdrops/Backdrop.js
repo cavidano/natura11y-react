@@ -1,25 +1,24 @@
-import React from 'react';
+/*
 
-import { Link } from 'react-router-dom';
+// Backdrop
+
+*/
 
 const Backdrop = ( props ) => {
 
     const { 
 		title = 'Backdrop Title',
 		fixedHeight = null,
-		imageOpacity = '30',
+		imageOpacity = '60',
 		imageURL = 'https://via.placeholder.com/1500x750',
 		imageAlt = 'Placeholder'
 	} = props;
 
 	let classFixed = fixedHeight !== null ? ' backdrop--fixed': '';
-	let styleFixed = {'--backdrop-fixed-height': fixedHeight !== null ? `${fixedHeight}` : null };
-	
+	let styleFixed = {'--backdrop-fixed-height': fixedHeight !== null ? `${fixedHeight}px` : null };
+
 	return (
-		<Link
-			to="/"
-			className={`backdrop${classFixed}`}
-			style={styleFixed}>
+		<div className={`backdrop ${classFixed}`} style={styleFixed}>
 
 			<div className='backdrop__image'>
 				<img
@@ -29,13 +28,15 @@ const Backdrop = ( props ) => {
 				/>
 			</div>
 
-			<div className='backdrop__cover'>
+			<div className='backdrop__cover align-content-end'>
 				<div className='container medium margin-y-4'>
-					<h1 className='text-shadow'>{title}</h1>
+					<h1 className='text-shadow'>
+						{title}
+					</h1>
 				</div>
 			</div>
 		
-		</Link>
+		</div>
 	);
 }
 

@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import './natura11y';
-
 import Header from "./components/global/Header";
 import Home from './components/Home';
 import About from './components/About';

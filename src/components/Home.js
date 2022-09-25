@@ -1,28 +1,44 @@
-import Backdrop from "./Backdrop/Backdrop";
+import Backdrop from './Backdrop/Backdrop';
 
 const Home = () => {
+
+	const componentData = [
+		{
+			title: 'Accordion',
+			slug: 'accordion'
+		},
+		{
+			title: 'Alerts',
+			slug: 'alerts'
+		},
+		{
+			title: 'Backdrops',
+			slug: 'backdrops'
+		},
+		{
+			title: 'Modal',
+			slug: 'modal'
+		},
+		{
+			title: 'Navigation',
+			slug: 'navigation'
+		},
+	];
+
+	const componentList = componentData.map((component, index) => (
+		<Backdrop
+			key={index}
+			title={component.title}
+			imageURL={`images/banner/${component.slug}.jpg`}
+			fixedHeight="200px"
+
+		/>
+	));
+
 	return (
 		<>
-			<div className="container medium padding-y-4">
-
-				<Backdrop
-					title="Accordion"
-					imageURL='images/banner/accordion.jpg'
-					fixedHeight={900}
-				/>
-
-				<Backdrop
-					title="Alerts"
-					imageURL='images/banner/alerts.jpg'
-					fixedHeight={300}
-				/>
-
-				<Backdrop
-					title="Backdrops"
-					imageURL='images/banner/backdrops.jpg'
-					fixedHeight={300}
-				/>
-			
+			<div className='container medium padding-y-4'>
+				{componentList}
 			</div>
 		</>
 	);
