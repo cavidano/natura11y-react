@@ -66,6 +66,7 @@ const PrimaryNavigation = ( props ) => {
 					iconClassSuffix={menuShow ? 'close' : 'menu'}
 					clickHandler={handleClick}
 					ariaLabel='Menu'
+					ariaExpanded={menuShow ? true : false}
 				/>
 
 			</div>
@@ -73,10 +74,9 @@ const PrimaryNavigation = ( props ) => {
 			<div className='primary-nav__actions'>
 
 				<ButtonIconOnly
-					ref={menuButtonRef}
 					iconClassSuffix='mode-light-dark'
 				/>
-				
+
 			</div>
 
 		</div>
