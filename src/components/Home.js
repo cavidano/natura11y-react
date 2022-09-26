@@ -31,6 +31,7 @@ const Home = () => {
 			title={component.title}
 			imageURL={`images/banner/${component.slug}.jpg`}
 			fixedHeight="200px"
+			slug={component.slug}
 
 		/>
 	));

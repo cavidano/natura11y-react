@@ -14,8 +14,7 @@ const Modal = ( props ) => {
 
 	} = props;
 
-
-  let classScrolAll = scrollAll === true ? ' modal--scroll-all' : '';
+  	let classScrolAll = scrollAll === true ? ' modal--scroll-all' : '';
 
 	return (
 		<div

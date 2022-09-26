@@ -9,7 +9,8 @@ const Backdrop = ( props ) => {
 		fixedHeight = null,
 		imageOpacity = '30',
 		imageURL = 'https://via.placeholder.com/1500x750',
-		imageAlt = 'Placeholder'
+		imageAlt = 'Placeholder',
+		slug = '/'
 	} = props;
 
 	let classFixed = fixedHeight !== null ? ' backdrop--fixed': '';
@@ -17,7 +18,7 @@ const Backdrop = ( props ) => {
 	
 	return (
 		<Link
-			to="/"
+			to={`/example/${slug}`}
 			className={`backdrop${classFixed}`}
 			style={styleFixed}>
 
