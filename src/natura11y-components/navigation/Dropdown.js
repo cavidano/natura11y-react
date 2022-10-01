@@ -15,20 +15,28 @@ const Dropdown = () => {
 
         let dropdownButtonParent = dropdownButtonRef.current.closest('li');
 
-        window.addEventListener('click', (e) => {
-
+        const dropdownClickListener = (e) => {
+        
             let dropdownButtonClick = dropdownButtonParent.contains(e.target);
 
             if (!dropdownButtonClick) {
                 setDropdownShow(false);
             }
-        });
+        } 
+
+        window.addEventListener('click', dropdownClickListener);
+
+        return () => {
+            window.removeEventListener('click', dropdownClickListener);
+        }
 
     }, []);
 
     useEffect(() => {
         setDropdownShow(false);
     }, [location]);
+
+
 
     const handleClick = () => {
         setDropdownShow(!dropdownShow);

@@ -32,7 +32,6 @@ const Home = () => {
 			imageURL={`images/banner/${component.slug}.jpg`}
 			fixedHeight="200px"
 			slug={component.slug}
-
 		/>
 	));
 

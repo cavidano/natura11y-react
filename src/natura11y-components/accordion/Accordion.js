@@ -16,8 +16,6 @@ const Accordion = () => {
 
       const clicked = e.target.getAttribute('id');
 
-        console.log('clicked', clicked)
-
         if (activeAccordion === clicked) {
             setActiveAccordion(null);
         } else {
