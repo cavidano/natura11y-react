@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Header from "./components/global/Header";
-import Home from './components/Home';
-import About from './components/About';
-import Examples from './components/Examples';
-import Example from './components/Example';
+import Header from './displayComponents/global/Header';
+import Home from './displayComponents/Home';
+import About from './displayComponents/About';
+import Examples from './displayComponents/Examples';
+import Example from './displayComponents/Example';
 
 const App = () => {
 

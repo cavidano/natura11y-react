@@ -7,7 +7,7 @@
 import { useParams, Outlet } from 'react-router-dom';
 import Backdrop from './Backdrop/Backdrop';
 
-import Accordion from '../natura11y-components/accordion/Accordion';
+import Accordion from '../natura11yComponents/accordion/Accordion';
 
 const Examples = ({ data }) => {
 	const { slug } = useParams();

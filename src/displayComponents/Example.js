@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import Accordion from '../natura11y-components/accordion/Accordion';
-import AlertParent from '../natura11y-components/alerts/AlertParent';
+import Accordion from '../natura11yComponents/accordion/Accordion';
+import AlertParent from '../natura11yComponents/alerts/AlertParent';
 
 const Example = ({ data }) => {
 	const { slug } = useParams();

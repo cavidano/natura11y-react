@@ -6,9 +6,9 @@
 
 import React, { useState } from 'react';
 
-import Accordion from '../natura11y-components/accordion/Accordion';
-import Alert from '../natura11y-components/alerts/Alert';
-import Modal from '../natura11y-components/modal/Modal'
+import Accordion from '../natura11yComponents/accordion/Accordion';
+import Alert from '../natura11yComponents/alerts/Alert';
+import Modal from '../natura11yComponents/modal/Modal'
 
 const About = () => {
 

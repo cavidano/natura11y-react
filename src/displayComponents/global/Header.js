@@ -8,7 +8,7 @@ import React, { useRef, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import ButtonIconOnly from '../../natura11y-components/buttons/ButtonIconOnly';
+import ButtonIconOnly from '../../natura11yComponents/buttons/ButtonIconOnly';
 import Brand from './Brand';
 
 const PrimaryNavigation = ( props ) => {
