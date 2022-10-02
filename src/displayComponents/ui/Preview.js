@@ -7,7 +7,7 @@ const Backdrop = ( props ) => {
     const { 
 		title = 'Backdrop Title',
 		fixedHeight = null,
-		imageOpacity = '30',
+		imageOpacity = '20',
 		imageURL = 'https://via.placeholder.com/1500x750',
 		imageAlt = 'Placeholder',
 		slug = '/'

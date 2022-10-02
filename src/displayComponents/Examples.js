@@ -5,15 +5,14 @@
 */
 
 import { useParams, Outlet } from 'react-router-dom';
-import Backdrop from './ui/Preview';
-
-import Accordion from '../natura11yComponents/accordion/Accordion';
+import Preview from './ui/Preview';
 
 const Examples = ({ data }) => {
+
 	const { slug } = useParams();
 
 	const exampleLinks = data.map((component, index) => (
-		<Backdrop
+		<Preview
 			key={index}
 			title={component.title}
 			imageURL={`images/banner/${component.slug}.jpg`}
@@ -25,7 +24,13 @@ const Examples = ({ data }) => {
 	return (
 		<>
 			<h1 className='screen-reader-only'>Component Examples</h1>
-			{slug === undefined ? exampleLinks : <Outlet data={data} id={slug} />}
+			{slug === undefined
+				? (
+					<div className="grid grid--column-3--md">
+						{exampleLinks}
+					</div>
+				) : <Outlet data={data} id={slug} />
+			}
 		</>
 	);
 };

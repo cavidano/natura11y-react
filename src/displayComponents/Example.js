@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-
 import { useParams } from 'react-router-dom';
 
 import Accordion from '../natura11yComponents/accordion/Accordion';
 import AlertParent from '../natura11yComponents/alerts/AlertParent';
+import Backdrop from '../natura11yComponents/backdrops/Backdrop.js';
 
 const Example = ({ data }) => {
 	const { slug } = useParams();
@@ -21,14 +20,22 @@ const Example = ({ data }) => {
 
 	return (
 		<div>
-			<div className='container narrow margin-y-5'>
+			<div className=''>
 				{data
 					.filter((header) => header.slug === slug)
-					.map((header) => (
-						<div className='container'>{header.title}</div>
+					.map((header, index) => (
+						<Backdrop
+							key={index}
+							title={header.title}
+							fixedHeight='400px'
+							imageURL={`images/banner/${header.slug}.jpg`}
+						/>						
 					))}
 
-				{activeExample()}
+					<div className="container narrow margin-y-5">
+						{activeExample()}
+					</div>
+
 			</div>
 		</div>
 	);
