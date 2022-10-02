@@ -2,7 +2,8 @@ import { useParams } from 'react-router-dom';
 
 import Accordion from '../natura11yComponents/accordion/Accordion';
 import AlertParent from '../natura11yComponents/alerts/AlertParent';
-import Backdrop from '../natura11yComponents/backdrops/Backdrop.js';
+import Backdrop from '../natura11yComponents/backdrops/Backdrop';
+import PrimaryNavigation from '../natura11yComponents/navigation/PrimaryNavigation'
 
 const Example = ({ data }) => {
 	const { slug } = useParams();
@@ -13,6 +14,8 @@ const Example = ({ data }) => {
 				return <Accordion />;
 			case 'alerts':
 				return <AlertParent />;
+			case 'navigation':
+				return <PrimaryNavigation />;
 			default:
 				return null;
 		}
@@ -32,10 +35,9 @@ const Example = ({ data }) => {
 						/>						
 					))}
 
-					<div className="container narrow margin-y-5">
+					<div className="container margin-y-5">
 						{activeExample()}
 					</div>
-
 			</div>
 		</div>
 	);

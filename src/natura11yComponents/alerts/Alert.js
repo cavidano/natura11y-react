@@ -12,9 +12,8 @@ const Alert = ( props ) => {
 
   const { 
     success = true,
-    inverse = true,
-    dismissable = true,
-    handleAlertClose,
+    inverse = false,
+    handleAlertClose = null,
     title = 'Alert Title',
     children = <p>Alert Description</p>
   } = props;
@@ -24,41 +23,39 @@ const Alert = ( props ) => {
   let classConfirm = success === true ? ' alert--confirm' : '';
   let classWarn = success === false ? ' alert--warn' : '';
   let modifierInverse = inverse === true ? '--inverse' : '';
-  let classDismissable = dismissable === true ? ' alert--dismissable' : '';
+  let classDismissable = handleAlertClose !== null ? ' alert--dismissable' : '';
 
 	return (
+		<div
+			className={`alert${classConfirm}${classWarn}${modifierInverse}${classDismissable}`}
+			aria-labelledby='alert-label'
+			aria-describedby='alert-description'
+			role='alert'
+		>
+			{handleAlertClose !== null && (
+				<ButtonIconOnly
+					ref={closeButtonRef}
+					iconClassSuffix='close'
+					clickHandler={handleAlertClose}
+					ariaLabel='Close'
+				/>
+			)}
 
-    <div
-        className={`alert${classConfirm}${classWarn}${modifierInverse}${classDismissable}`}
-        aria-labelledby="alert-label"
-        aria-describedby="alert-description"
-        role="alert">
+			<div className='alert__title h5'>
+				<span
+					className={`icon ${success === true ? 'icon-confirm' : 'icon-warn'}`}
+					aria-hidden='true'
+				></span>
+				<span className='alert__title__text' id='alert-label'>
+					{title}
+				</span>
+			</div>
 
-        {dismissable && (
-
-          <ButtonIconOnly
-            ref={closeButtonRef}
-            iconClassSuffix='close'
-            clickHandler={handleAlertClose}
-            ariaLabel='Close'
-          />
-          
-        )}
-
-        <div className="alert__title h5">
-            <span className={`icon ${success === true ? 'icon-confirm' : 'icon-warn'}`} aria-hidden="true"></span>
-            <span className="alert__title__text" id="alert-label">
-                {title}
-            </span>
-        </div>
-
-        <div className="alert__description" id="alert-description">
-            {children}
-        </div>
-
-    </div>
-
-  );
+			<div className='alert__description' id='alert-description'>
+				{children}
+			</div>
+		</div>
+	);
 };
 
 export default Alert;

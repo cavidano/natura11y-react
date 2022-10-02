@@ -1,13 +1,14 @@
 /*
 
-// Example
+// Home
 
 */
 
 import { useParams, Outlet } from 'react-router-dom';
+
 import Preview from './ui/Preview';
 
-const Examples = ({ data }) => {
+const Home = ({ data }) => {
 
 	const { slug } = useParams();
 
@@ -26,7 +27,7 @@ const Examples = ({ data }) => {
 			<h1 className='screen-reader-only'>Component Examples</h1>
 			{slug === undefined
 				? (
-					<div className="grid grid--column-3--md">
+					<div className="grid gap-border grid--coluxmn-3--md">
 						{exampleLinks}
 					</div>
 				) : <Outlet data={data} id={slug} />
@@ -35,4 +36,4 @@ const Examples = ({ data }) => {
 	);
 };
 
-export default Examples;
+export default Home;
