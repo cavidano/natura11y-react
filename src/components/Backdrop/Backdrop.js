@@ -18,7 +18,7 @@ const Backdrop = ( props ) => {
 	
 	return (
 		<Link
-			to={`/example/${slug}`}
+			to={`/examples/${slug}`}
 			className={`backdrop${classFixed}`}
 			style={styleFixed}>
 

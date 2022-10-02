@@ -1,28 +1,33 @@
 /*
 
-// About
+// Example
 
 */
 
-import React, { useState } from 'react';
+import { useParams, Outlet } from 'react-router-dom';
+import Backdrop from './Backdrop/Backdrop';
 
 import Accordion from '../natura11y-components/accordion/Accordion';
-import Alert from '../natura11y-components/alerts/Alert';
-import Modal from '../natura11y-components/modal/Modal'
 
-const Examples = () => {
-	const [showAlert, setShowAlert] = useState(true);
+const Examples = ({ data }) => {
+	const { slug } = useParams();
 
-	const handleAlertClose = () => {
-		setShowAlert(false);
-	};
+	console.log('I AM SLUG', slug);
+
+	const exampleLinks = data.map((component, index) => (
+		<Backdrop
+			key={index}
+			title={component.title}
+			imageURL={`images/banner/${component.slug}.jpg`}
+			fixedHeight='300px'
+			slug={component.slug}
+		/>
+	));
 
 	return (
 		<>
-			<div className='container narrow margin-y-5'>
-                <h1>Hello</h1>
-				<Accordion />
-			</div>
+			<h1 className='screen-reader-only'>Component Examples</h1>
+			{slug === undefined ? exampleLinks : <Outlet data={data} id={slug} />}
 		</>
 	);
 };

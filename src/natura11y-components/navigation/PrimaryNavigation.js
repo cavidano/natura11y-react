@@ -48,7 +48,7 @@ const PrimaryNavigation = ( props ) => {
 						<Dropdown />
 					</li>
 					<li>
-						<Link to='/about'>About</Link>
+						<Link to='#1'>Link</Link>
 					</li>
 					<li>
 						<Link to='#1'>Link</Link>

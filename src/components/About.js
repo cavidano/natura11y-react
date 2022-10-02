@@ -11,6 +11,7 @@ import Alert from '../natura11y-components/alerts/Alert';
 import Modal from '../natura11y-components/modal/Modal'
 
 const About = () => {
+
 	const [showAlert, setShowAlert] = useState(true);
 
 	const handleAlertClose = () => {
