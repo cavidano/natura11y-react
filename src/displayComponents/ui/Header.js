@@ -30,7 +30,7 @@ const PrimaryNavigation = ( props ) => {
 
 		<div className={`primary-nav--${navType}--${breakpoint}`}>
 		
-			<div className='primary-nav__logo'>
+			<div className='primary-nav__logo margin-left-n2'>
 				<Link to='/' title='Home' data-logo='brand'>
 					<Brand />
 				</Link>
@@ -43,13 +43,7 @@ const PrimaryNavigation = ( props ) => {
 			>
 				<ul>
 					<li>
-						<Link to='/examples'>Examples</Link>
-					</li>
-					<li>
 						<Link to='/about'>About</Link>
-					</li>
-					<li>
-						<Link to='#1'>Link</Link>
 					</li>
 				</ul>
 			</nav>
@@ -69,7 +63,7 @@ const PrimaryNavigation = ( props ) => {
 			<div className='primary-nav__actions'>
 
 				<ButtonIconOnly
-					iconClassSuffix='mode-light-dark'
+					iconClassSuffix='github'
 				/>
 
 			</div>

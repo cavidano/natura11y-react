@@ -5,7 +5,7 @@
 */
 
 import { useParams, Outlet } from 'react-router-dom';
-import Backdrop from './Backdrop/Backdrop';
+import Backdrop from './ui/Preview';
 
 import Accordion from '../natura11yComponents/accordion/Accordion';
 

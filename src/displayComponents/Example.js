@@ -23,9 +23,9 @@ const Example = ({ data }) => {
 		<div>
 			<div className='container narrow margin-y-5'>
 				{data
-					.filter((card) => card.slug === slug)
-					.map((card, index) => (
-						<div className='container'>{card.title}</div>
+					.filter((header) => header.slug === slug)
+					.map((header) => (
+						<div className='container'>{header.title}</div>
 					))}
 
 				{activeExample()}
