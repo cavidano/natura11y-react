@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-
 import Accordion from '../natura11y-components/accordion/Accordion';
-
-
+import AlertParent from '../natura11y-components/alerts/AlertParent';
 
 const Example = ({ data }) => {
 	const { slug } = useParams();
@@ -13,7 +11,9 @@ const Example = ({ data }) => {
 	const activeExample = () => {
 		switch (slug) {
 			case 'accordion':
-				return <Accordion />
+				return <Accordion />;
+			case 'alerts':
+				return <AlertParent />;
 			default:
 				return null;
 		}

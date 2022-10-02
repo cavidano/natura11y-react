@@ -12,8 +12,6 @@ import Accordion from '../natura11y-components/accordion/Accordion';
 const Examples = ({ data }) => {
 	const { slug } = useParams();
 
-	console.log('I AM SLUG', slug);
-
 	const exampleLinks = data.map((component, index) => (
 		<Backdrop
 			key={index}
