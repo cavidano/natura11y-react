@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import Modal from './Modal';
 
 const ModalParent = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
+    const [lastFocused, setLastFocused] = useState(null);
 
-    const modalOpenHandler = () => {
-        setModalOpen(true);
-    };
+    const modalOpenHandler = (e) => {
+		setModalOpen(true);
+
+		setLastFocused(e.target);
+		console.log('last-focused-is', lastFocused);
+	};
 
     const modalCloseHandler = () => {
         setModalOpen(false);
+		lastFocused.focus()
     };
 
 	return (
