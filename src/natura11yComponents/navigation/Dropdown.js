@@ -36,8 +36,6 @@ const Dropdown = () => {
         setDropdownShow(false);
     }, [location]);
 
-
-
     const handleClick = () => {
         setDropdownShow(!dropdownShow);
     }

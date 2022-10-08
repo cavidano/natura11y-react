@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import Accordion from '../natura11yComponents/accordion/Accordion';
 import AlertParent from '../natura11yComponents/alerts/AlertParent';
 import Backdrop from '../natura11yComponents/backdrops/Backdrop';
-import PrimaryNavigation from '../natura11yComponents/navigation/PrimaryNavigation'
+import PrimaryNavigation from '../natura11yComponents/navigation/PrimaryNavigation';
+import ModalParent from '../natura11yComponents/modal/ModalParent';
 
 const Example = ({ data }) => {
 	const { slug } = useParams();
@@ -16,6 +17,8 @@ const Example = ({ data }) => {
 				return <AlertParent />;
 			case 'navigation':
 				return <PrimaryNavigation />;
+			case 'modal':
+				return <ModalParent />;
 			default:
 				return null;
 		}
