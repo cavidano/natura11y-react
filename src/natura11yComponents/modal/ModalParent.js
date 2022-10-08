@@ -28,12 +28,6 @@ const ModalParent = () => {
                 modalOpen={modalOpen}
                 modalCloseHandler={modalCloseHandler}
             />
-
-			<Modal
-                title='cooooool'
-                modalOpen={modalOpen}
-                modalCloseHandler={modalCloseHandler}
-            />
 		</>
 	);
 };

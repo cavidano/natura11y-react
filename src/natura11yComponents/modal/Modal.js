@@ -10,11 +10,11 @@ import { getFocusableElements } from '../../utilities/focus';
 
 const Modal = ( props ) => {
 
-	const modalRef = useRef();
+	const modalTarget = useRef();
 
 	const {
 		scrollAll = false,
-		closeOutside = false,
+		closeOutside = true,
 		title = 'Modal Title',
 		modalOpen = modalOpen,
 		modalCloseHandler = modalCloseHandler,
@@ -26,29 +26,22 @@ const Modal = ( props ) => {
 
 	useEffect(() => {
 
-		const modalTarget = modalRef.current;
-		const modalContent = modalTarget.querySelector('.modal__content');
-
-		let lastFocusedElement;
-
-		 lastFocusedElement = document.activeElement;
 		if (modalOpen) {
-		
 
-			console.log('last focused ========== ', lastFocusedElement);
-		
 			document.querySelector('body').classList.add('modal-open');
 
+			const modalContent = modalTarget.current.querySelector('.modal__content')
+		
 			modalContent.setAttribute('tabindex', 0);
 			modalContent.focus();
 			modalContent.setAttribute('tabindex', -1);
 
-			const focusableElements = getFocusableElements(modalTarget);
+			const focusableElements = getFocusableElements(modalTarget.current);
 
 			const firstElementOfModal = focusableElements[0];
 			const lastElementOfModal = focusableElements[focusableElements.length - 1];
 
-			modalTarget.addEventListener('keydown', (event) => {
+			modalTarget.current.addEventListener('keydown', (event) => {
 
 				switch (event.code) {
 					case 'Tab':
@@ -81,14 +74,12 @@ const Modal = ( props ) => {
 					
 					default:
 					// do nothing
-			}
+				}
 				
 			});
 
 		} else {
-			console.log(lastFocusedElement, 'helllo???????')
 			document.querySelector('body').classList.remove('modal-open');
-			lastFocusedElement.focus();
 		}
 
 	}, [modalOpen]);
@@ -99,8 +90,8 @@ const Modal = ( props ) => {
 			id='modal-example-01'
 			role='dialog'
 			aria-hidden={modalOpen ? false : true}
-			data-modal-close-outside={closeOutside}
-			ref={modalRef}
+			data-modal-close-outside={closeOutside ? true : false}
+			ref={modalTarget}
 			>
 			<div
 				className='modal__content narrow border-radius box-shadow-3'
