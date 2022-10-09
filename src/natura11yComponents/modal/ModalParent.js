@@ -9,14 +9,12 @@ const ModalParent = () => {
 
     const modalOpenHandler = (e) => {
 		setModalOpen(true);
-
 		setLastFocused(e.target);
-		console.log('last-focused-is', lastFocused);
 	};
 
     const modalCloseHandler = () => {
         setModalOpen(false);
-		lastFocused.focus()
+		lastFocused.focus();
     };
 
 	return (

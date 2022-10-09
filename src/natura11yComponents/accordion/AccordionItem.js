@@ -14,10 +14,10 @@ const AccordionItem = ( props ) => {
 
         const currentPanel = accordionPanelRef.current;
 
-        activeAccordion === id ?
-            currentPanel.style.maxHeight = currentPanel.scrollHeight + 'px'
-            : currentPanel.style.maxHeight = 0;
-
+        activeAccordion === id
+            ? (currentPanel.style.maxHeight = currentPanel.scrollHeight + 'px')
+            : (currentPanel.style.maxHeight = 0);
+            
     }, [activeAccordion]);
 
     const accordionButtonRef = useRef();

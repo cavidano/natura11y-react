@@ -14,7 +14,7 @@ const Modal = ( props ) => {
 
 	const {
 		scrollAll = false,
-		closeOutside = true,
+		closeOutside = false,
 		title = 'Modal Title',
 		modalOpen = modalOpen,
 		modalCloseHandler = modalCloseHandler,

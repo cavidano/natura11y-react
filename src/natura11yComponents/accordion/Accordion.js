@@ -4,7 +4,9 @@
 
 */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { getFocusableElements } from '../../utilities/focus';
 
 import AccordionItem from './AccordionItem';
 
@@ -14,14 +16,19 @@ const Accordion = () => {
 
   const handleClick = (e) => {
 
-      const clicked = e.target.getAttribute('id');
+    const clicked = e.target.getAttribute('id');
 
-        if (activeAccordion === clicked) {
-            setActiveAccordion(null);
-        } else {
-            setActiveAccordion(clicked);
-        }
-    }
+      if (activeAccordion === clicked) {
+          setActiveAccordion(null);
+      } else {
+          setActiveAccordion(clicked);
+      }
+  }
+
+  useEffect(() => {
+
+			const focusableElements = getFocusableElements();
+  }, []);
 
   return (
 
