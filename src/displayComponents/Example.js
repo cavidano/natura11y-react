@@ -7,18 +7,48 @@ import PrimaryNavigation from '../natura11yComponents/navigation/PrimaryNavigati
 import ModalParent from '../natura11yComponents/modal/ModalParent';
 
 const Example = ({ data }) => {
+
 	const { slug } = useParams();
 
 	const activeExample = () => {
+
 		switch (slug) {
+
 			case 'accordion':
-				return <Accordion />;
+				return (
+					<div className='narrow margin-x-auto'>
+						<Accordion />
+					</div>
+				);
+
 			case 'alerts':
-				return <AlertParent />;
+				return (
+					<div className='narrow margin-x-auto'>
+						<AlertParent />
+					</div>
+				);
+
+			case 'backdrops':
+				return (
+					<div className='medium margin-x-auto'>
+						<Backdrop />
+					</div>
+				);
+
 			case 'navigation':
-				return <PrimaryNavigation />;
+				return (
+					<div className='box-shadow-1 theme-light'>
+						<PrimaryNavigation />
+					</div>
+				);
+
 			case 'modal':
-				return <ModalParent />;
+				return (
+					<div className='medium margin-x-auto'>
+						<ModalParent />
+					</div>
+				);
+
 			default:
 				return null;
 		}
@@ -38,7 +68,7 @@ const Example = ({ data }) => {
 						/>						
 					))}
 
-					<div className="container margin-y-5">
+					<div className="margin-y-5">
 						{activeExample()}
 					</div>
 			</div>

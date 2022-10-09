@@ -26,7 +26,6 @@ const Accordion = () => {
   }
 
   useEffect(() => {
-
 			const focusableElements = getFocusableElements();
   }, []);
 

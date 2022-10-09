@@ -36,7 +36,7 @@ const App = () => {
 			
 			<Header />
 
-			<main className='App'>
+			<main className='container wide'>
 				<Routes>
 					<Route path='/' element={<Home data={data} />}>
 						<Route path=':slug' element={<Example data={data} />} />

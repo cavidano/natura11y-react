@@ -28,73 +28,69 @@ const ModalParent = () => {
 
 		switch (modalExample) {
 
-				case 'one':
-					return (
-						<div>
-							<h2>Modal 1</h2>
-							<p>
-								
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-								veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-								nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-								deleniti dolorum inventore delectus amet.
-							</p>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-								veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-								nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-								deleniti dolorum inventore delectus amet.
-							</p>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-								veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-								nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-								deleniti dolorum inventore delectus amet.
-							</p>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-								veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-								nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-								deleniti dolorum inventore delectus amet.
-							</p>
-						</div>
-					);
-	
-					break;
+			case 'one':
+				return (
+					<div>
+						<p>
+							
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+					</div>
+				);
 
-				case 'two':
-					return (
-						<div>
-							<h2>Modal 2</h2>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-								veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-								nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-								deleniti dolorum inventore delectus amet.
-							</p>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-								veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-								nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-								deleniti dolorum inventore delectus amet.
-							</p>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-								veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-								nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-								deleniti dolorum inventore delectus amet.
-							</p>
-						</div>
-					);
+				break;
 
-					break;
-				
-				default:
+			case 'two':
+				return (
+					<div>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+					</div>
+				);
+
+				break;
+			
+			default:
 				// do nothing
-					return;
-			}
-	
-
+				return;
+		}
 	};
 
 	useEffect(() => {
@@ -130,6 +126,7 @@ const ModalParent = () => {
 				modalCloseHandler={modalCloseHandler}
 				closeOutside={true}
 				scrollAll={false}
+				title={modalExample === 'one' ? 'Modal One' : 'Modal Two' }
 			>
 			{modalBody()}
 			</Modal>

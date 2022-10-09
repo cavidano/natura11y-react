@@ -73,7 +73,7 @@ const Modal = ( props ) => {
 				default:
 				// do nothing
 			}
-				
+
 		};
 
 		if (isOpen) {
@@ -108,7 +108,7 @@ const Modal = ( props ) => {
 				ref={modalContent}
 			>
 				<header className='modal__content__head border-bottom'>
-					<h2 className='h6' id='modal-example-01-title'>
+					<h2 id='modal-example-01-title'>
 						{title}
 					</h2>
 					<button
