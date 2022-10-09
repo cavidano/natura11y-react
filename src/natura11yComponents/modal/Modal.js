@@ -13,7 +13,7 @@ const Modal = ( props ) => {
 	const modalTarget = useRef();
 
 	const {
-		scrollAll = false,
+		scrollAll = true,
 		closeOutside = false,
 		title = 'Modal Title',
 		modalOpen = modalOpen,
