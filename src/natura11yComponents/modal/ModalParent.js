@@ -5,16 +5,17 @@ import Modal from './Modal';
 const ModalParent = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [lastFocused, setLastFocused] = useState(null);
+
+	const lastFocused = useRef(null);
 
     const modalOpenHandler = (e) => {
 		setModalOpen(true);
-		setLastFocused(e.target);
+		lastFocused.current = e.target;
 	};
 
     const modalCloseHandler = () => {
         setModalOpen(false);
-		lastFocused.focus();
+		lastFocused.current.focus();
     };
 
 	return (
