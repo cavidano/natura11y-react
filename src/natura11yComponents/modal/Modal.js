@@ -10,99 +10,104 @@ import { getFocusableElements } from '../../utilities/focus';
 
 const Modal = ( props ) => {
 
-	const modalTarget = useRef(null);
-
 	const {
-		scrollAll = true,
+		scrollAll = false,
 		closeOutside = false,
 		title = 'Modal Title',
-		modalOpen = modalOpen,
+		isOpen = isOpen,
 		modalCloseHandler = modalCloseHandler,
 		children = <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
 	} = props;
 
+	const modalContent = useRef();
+
   	let classScrolAll = scrollAll === true ? ' modal--scroll-all' : '';
+
+	const handleCloseOutside = (event) => {
+
+		let modalContentClick = modalContent.current.contains(event.target);
+
+		if (closeOutside && !modalContentClick ) {
+			modalCloseHandler();
+		}
+	};
 
 	useEffect(() => {
 
-		let keyDownListener;
+		console.log(`I am triggered == ${isOpen}`);
 
-		if (modalOpen) {
-			
-			// console.log(` I am mounted ${modalTarget}`);
+		const keyDownListener = (event) => {
 
-			document.querySelector('body').classList.add('modal-open');
-
-			const modalContent = modalTarget.current.querySelector('.modal__content');
-		
-			modalContent.setAttribute('tabindex', 0);
-			modalContent.focus();
-			modalContent.setAttribute('tabindex', -1);
-
-			const focusableElements = getFocusableElements(modalTarget.current);
-
+			const focusableElements = getFocusableElements(modalContent.current);
 			const firstElementOfModal = focusableElements[0];
 			const lastElementOfModal = focusableElements[focusableElements.length - 1];
 
-			keyDownListener = (event) => {
-
-				switch (event.code) {
-					case 'Tab':
-						if (document.activeElement === lastElementOfModal) {
-							if (!event.shiftKey) {
-								event.preventDefault();
-								firstElementOfModal.focus();
-							}
+			switch (event.code) {
+				case 'Tab':
+					if (document.activeElement === lastElementOfModal) {
+						if (!event.shiftKey) {
+							event.preventDefault();
+							firstElementOfModal.focus();
 						}
+					}
 
-						if (document.activeElement === firstElementOfModal) {
-							if (event.shiftKey) {
-								event.preventDefault();
-								lastElementOfModal.focus();
-							}
+					if (document.activeElement === firstElementOfModal) {
+						if (event.shiftKey) {
+							event.preventDefault();
+							lastElementOfModal.focus();
 						}
+					}
 
-						if (document.activeElement === modalContent) {
-							if (event.shiftKey) {
-								event.preventDefault();
-								firstElementOfModal.focus();
-							}
+					if (document.activeElement === modalContent) {
+						if (event.shiftKey) {
+							event.preventDefault();
+							firstElementOfModal.focus();
 						}
+					}
 
-						break;
+					break;
 
-					case 'Escape':
-						modalCloseHandler();
-						break;
-					
-					default:
-					// do nothing
-				}
+				case 'Escape':
+					modalCloseHandler();
+					break;
 				
-			};
+				default:
+				// do nothing
+			}
+				
+		};
 
-			modalTarget.current.addEventListener('keydown', keyDownListener);
+		if (isOpen) {
+		
+			document.querySelector('body').classList.add('modal-open');
+
+			modalContent.current.setAttribute('tabindex', 0);
+			modalContent.current.focus();
+			modalContent.current.setAttribute('tabindex', -1);
+
+			modalContent.current.addEventListener('keydown', keyDownListener);
 
 		} else {
 			document.querySelector('body').classList.remove('modal-open');
-			modalTarget.current.addEventListener('keydown', keyDownListener);
+			
+			modalContent.current.removeEventListener('keydown', keyDownListener);
 		}
 
-	}, [modalOpen]);
+	}, [isOpen]);
 
 	return (
 		<div
 			className={`modal ${classScrolAll} padding-2`}
 			id='modal-example-01'
 			role='dialog'
-			aria-hidden={modalOpen ? false : true}
-			data-modal-close-outside={closeOutside ? true : false}
-			ref={modalTarget}
-			>
+			aria-hidden={isOpen ? false : true}
+			onClick={handleCloseOutside}
+		>
 			<div
 				className='modal__content narrow border-radius box-shadow-3'
 				aria-labelledby='modal-example-01-title'
+				ref={modalContent}
 			>
 				<header className='modal__content__head border-bottom'>
 					<h2 className='h6' id='modal-example-01-title'>

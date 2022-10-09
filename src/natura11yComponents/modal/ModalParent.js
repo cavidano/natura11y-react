@@ -4,17 +4,17 @@ import Modal from './Modal';
 
 const ModalParent = () => {
 
-    const [modalOpen, setModalOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
 	const lastFocused = useRef(null);
 
     const modalOpenHandler = (e) => {
-		setModalOpen(true);
+		setIsOpen(true);
 		lastFocused.current = e.target;
 	};
 
     const modalCloseHandler = () => {
-        setModalOpen(false);
+        setIsOpen(false);
 		lastFocused.current.focus();
     };
 
@@ -29,7 +29,7 @@ const ModalParent = () => {
 			</button>
 
 			<Modal
-				modalOpen={modalOpen}
+				isOpen={isOpen}
 				modalCloseHandler={modalCloseHandler}>
 					<div>
 						<p>
