@@ -28,51 +28,53 @@ const ModalParent = () => {
 				Open Modal
 			</button>
 
-			<Modal modalOpen={modalOpen} modalCloseHandler={modalCloseHandler}>
-				<div>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-						veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-						nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-						deleniti dolorum inventore delectus amet.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-						veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-						nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-						deleniti dolorum inventore delectus amet.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-						veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-						nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-						deleniti dolorum inventore delectus amet.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-						veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-						nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-						deleniti dolorum inventore delectus amet.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-						veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-						nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-						deleniti dolorum inventore delectus amet.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-						veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-						nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-						deleniti dolorum inventore delectus amet.
-					</p>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-						veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
-						nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
-						deleniti dolorum inventore delectus amet.
-					</p>
-				</div>
+			<Modal
+				modalOpen={modalOpen}
+				modalCloseHandler={modalCloseHandler}>
+					<div>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
+							veritatis harum quibusdam. Sapiente doloremque, earum reiciendis
+							nesciunt ipsa placeat quod laudantium eum, perspiciatis eos, soluta
+							deleniti dolorum inventore delectus amet.
+						</p>
+					</div>
 			</Modal>
 		</>
 	);

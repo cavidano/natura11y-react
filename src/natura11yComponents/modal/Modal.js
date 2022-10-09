@@ -10,7 +10,7 @@ import { getFocusableElements } from '../../utilities/focus';
 
 const Modal = ( props ) => {
 
-	const modalTarget = useRef();
+	const modalTarget = useRef(null);
 
 	const {
 		scrollAll = true,
@@ -26,11 +26,15 @@ const Modal = ( props ) => {
 
 	useEffect(() => {
 
+		let keyDownListener;
+
 		if (modalOpen) {
+			
+			// console.log(` I am mounted ${modalTarget}`);
 
 			document.querySelector('body').classList.add('modal-open');
 
-			const modalContent = modalTarget.current.querySelector('.modal__content')
+			const modalContent = modalTarget.current.querySelector('.modal__content');
 		
 			modalContent.setAttribute('tabindex', 0);
 			modalContent.focus();
@@ -41,7 +45,7 @@ const Modal = ( props ) => {
 			const firstElementOfModal = focusableElements[0];
 			const lastElementOfModal = focusableElements[focusableElements.length - 1];
 
-			modalTarget.current.addEventListener('keydown', (event) => {
+			keyDownListener = (event) => {
 
 				switch (event.code) {
 					case 'Tab':
@@ -76,10 +80,13 @@ const Modal = ( props ) => {
 					// do nothing
 				}
 				
-			});
+			};
+
+			modalTarget.current.addEventListener('keydown', keyDownListener);
 
 		} else {
 			document.querySelector('body').classList.remove('modal-open');
+			modalTarget.current.addEventListener('keydown', keyDownListener);
 		}
 
 	}, [modalOpen]);
