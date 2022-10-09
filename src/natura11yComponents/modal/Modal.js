@@ -26,16 +26,14 @@ const Modal = ( props ) => {
 
 	const handleCloseOutside = (event) => {
 
-		let modalContentClick = modalContent.current.contains(event.target);
+		const modalContentClick = modalContent.current.contains(event.target);
 
-		if (closeOutside && !modalContentClick ) {
+		if (closeOutside && !modalContentClick) {
 			modalCloseHandler();
 		}
 	};
 
 	useEffect(() => {
-
-		console.log(`I am triggered == ${isOpen}`);
 
 		const keyDownListener = (event) => {
 
