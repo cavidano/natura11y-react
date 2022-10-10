@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 
+
+import { getFocusableElements } from '../../utilities/focus';
+
 const AccordionItem = ( props ) => {
 
     const {
@@ -19,7 +22,14 @@ const AccordionItem = ( props ) => {
             ? accordionPanel.current.style.maxHeight = accordionPanel.current.scrollHeight + 'px'
             : accordionPanel.current.style.maxHeight = 0;
             
+        const focusableElements = getFocusableElements(accordionPanel.current);
+        console.log(`focasable ${focusableElements}`)
     }, [openAccordion]);
+
+
+    useEffect(() => {
+    }, []);
+
 
     return (
         <>
