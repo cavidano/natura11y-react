@@ -12,17 +12,15 @@ import AccordionItem from './AccordionItem';
 
 const Accordion = () => {
 
-  const [activeAccordion, setActiveAccordion] = useState(null);
+  const [openAccordion, setOpenAccordion] = useState(null);
 
   const handleClick = (e) => {
 
     const clicked = e.target.getAttribute('id');
 
-      if (activeAccordion === clicked) {
-          setActiveAccordion(null);
-      } else {
-          setActiveAccordion(clicked);
-      }
+      openAccordion === clicked
+        ? setOpenAccordion(null)
+        : setOpenAccordion(clicked);
   }
 
   useEffect(() => {
@@ -35,10 +33,10 @@ const Accordion = () => {
 
       <AccordionItem
         title='Danaus Plexippus'
-        activeAccordion={activeAccordion}
+        openAccordion={openAccordion}
         handleClick={handleClick}
         id='example-01'
-        >
+      >
 
         <p>
             The monarch butterfly or simply monarch is a milkweed butterfly in
@@ -52,7 +50,7 @@ const Accordion = () => {
 
       <AccordionItem
         title='Papilio Polyxenes'
-        activeAccordion={activeAccordion}
+        openAccordion={openAccordion}
         handleClick={handleClick}
         id='example-02'
       >
@@ -69,7 +67,7 @@ const Accordion = () => {
 
       <AccordionItem
         title='Hyalophora Cecropia'
-        activeAccordion={activeAccordion}
+        openAccordion={openAccordion}
         handleClick={handleClick}
         id='example-03'
       >
