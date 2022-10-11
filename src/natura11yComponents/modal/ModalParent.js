@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import Modal from './Modal';
 
 const ModalParent = () => {
@@ -33,7 +35,7 @@ const ModalParent = () => {
 				return (
 					<>
 						<p>
-							The <strong>meerkat</strong> (Suricata suricatta) or suricate is a small <a href="#1">mongoose</a> found in southern Africa. It is characterised by a broad head, large eyes, a pointed snout, long legs, a thin tapering tail, and a brindled coat pattern. The head-and-body length is around 24–35 cm (9.4–13.8 in), and the weight is typically between 0.62 and 0.97 kg (1.4 and 2.1 lb). The coat is light grey to yellowish brown with alternate, poorly defined light and dark bands on the back. Meerkats have foreclaws adapted for digging and have the ability to thermoregulate to survive in their harsh, dry habitat. Three subspecies are recognised.
+							The <strong>meerkat</strong> (Suricata suricatta) or suricate is a small <Link to="#1">mongoose</Link> found in southern Africa. It is characterised by a broad head, large eyes, a pointed snout, long legs, a thin tapering tail, and a brindled coat pattern. The head-and-body length is around 24–35 cm (9.4–13.8 in), and the weight is typically between 0.62 and 0.97 kg (1.4 and 2.1 lb). The coat is light grey to yellowish brown with alternate, poorly defined light and dark bands on the back. Meerkats have foreclaws adapted for digging and have the ability to thermoregulate to survive in their harsh, dry habitat. Three subspecies are recognised.
 						</p>
 					</>
 				);
@@ -44,7 +46,7 @@ const ModalParent = () => {
 				return (
 					<>
 						<p>
-							The <strong>meerkat</strong> (Suricata suricatta) or suricate is a small <a href="#1">mongoose</a> found in southern Africa. It is characterised by a broad head, large eyes, a pointed snout, long legs, a thin tapering tail, and a brindled coat pattern. The head-and-body length is around 24–35 cm (9.4–13.8 in), and the weight is typically between 0.62 and 0.97 kg (1.4 and 2.1 lb). The coat is light grey to yellowish brown with alternate, poorly defined light and dark bands on the back. Meerkats have foreclaws adapted for digging and have the ability to thermoregulate to survive in their harsh, dry habitat. Three subspecies are recognised.
+							The <strong>meerkat</strong> (Suricata suricatta) or suricate is a small <Link to="#1">mongoose</Link> found in southern Africa. It is characterised by a broad head, large eyes, a pointed snout, long legs, a thin tapering tail, and a brindled coat pattern. The head-and-body length is around 24–35 cm (9.4–13.8 in), and the weight is typically between 0.62 and 0.97 kg (1.4 and 2.1 lb). The coat is light grey to yellowish brown with alternate, poorly defined light and dark bands on the back. Meerkats have foreclaws adapted for digging and have the ability to thermoregulate to survive in their harsh, dry habitat. Three subspecies are recognised.
 						</p>
 						<p>
 							Meerkats are eusocial, and form packs of two to 30 individuals each that occupy home ranges around 5 km2 (1.9 sq mi) in area. There is a social hierarchy—generally dominant individuals in a pack breed and produce offspring, and the nonbreeding, subordinate members provide altruistic care to the pups. Breeding occurs round the year, with peaks during heavy rainfall; after a gestation of 60 to 70 days a litter of three to seven pups is born.

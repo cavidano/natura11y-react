@@ -44,7 +44,7 @@ const Example = ({ data }) => {
 
 			case 'modal':
 				return (
-					<div className='medium margin-x-auto'>
+					<div className='narrow margin-x-auto'>
 						<ModalParent />
 					</div>
 				);

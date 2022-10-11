@@ -27,7 +27,7 @@ const Home = ({ data }) => {
 			<h1 className='screen-reader-only'>Component Examples</h1>
 			{slug === undefined
 				? (
-					<div className="grid gap-border grid--coluxmn-3--md">
+					<div className="grid gap-border">
 						{exampleLinks}
 					</div>
 				) : <Outlet data={data} id={slug} />
