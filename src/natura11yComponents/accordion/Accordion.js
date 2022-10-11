@@ -10,7 +10,7 @@ import AccordionItem from './AccordionItem';
 
 const Accordion = () => {
 
-  const data = [
+  	const data = [
 		{
 			title: 'Danaus Plexippus',
 			content: (
@@ -69,32 +69,72 @@ const Accordion = () => {
 		},
 	];
 
-  const [openAccordion, setOpenAccordion] = useState(null);
+  	const [openAccordion, setOpenAccordion] = useState(null);
 
+	const handleClick = (e) => {
+		const clicked = e.target.getAttribute('id');
 
-  const handleClick = (e) => {
+		openAccordion === clicked
+			? setOpenAccordion(null)
+			: setOpenAccordion(clicked);
+	};
 
-    const clicked = e.target.getAttribute('id');
+	const handleKeyDown = (e) => {
 
-      openAccordion === clicked
-        ? setOpenAccordion(null)
-        : setOpenAccordion(clicked);
-  }
+		const pressed = e.target.dataset.index;
+
+		const directionalFocus = (dir) => {
+
+			e.preventDefault();
+
+			let targetFocus = e.target.index + dir;
+
+			console.log(`key down ${pressed},${targetFocus} `);
+
+			if (dir === -1 && targetFocus < 0) {
+				// accordionButtonList[accordionButtonList.length -1].focus();
+			} else if (dir === 1 && targetFocus >= data.length) {
+				// accordionButtonList[0].focus();
+			} else {
+				// accordionButtonList[targetFocus].focus();
+			}
+		}
+
+		switch (e.code) {
+			case 'ArrowUp':
+				directionalFocus(-1);
+				break;
+			case'ArrowDown':
+				directionalFocus(1);
+				break;
+			default:
+			// do nothing
+		}
+
+	};
 
 	const accordionItems = data.map((item, index) => (
 		
-    <AccordionItem
-        title={item.title}
-        openAccordion={openAccordion}
-        handleClick={handleClick}
-        id={`example-${index}`}
-        key={index}
-      >
+		<AccordionItem
+			key={index}
+			dataIndex={index}
+			title={item.title}
+			openAccordion={openAccordion}
+			handleClick={handleClick}
+			handleKeyDown={handleKeyDown}
+			id={`example-${index}`}
+		>
 
-        {item.content}
+			{item.content}
 
-      </AccordionItem>
+		</AccordionItem>
 	));
+
+	useEffect(() => {
+
+	
+	
+	}, []);
 
   return (
 

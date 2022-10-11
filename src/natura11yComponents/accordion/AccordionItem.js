@@ -10,7 +10,9 @@ const AccordionItem = ( props ) => {
         children = (<p>Accordion Content</p>),
         openAccordion = null,
         handleClick = handleClick,
-        id
+        handleKeyDown = handleKeyDown,
+        id, 
+        dataIndex,
     } = props;
 
     const accordionButton = useRef();
@@ -18,18 +20,20 @@ const AccordionItem = ( props ) => {
 
     useEffect(() => {
 
+        const focusableElements = getFocusableElements(accordionPanel.current);
+
+        openAccordion === id
+            ? focusableElements.forEach(el => el.setAttribute('tabindex', 0))
+            : focusableElements.forEach(el => el.setAttribute('tabindex', -1));
+
         openAccordion === id
             ? accordionPanel.current.style.maxHeight = accordionPanel.current.scrollHeight + 'px'
             : accordionPanel.current.style.maxHeight = 0;
             
-        const focusableElements = getFocusableElements(accordionPanel.current);
-        console.log(`focasable ${focusableElements}`)
+
+        console.log(focusableElements)
+
     }, [openAccordion]);
-
-
-    useEffect(() => {
-    }, []);
-
 
     return (
         <>
@@ -41,6 +45,8 @@ const AccordionItem = ( props ) => {
                 aria-controls='acc-panel-example-01'
                 aria-expanded={openAccordion === id ? true : false}
                 onClick={handleClick}
+                onKeyDown={handleKeyDown}
+                data-index={dataIndex}
             >
                 {title}
             </button>

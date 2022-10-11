@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 import Modal from './Modal';
 
@@ -92,12 +92,6 @@ const ModalParent = () => {
 				return;
 		}
 	};
-
-	useEffect(() => {
-
-	console.log(`hello? ${modalExample}`);
-
-	}, [modalExample]);
 
 	return (
 		<>
