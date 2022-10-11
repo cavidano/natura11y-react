@@ -20,6 +20,7 @@ const Modal = ( props ) => {
 
 	} = props;
 
+	const modalContainer = useRef();
 	const modalContent = useRef();
 
   	let classScrolAll = scrollAll === true ? ' modal--scroll-all' : '';
@@ -78,22 +79,22 @@ const Modal = ( props ) => {
 	useEffect(() => {
 
 		if (isOpen) {
-		
 			document.querySelector('body').classList.add('modal-open');
 
 			modalContent.current.setAttribute('tabindex', 0);
 			modalContent.current.focus();
 			modalContent.current.setAttribute('tabindex', -1);
-
+			
+			modalContainer.current.scrollTop = 0;
 		} else {
 			document.querySelector('body').classList.remove('modal-open');
 		}
-
 	}, [isOpen]);
 
 	return (
 		<div
-			className={`modal ${classScrolAll} padding-2`}
+			className={`modal ${classScrolAll} padding-4`}
+			ref={modalContainer}
 			id='modal-example-01'
 			role='dialog'
 			aria-hidden={isOpen ? false : true}

@@ -22,16 +22,14 @@ const AccordionItem = ( props ) => {
 
         const focusableElements = getFocusableElements(accordionPanel.current);
 
-        openAccordion === id
-            ? focusableElements.forEach(el => el.setAttribute('tabindex', 0))
-            : focusableElements.forEach(el => el.setAttribute('tabindex', -1));
-
-        openAccordion === id
-            ? accordionPanel.current.style.maxHeight = accordionPanel.current.scrollHeight + 'px'
-            : accordionPanel.current.style.maxHeight = 0;
-            
-
-        console.log(focusableElements)
+        if (openAccordion === id) {
+            focusableElements.forEach(el => el.setAttribute('tabindex', 0));
+            accordionPanel.current.style.maxHeight = accordionPanel.current.scrollHeight + 'px';
+        
+        } else {
+            focusableElements.forEach(el => el.setAttribute('tabindex', -1));
+            accordionPanel.current.style.maxHeight = 0;
+        }
 
     }, [openAccordion]);
 
