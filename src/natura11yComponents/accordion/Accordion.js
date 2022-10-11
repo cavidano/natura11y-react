@@ -130,12 +130,6 @@ const Accordion = () => {
 		</AccordionItem>
 	));
 
-	useEffect(() => {
-
-	
-	
-	}, []);
-
   return (
 
     <div className='accordion'>

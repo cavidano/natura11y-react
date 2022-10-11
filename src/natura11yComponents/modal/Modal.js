@@ -24,6 +24,48 @@ const Modal = ( props ) => {
 
   	let classScrolAll = scrollAll === true ? ' modal--scroll-all' : '';
 
+	const handleKeyDown = (event) => {
+
+		const focusableElements = getFocusableElements(modalContent.current);
+		const firstElementOfModal = focusableElements[0];
+		const lastElementOfModal = focusableElements[focusableElements.length - 1];
+
+		switch (event.code) {
+		
+			case 'Tab':
+				if (document.activeElement === lastElementOfModal) {
+					if (!event.shiftKey) {
+						event.preventDefault();
+						firstElementOfModal.focus();
+					}
+				}
+
+				if (document.activeElement === firstElementOfModal) {
+					if (event.shiftKey) {
+						event.preventDefault();
+						lastElementOfModal.focus();
+					}
+				}
+
+				if (document.activeElement === modalContent) {
+					if (event.shiftKey) {
+						event.preventDefault();
+						firstElementOfModal.focus();
+					}
+				}
+
+				break;
+
+			case 'Escape':
+				modalCloseHandler();
+				break;
+			
+			default:
+			// do nothing
+		}
+
+	};
+
 	const handleCloseOutside = (event) => {
 
 		const modalContentClick = modalContent.current.contains(event.target);
@@ -35,47 +77,6 @@ const Modal = ( props ) => {
 
 	useEffect(() => {
 
-		const keyDownListener = (event) => {
-
-			const focusableElements = getFocusableElements(modalContent.current);
-			const firstElementOfModal = focusableElements[0];
-			const lastElementOfModal = focusableElements[focusableElements.length - 1];
-
-			switch (event.code) {
-				case 'Tab':
-					if (document.activeElement === lastElementOfModal) {
-						if (!event.shiftKey) {
-							event.preventDefault();
-							firstElementOfModal.focus();
-						}
-					}
-
-					if (document.activeElement === firstElementOfModal) {
-						if (event.shiftKey) {
-							event.preventDefault();
-							lastElementOfModal.focus();
-						}
-					}
-
-					if (document.activeElement === modalContent) {
-						if (event.shiftKey) {
-							event.preventDefault();
-							firstElementOfModal.focus();
-						}
-					}
-
-					break;
-
-				case 'Escape':
-					modalCloseHandler();
-					break;
-				
-				default:
-				// do nothing
-			}
-
-		};
-
 		if (isOpen) {
 		
 			document.querySelector('body').classList.add('modal-open');
@@ -84,12 +85,8 @@ const Modal = ( props ) => {
 			modalContent.current.focus();
 			modalContent.current.setAttribute('tabindex', -1);
 
-			modalContent.current.addEventListener('keydown', keyDownListener);
-
 		} else {
 			document.querySelector('body').classList.remove('modal-open');
-			
-			modalContent.current.removeEventListener('keydown', keyDownListener);
 		}
 
 	}, [isOpen]);
@@ -106,6 +103,7 @@ const Modal = ( props ) => {
 				className='modal__content narrow border-radius box-shadow-3'
 				aria-labelledby='modal-example-01-title'
 				ref={modalContent}
+				onKeyDown={handleKeyDown}
 			>
 				<header className='modal__content__head border-bottom'>
 					<h2 id='modal-example-01-title'>
