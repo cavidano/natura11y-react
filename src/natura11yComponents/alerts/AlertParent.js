@@ -19,7 +19,7 @@ const AlertParent = () => {
 	return (
 		<>
 			{showAlert && (
-				<Alert handleAlertClose={handleAlertClose}>
+				<Alert handleAlertClose={handleAlertClose} inverse={true}>
 					<p>
 						Thank you for your feedback. A confirmation message has been sent to
 						your email. Return to our <a href='#1'>homepage</a>.
@@ -28,7 +28,34 @@ const AlertParent = () => {
 			)}
 
 			<div className="margin-y-4">
-				<Alert inverse={true}>
+				<Alert>
+					<p>
+						Thank you for your feedback. A confirmation message has been sent to
+						your email. Return to our <a href='#1'>homepage</a>.
+					</p>
+				</Alert>
+			</div>
+
+			<div className="margin-y-4">
+				<Alert>
+					<p>
+						Thank you for your feedback. A confirmation message has been sent to
+						your email. Return to our <a href='#1'>homepage</a>.
+					</p>
+				</Alert>
+			</div>
+
+			<div className="margin-y-4">
+				<Alert>
+					<p>
+						Thank you for your feedback. A confirmation message has been sent to
+						your email. Return to our <a href='#1'>homepage</a>.
+					</p>
+				</Alert>
+			</div>
+
+			<div className="margin-y-4">
+				<Alert>
 					<p>
 						Thank you for your feedback. A confirmation message has been sent to
 						your email. Return to our <a href='#1'>homepage</a>.

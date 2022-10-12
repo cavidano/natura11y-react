@@ -14,12 +14,12 @@ const App = () => {
 			slug: 'accordion'
 		},
 		{
-			title: 'Alerts',
+			title: 'Alert',
 			slug: 'alerts'
 		},
 		{
-			title: 'Backdrops',
-			slug: 'backdrops'
+			title: 'Backdrop',
+			slug: 'backdrop'
 		},
 		{
 			title: 'Modal',
