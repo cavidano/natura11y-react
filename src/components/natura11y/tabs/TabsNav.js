@@ -10,13 +10,13 @@ const TabsNav = ( props ) => {
     } = props;
 
 	const tabButtons = data.map((button, index) => (
-		<li>        
+		<li key={index}>        
             <button
-                key={index}
                 id={`tab-button-example-${index}`}
                 aria-controls={`tab-panel-example-${index}`}
                 aria-selected={activeTab === button.title ? true : false}
-                handleClick={handleClick}
+                onClick={handleClick}
+                data-title={button.title}
                 role='tab'
             >
                 {button.title}

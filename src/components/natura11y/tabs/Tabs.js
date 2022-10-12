@@ -36,10 +36,10 @@ const Tabs = () => {
 
 	const handleClick = (e) => {
 
-		const clicked = e.target.getAttribute('id');
+		const clicked = e.target.dataset.title;
 
 		activeTab === clicked
-			? setActiveTab(null)
+			? setActiveTab(data[0].title)
 			: setActiveTab(clicked);
 	};
 
@@ -53,7 +53,6 @@ const Tabs = () => {
 	));
 
 	return (
-
         <div className="tabs box-shadow-1" role="tablist">
 
             <TabsNav
@@ -65,7 +64,6 @@ const Tabs = () => {
             {tabPanels}
 
         </div>
-    
     );
 };
 
