@@ -4,7 +4,7 @@
 
 */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import AccordionItem from './AccordionItem';
 
@@ -71,6 +71,10 @@ const Accordion = () => {
 
   	const [openAccordion, setOpenAccordion] = useState(null);
 
+	const accordion = useRef();
+
+	let accordionButtonList = useRef();
+
 	const handleClick = (e) => {
 
 		const clicked = e.target.dataset.title;
@@ -82,35 +86,38 @@ const Accordion = () => {
 
 	const handleKeyDown = (e) => {
 
-		// const pressed = e.target.dataset.index;
+		const pressed = e.target.dataset.index;
 
-		// const directionalFocus = (dir) => {
+		const accordionCount = accordionButtonList.length -1;
+		console.log(`Accordion Items ==== ${accordionCount}, ${pressed}`)
 
-		// 	e.preventDefault();
+		const directionalFocus = (dir) => {
 
-		// 	let targetFocus = e.target.index + dir;
+			e.preventDefault();
 
-		// 	console.log(`key down ${pressed},${targetFocus} `);
+			let targetFocus = pressed;
 
-		// 	if (dir === -1 && targetFocus < 0) {
-		// 		accordionButtonList[accordionButtonList.length -1].focus();
-		// 	} else if (dir === 1 && targetFocus >= data.length) {
-		// 		accordionButtonList[0].focus();
-		// 	} else {
-		// 		accordionButtonList[targetFocus].focus();
-		// 	}
-		// }
+			console.log(`key down ${pressed}`);
 
-		// switch (e.code) {
-		// 	case 'ArrowUp':
-		// 		directionalFocus(-1);
-		// 		break;
-		// 	case'ArrowDown':
-		// 		directionalFocus(1);
-		// 		break;
-		// 	default:
-		// 	// do nothing
-		// }
+			if (dir === -1 && targetFocus < 0) {
+				accordionButtonList.current[accordionButtonList.current.length -1].focus();
+			} else if (dir === 1 && targetFocus >= data.length) {
+				accordionButtonList[0].focus();
+			} else {
+				accordionButtonList[targetFocus].focus();
+			}
+		}
+
+		switch (e.code) {
+			case 'ArrowUp':
+				directionalFocus(-1);
+				break;
+			case'ArrowDown':
+				directionalFocus(1);
+				break;
+			default:
+			// do nothing
+		}
 
 	};
 
@@ -123,6 +130,7 @@ const Accordion = () => {
 			handleClick={handleClick}
 			handleKeyDown={handleKeyDown}
 			id={`example-${index}`}
+			dataIndex={index}
 		>
 
 			{item.content}
@@ -130,15 +138,21 @@ const Accordion = () => {
 		</AccordionItem>
 	));
 
-  return (
+	useEffect(() => {
+		const accordionCount = data.length;
 
-    <div className='accordion'>
+		accordionButtonList = accordion.current.querySelectorAll('.accordion__button');
+		console.log(`Accordion Items ==== ${accordionCount}, ${accordionButtonList[0]}`);
+		
+	}, [])
 
-      {accordionItems}
-      
-    </div>
-    
-  );
+	return (
+		<div ref={accordion} className='accordion'>
+
+			{accordionItems}
+		
+		</div>
+	);
 
 }
 

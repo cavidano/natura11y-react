@@ -12,6 +12,7 @@ const AccordionItem = ( props ) => {
         handleClick = handleClick,
         handleKeyDown = handleKeyDown,
         id,
+        dataIndex
     } = props;
 
     const accordionButton = useRef();
@@ -44,6 +45,7 @@ const AccordionItem = ( props ) => {
                 onClick={handleClick}
                 onKeyDown={handleKeyDown}
                 data-title={title}
+                data-index={dataIndex}
             >
                 {title}
             </button>
