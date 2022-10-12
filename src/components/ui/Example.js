@@ -5,6 +5,7 @@ import AlertParent from '../natura11y/alerts/AlertParent';
 import Backdrop from '../natura11y/backdrop/Backdrop.js';
 import PrimaryNavigation from '../natura11y/navigation/PrimaryNavigation';
 import ModalParent from '../natura11y/modal/ModalParent';
+import Tabs from '../natura11y/tabs/Tabs';
 
 const Example = ({ data }) => {
 
@@ -35,6 +36,13 @@ const Example = ({ data }) => {
 					</div>
 				);
 
+			case 'modal':
+				return (
+					<div className='narrow margin-x-auto'>
+						<ModalParent />
+					</div>
+				);
+
 			case 'navigation':
 				return (
 					<div className='box-shadow-1 theme-light'>
@@ -42,10 +50,10 @@ const Example = ({ data }) => {
 					</div>
 				);
 
-			case 'modal':
+			case 'tabs':
 				return (
-					<div className='narrow margin-x-auto'>
-						<ModalParent />
+					<div className='medium margin-x-auto'>
+						<Tabs />
 					</div>
 				);
 

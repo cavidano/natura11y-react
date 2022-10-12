@@ -29,6 +29,10 @@ const App = () => {
 			title: 'Navigation',
 			slug: 'navigation'
 		},
+		{
+			title: 'Tabs',
+			slug: 'tabs'
+		},
 	];
 
   	return (
