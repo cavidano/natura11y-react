@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 
-import Accordion from '../natura11yComponents/accordion/Accordion';
-import AlertParent from '../natura11yComponents/alerts/AlertParent';
-import Backdrop from '../natura11yComponents/backdrop/Backdrop';
-import PrimaryNavigation from '../natura11yComponents/navigation/PrimaryNavigation';
-import ModalParent from '../natura11yComponents/modal/ModalParent';
+import Accordion from '../natura11y/accordion/Accordion'
+import AlertParent from '../natura11y/alerts/AlertParent';
+import Backdrop from '../natura11y/backdrop/Backdrop.js';
+import PrimaryNavigation from '../natura11y/navigation/PrimaryNavigation';
+import ModalParent from '../natura11y/modal/ModalParent';
 
 const Example = ({ data }) => {
 
@@ -28,7 +28,7 @@ const Example = ({ data }) => {
 					</div>
 				);
 
-			case 'backdrops':
+			case 'backdrop':
 				return (
 					<div className='medium margin-x-auto'>
 						<Backdrop />

@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Header from './displayComponents/ui/Header';
-import About from './displayComponents/About';
-import Home from './displayComponents/Home';
-import Example from './displayComponents/Example';
+import Header from './components/ui/Header';
+import About from './components/ui/About';
+import Home from './components/ui/Home';
+import Example from './components/ui/Example';
 
 const App = () => {
 
