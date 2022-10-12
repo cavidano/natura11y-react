@@ -8,11 +8,10 @@ const AccordionItem = ( props ) => {
     const {
         title = 'Accordion Header',
         children = (<p>Accordion Content</p>),
-        openAccordion = null,
+        isActive = false,
         handleClick = handleClick,
         handleKeyDown = handleKeyDown,
-        id, 
-        dataIndex,
+        id,
     } = props;
 
     const accordionButton = useRef();
@@ -22,7 +21,7 @@ const AccordionItem = ( props ) => {
 
         const focusableElements = getFocusableElements(accordionPanel.current);
 
-        if (openAccordion === id) {
+        if (isActive) {
             focusableElements.forEach(el => el.setAttribute('tabindex', 0));
             accordionPanel.current.style.maxHeight = accordionPanel.current.scrollHeight + 'px';
         
@@ -31,7 +30,7 @@ const AccordionItem = ( props ) => {
             accordionPanel.current.style.maxHeight = 0;
         }
 
-    }, [openAccordion]);
+    }, [isActive]);
 
     return (
         <>
@@ -41,21 +40,21 @@ const AccordionItem = ( props ) => {
                 id={`${id}`}
                 data-accordion='button'
                 aria-controls='acc-panel-example-01'
-                aria-expanded={openAccordion === id ? true : false}
+                aria-expanded={isActive ? true : false}
                 onClick={handleClick}
                 onKeyDown={handleKeyDown}
-                data-index={dataIndex}
+                data-title={title}
             >
                 {title}
             </button>
 
             <div
-                className={`accordion__panel ${openAccordion === id ? 'shown' : ''}`}
+                className={`accordion__panel ${isActive ? 'shown' : ''}`}
                 ref={accordionPanel}
                 id={`acc-panel-${id}`}
                 data-accordion='panel'
                 aria-labelledby={`${id}`}
-                aria-hidden={openAccordion === id ? true : false}
+                aria-hidden={isActive ? true : false}
                 role='region'
             >
                 <div className='accordion__panel__content'>

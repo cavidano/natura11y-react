@@ -72,7 +72,8 @@ const Accordion = () => {
   	const [openAccordion, setOpenAccordion] = useState(null);
 
 	const handleClick = (e) => {
-		const clicked = e.target.getAttribute('id');
+
+		const clicked = e.target.dataset.title;
 
 		openAccordion === clicked
 			? setOpenAccordion(null)
@@ -81,35 +82,35 @@ const Accordion = () => {
 
 	const handleKeyDown = (e) => {
 
-		const pressed = e.target.dataset.index;
+		// const pressed = e.target.dataset.index;
 
-		const directionalFocus = (dir) => {
+		// const directionalFocus = (dir) => {
 
-			e.preventDefault();
+		// 	e.preventDefault();
 
-			let targetFocus = e.target.index + dir;
+		// 	let targetFocus = e.target.index + dir;
 
-			console.log(`key down ${pressed},${targetFocus} `);
+		// 	console.log(`key down ${pressed},${targetFocus} `);
 
-			if (dir === -1 && targetFocus < 0) {
-				// accordionButtonList[accordionButtonList.length -1].focus();
-			} else if (dir === 1 && targetFocus >= data.length) {
-				// accordionButtonList[0].focus();
-			} else {
-				// accordionButtonList[targetFocus].focus();
-			}
-		}
+		// 	if (dir === -1 && targetFocus < 0) {
+		// 		accordionButtonList[accordionButtonList.length -1].focus();
+		// 	} else if (dir === 1 && targetFocus >= data.length) {
+		// 		accordionButtonList[0].focus();
+		// 	} else {
+		// 		accordionButtonList[targetFocus].focus();
+		// 	}
+		// }
 
-		switch (e.code) {
-			case 'ArrowUp':
-				directionalFocus(-1);
-				break;
-			case'ArrowDown':
-				directionalFocus(1);
-				break;
-			default:
-			// do nothing
-		}
+		// switch (e.code) {
+		// 	case 'ArrowUp':
+		// 		directionalFocus(-1);
+		// 		break;
+		// 	case'ArrowDown':
+		// 		directionalFocus(1);
+		// 		break;
+		// 	default:
+		// 	// do nothing
+		// }
 
 	};
 
@@ -117,9 +118,8 @@ const Accordion = () => {
 		
 		<AccordionItem
 			key={index}
-			dataIndex={index}
 			title={item.title}
-			openAccordion={openAccordion}
+			isActive={openAccordion === item.title ? true : false}
 			handleClick={handleClick}
 			handleKeyDown={handleKeyDown}
 			id={`example-${index}`}

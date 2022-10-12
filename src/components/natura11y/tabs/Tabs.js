@@ -1,3 +1,9 @@
+/*
+
+// Tabs
+
+*/
+
 import React, { useState } from 'react';
 
 import TabsNav from './TabsNav';

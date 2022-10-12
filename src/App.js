@@ -33,6 +33,10 @@ const App = () => {
 			title: 'Tabs',
 			slug: 'tabs'
 		},
+		{
+			title: 'Table',
+			slug: 'table'
+		},
 	];
 
   	return (
