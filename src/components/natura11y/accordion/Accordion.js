@@ -72,7 +72,9 @@ const Accordion = () => {
   	const [openAccordion, setOpenAccordion] = useState(null);
 
 	const accordion = useRef();
-
+	
+	const nodeList = [];
+	
 	const handleClick = (e) => {
 
 		const clicked = e.target.dataset.title;
@@ -82,6 +84,47 @@ const Accordion = () => {
 			: setOpenAccordion(clicked);
 	};
 
+	const handleKeyDown = (e) => {
+
+		const pressed = e.target.dataset.index;
+
+		// const accordionCount = nodeList.length -1;
+		// console.log(`Accordion Items ==== ${accordionCount}, ${pressed}`)
+
+		const directionalFocus = (dir) => {
+
+			e.preventDefault();
+
+			let targetFocus = parseInt(pressed) + dir;
+
+			console.log(`My target is ${targetFocus}`);
+
+			if (dir === -1 && targetFocus < 0) {
+				nodeList[nodeList.length -1].focus();
+				// console.log(nodeList.length -1);
+				console.log('if', nodeList[targetFocus+3]);
+			} else if (dir === 1 && targetFocus >= nodeList.length) {
+				console.log('else if',targetFocus);
+				nodeList[1].focus();
+			} else {
+				console.log('else', nodeList[targetFocus]);
+				nodeList[targetFocus+1].focus();
+			}
+		}
+
+		switch (e.code) {
+			case 'ArrowUp':
+				directionalFocus(-1);
+				break;
+			case'ArrowDown':
+				directionalFocus(1);
+				break;
+			default:
+			// do nothing
+		}
+
+	};
+
 	const accordionItems = data.map((item, index) => (
 		
 		<AccordionItem
@@ -89,6 +132,7 @@ const Accordion = () => {
 			title={item.title}
 			isActive={openAccordion === item.title ? true : false}
 			handleClick={handleClick}
+			handleKeyDown={handleKeyDown}
 			id={`example-${index}`}
 			dataIndex={index}
 		>
@@ -98,10 +142,8 @@ const Accordion = () => {
 		</AccordionItem>
 	));
 	
-
 	useEffect(() => {
-
-	const nodeList = [];
+		
 		const myfilter = function (node) {
 			if (node.classList.contains('accordion__button')) {
 				return NodeFilter.FILTER_ACCEPT;
@@ -115,7 +157,6 @@ const Accordion = () => {
 			NodeFilter.SHOW_ELEMENT,
 			myfilter
 		);
-
 
 		let node = treeWalker.nextNode;
 

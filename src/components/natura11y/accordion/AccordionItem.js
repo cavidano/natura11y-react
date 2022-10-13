@@ -10,6 +10,7 @@ const AccordionItem = ( props ) => {
         children = (<p>Accordion Content</p>),
         isActive = false,
         handleClick = handleClick,
+        handleKeyDown = handleKeyDown,
         id,
         dataIndex
     } = props;
@@ -42,6 +43,7 @@ const AccordionItem = ( props ) => {
                 aria-controls='acc-panel-example-01'
                 aria-expanded={isActive ? true : false}
                 onClick={handleClick}
+                onKeyDown={handleKeyDown}
                 data-title={title}
                 data-index={dataIndex}
             >
