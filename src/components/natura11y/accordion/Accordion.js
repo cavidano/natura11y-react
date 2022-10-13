@@ -71,9 +71,9 @@ const Accordion = () => {
 
   	const [openAccordion, setOpenAccordion] = useState(null);
 
+	let focusEls = useRef([]);
+
 	const accordion = useRef();
-	
-	const nodeList = [];
 	
 	const handleClick = (e) => {
 
@@ -88,9 +88,6 @@ const Accordion = () => {
 
 		const pressed = e.target.dataset.index;
 
-		// const accordionCount = nodeList.length -1;
-		// console.log(`Accordion Items ==== ${accordionCount}, ${pressed}`)
-
 		const directionalFocus = (dir) => {
 
 			e.preventDefault();
@@ -100,15 +97,11 @@ const Accordion = () => {
 			console.log(`My target is ${targetFocus}`);
 
 			if (dir === -1 && targetFocus < 0) {
-				nodeList[nodeList.length -1].focus();
-				// console.log(nodeList.length -1);
-				console.log('if', nodeList[targetFocus+3]);
-			} else if (dir === 1 && targetFocus >= nodeList.length) {
-				console.log('else if',targetFocus);
-				nodeList[1].focus();
+				focusEls[focusEls.length -1].focus();
+			} else if (dir === 1 && targetFocus >= focusEls.length) {
+				focusEls[0].focus();
 			} else {
-				console.log('else', nodeList[targetFocus]);
-				nodeList[targetFocus+1].focus();
+				focusEls[targetFocus].focus();
 			}
 		}
 
@@ -122,7 +115,6 @@ const Accordion = () => {
 			default:
 			// do nothing
 		}
-
 	};
 
 	const accordionItems = data.map((item, index) => (
@@ -143,8 +135,10 @@ const Accordion = () => {
 	));
 	
 	useEffect(() => {
+
+		let nodeList = [];
 		
-		const myfilter = function (node) {
+		const getNodes = function (node) {
 			if (node.classList.contains('accordion__button')) {
 				return NodeFilter.FILTER_ACCEPT;
 			} else {
@@ -155,7 +149,7 @@ const Accordion = () => {
 		const treeWalker = document.createTreeWalker(
 			accordion.current,
 			NodeFilter.SHOW_ELEMENT,
-			myfilter
+			getNodes
 		);
 
 		let node = treeWalker.nextNode;
@@ -165,10 +159,14 @@ const Accordion = () => {
 			node = treeWalker.nextNode();
 		}
 
-		console.log(treeWalker);
-		console.log(nodeList);
+		// console.log(treeWalker);
+		// console.log(nodeList);
+		
+		focusEls = nodeList.filter(word => word.classList);
 
-	}, []);
+		console.log(focusEls);
+
+	}, [openAccordion]);
 
 	return (
 		<div ref={accordion} className='accordion'>
