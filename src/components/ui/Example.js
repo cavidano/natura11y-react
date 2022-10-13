@@ -6,6 +6,7 @@ import Backdrop from '../natura11y/backdrop/Backdrop.js';
 import PrimaryNavigation from '../natura11y/navigation/PrimaryNavigation';
 import ModalParent from '../natura11y/modal/ModalParent';
 import Tabs from '../natura11y/tabs/Tabs';
+import TableScroll from '../natura11y/tables/TableScroll';
 
 const Example = ({ data }) => {
 
@@ -54,6 +55,13 @@ const Example = ({ data }) => {
 				return (
 					<div className='medium margin-x-auto'>
 						<Tabs />
+					</div>
+				);
+
+			case 'table':
+				return (
+					<div className='wide margin-x-auto'>
+						<TableScroll />
 					</div>
 				);
 

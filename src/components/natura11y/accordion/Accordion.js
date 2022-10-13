@@ -84,43 +84,6 @@ const Accordion = () => {
 			: setOpenAccordion(clicked);
 	};
 
-	const handleKeyDown = (e) => {
-
-		const pressed = e.target.dataset.index;
-
-		const accordionCount = accordionButtonList.length -1;
-		console.log(`Accordion Items ==== ${accordionCount}, ${pressed}`)
-
-		const directionalFocus = (dir) => {
-
-			e.preventDefault();
-
-			let targetFocus = pressed;
-
-			console.log(`key down ${pressed}`);
-
-			if (dir === -1 && targetFocus < 0) {
-				accordionButtonList.current[accordionButtonList.current.length -1].focus();
-			} else if (dir === 1 && targetFocus >= data.length) {
-				accordionButtonList[0].focus();
-			} else {
-				accordionButtonList[targetFocus].focus();
-			}
-		}
-
-		switch (e.code) {
-			case 'ArrowUp':
-				directionalFocus(-1);
-				break;
-			case'ArrowDown':
-				directionalFocus(1);
-				break;
-			default:
-			// do nothing
-		}
-
-	};
-
 	const accordionItems = data.map((item, index) => (
 		
 		<AccordionItem
@@ -128,7 +91,6 @@ const Accordion = () => {
 			title={item.title}
 			isActive={openAccordion === item.title ? true : false}
 			handleClick={handleClick}
-			handleKeyDown={handleKeyDown}
 			id={`example-${index}`}
 			dataIndex={index}
 		>
