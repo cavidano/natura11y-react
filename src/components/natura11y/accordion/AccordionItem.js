@@ -10,7 +10,6 @@ const AccordionItem = ( props ) => {
         children = (<p>Accordion Content</p>),
         isActive = false,
         handleClick = handleClick,
-        handleKeyDown = handleKeyDown,
         id,
         dataIndex
     } = props;

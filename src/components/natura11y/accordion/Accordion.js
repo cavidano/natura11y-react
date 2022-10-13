@@ -73,8 +73,6 @@ const Accordion = () => {
 
 	const accordion = useRef();
 
-	let accordionButtonList = useRef();
-
 	const handleClick = (e) => {
 
 		const clicked = e.target.dataset.title;
@@ -99,14 +97,37 @@ const Accordion = () => {
 
 		</AccordionItem>
 	));
+	
 
 	useEffect(() => {
-		const accordionCount = data.length;
 
-		accordionButtonList = accordion.current.querySelectorAll('.accordion__button');
-		console.log(`Accordion Items ==== ${accordionCount}, ${accordionButtonList[0]}`);
-		
-	}, [])
+	const nodeList = [];
+		const myfilter = function (node) {
+			if (node.classList.contains('accordion__button')) {
+				return NodeFilter.FILTER_ACCEPT;
+			} else {
+				return NodeFilter.FILTER_Reject;
+			}
+		};
+
+		const treeWalker = document.createTreeWalker(
+			accordion.current,
+			NodeFilter.SHOW_ELEMENT,
+			myfilter
+		);
+
+
+		let node = treeWalker.nextNode;
+
+		while (node) {
+			nodeList.push(node);
+			node = treeWalker.nextNode();
+		}
+
+		console.log(treeWalker);
+		console.log(nodeList);
+
+	}, []);
 
 	return (
 		<div ref={accordion} className='accordion'>
