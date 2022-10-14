@@ -78,8 +78,6 @@ const Tabs = () => {
 					
 					let targetFocus = parseInt(pressed) + dir;
 
-					console.log(`My target is ${targetFocus}`);
-
 					if (dir === -1 && targetFocus < 0) {
 						tabButtons.current[tabButtons.current.length -1].focus();
 					} else if (dir === 1 && targetFocus >= tabButtons.current.length) {
@@ -91,22 +89,24 @@ const Tabs = () => {
 
 			}
 
-			 switch (e.code) {
-                        case 'Home':
-                            focusFirstTab(e)
-                            break;
-                        case 'End':
-                            focusLastTab(e)
-                            break;
-                        case 'ArrowLeft':
-                            directionalFocus(-1);
-                            break;
-                        case 'ArrowRight':
-                            directionalFocus(1);
-                            break;
-                        default:
-                        // do nothing
-                    }
+			switch (e.code) {
+				case 'Home':
+					focusFirstTab(e)
+					break;
+				case 'End':
+					focusLastTab(e)
+					break;
+				case 'ArrowUp':
+				case 'ArrowLeft':
+					directionalFocus(-1);
+					break;
+				case 'ArrowDown':
+				case 'ArrowRight':
+					directionalFocus(1);
+					break;
+				default:
+				// do nothing
+			}
 
 		}
 	};
