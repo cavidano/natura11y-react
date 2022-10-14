@@ -28,7 +28,7 @@ const AlertParent = () => {
 			)}
 
 			<div className="margin-y-4">
-				<Alert>
+				<Alert success={false}>
 					<p>
 						Thank you for your feedback. A confirmation message has been sent to
 						your email. Return to our <a href='#1'>homepage</a>.
@@ -37,25 +37,7 @@ const AlertParent = () => {
 			</div>
 
 			<div className="margin-y-4">
-				<Alert>
-					<p>
-						Thank you for your feedback. A confirmation message has been sent to
-						your email. Return to our <a href='#1'>homepage</a>.
-					</p>
-				</Alert>
-			</div>
-
-			<div className="margin-y-4">
-				<Alert>
-					<p>
-						Thank you for your feedback. A confirmation message has been sent to
-						your email. Return to our <a href='#1'>homepage</a>.
-					</p>
-				</Alert>
-			</div>
-
-			<div className="margin-y-4">
-				<Alert>
+				<Alert success={false} inverse={true}>
 					<p>
 						Thank you for your feedback. A confirmation message has been sent to
 						your email. Return to our <a href='#1'>homepage</a>.
