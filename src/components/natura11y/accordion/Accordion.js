@@ -73,8 +73,8 @@ const Accordion = () => {
 
   	const [openAccordion, setOpenAccordion] = useState(null);
 
-	const accordion = useRef();
-	let focusEls = useRef('');
+	const accordion = useRef(null);
+	const accordionButtons = useRef(null);
 
 	const handleClick = (e) => {
 
@@ -95,18 +95,18 @@ const Accordion = () => {
 
 				e.preventDefault();
 
-				if (focusEls) {
+				if (accordionButtons.current) {
 					
 					let targetFocus = parseInt(pressed) + dir;
 
 					console.log(`My target is ${targetFocus}`);
 
 					if (dir === -1 && targetFocus < 0) {
-						focusEls[focusEls.length -1].focus();
-					} else if (dir === 1 && targetFocus >= focusEls.length) {
-						focusEls[0].focus();
+						accordionButtons.current[accordionButtons.current.length -1].focus();
+					} else if (dir === 1 && targetFocus >= accordionButtons.current.length) {
+						accordionButtons.current[0].focus();
 					} else {
-						focusEls[targetFocus].focus();
+						accordionButtons.current[targetFocus].focus();
 					}
 				}
 
@@ -114,14 +114,10 @@ const Accordion = () => {
 
 			switch (e.code) {
 				case 'ArrowLeft':
-					directionalFocus(-1);
-					break;
 				case 'ArrowUp':
 					directionalFocus(-1);
 					break;
 				case 'ArrowRight':
-					directionalFocus(1);
-					break;
 				case'ArrowDown':
 					directionalFocus(1);
 					break;
@@ -150,8 +146,8 @@ const Accordion = () => {
 	));
 	
 	useEffect(() => {
-		focusEls = getFilteredElements(accordion.current, 'accordion__button');
-	});
+		accordionButtons.current = getFilteredElements(accordion.current, 'accordion__button');
+	}, []);
 
 	return (
 		<div
