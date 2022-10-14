@@ -2,11 +2,13 @@
 
 // Accordion
 
-*/
+*/ 
 
 import React, { useState, useEffect, useRef } from 'react';
 
 import AccordionItem from './AccordionItem';
+
+import { getKeyboardFocusableNodes } from '../../../utilities/focus';
 
 const Accordion = () => {
 
@@ -71,10 +73,9 @@ const Accordion = () => {
 
   	const [openAccordion, setOpenAccordion] = useState(null);
 
-	let focusEls = useRef([]);
-
 	const accordion = useRef();
-	
+	let focusEls = useRef('');
+
 	const handleClick = (e) => {
 
 		const clicked = e.target.dataset.title;
@@ -86,28 +87,42 @@ const Accordion = () => {
 
 	const handleKeyDown = (e) => {
 
+		// if document.active ????????????????????
+
+		console.log(document.activeElement);
+
 		const pressed = e.target.dataset.index;
 
 		const directionalFocus = (dir) => {
 
 			e.preventDefault();
 
-			let targetFocus = parseInt(pressed) + dir;
+			if (focusEls) {
+				
+				let targetFocus = parseInt(pressed) + dir;
 
-			console.log(`My target is ${targetFocus}`);
+				console.log(`My target is ${targetFocus}`);
 
-			if (dir === -1 && targetFocus < 0) {
-				focusEls[focusEls.length -1].focus();
-			} else if (dir === 1 && targetFocus >= focusEls.length) {
-				focusEls[0].focus();
-			} else {
-				focusEls[targetFocus].focus();
+				if (dir === -1 && targetFocus < 0) {
+					focusEls[focusEls.length -1].focus();
+				} else if (dir === 1 && targetFocus >= focusEls.length) {
+					focusEls[0].focus();
+				} else {
+					focusEls[targetFocus].focus();
+				}
 			}
+
 		}
 
 		switch (e.code) {
+			case 'ArrowLeft':
+				directionalFocus(-1);
+				break;
 			case 'ArrowUp':
 				directionalFocus(-1);
+				break;
+			case 'ArrowRight':
+				directionalFocus(1);
 				break;
 			case'ArrowDown':
 				directionalFocus(1);
@@ -135,41 +150,14 @@ const Accordion = () => {
 	));
 	
 	useEffect(() => {
-
-		let nodeList = [];
-		
-		const getNodes = function (node) {
-			if (node.classList.contains('accordion__button')) {
-				return NodeFilter.FILTER_ACCEPT;
-			} else {
-				return NodeFilter.FILTER_Reject;
-			}
-		};
-
-		const treeWalker = document.createTreeWalker(
-			accordion.current,
-			NodeFilter.SHOW_ELEMENT,
-			getNodes
-		);
-
-		let node = treeWalker.nextNode;
-
-		while (node) {
-			nodeList.push(node);
-			node = treeWalker.nextNode();
-		}
-
-		// console.log(treeWalker);
-		// console.log(nodeList);
-		
-		focusEls = nodeList.filter(word => word.classList);
-
-		console.log(focusEls);
-
-	}, [openAccordion]);
+		focusEls = getKeyboardFocusableNodes(accordion.current, 'accordion__button');
+	});
 
 	return (
-		<div ref={accordion} className='accordion'>
+		<div
+			className='accordion'
+			ref={accordion}
+		>
 
 			{accordionItems}
 		
