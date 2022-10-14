@@ -4,7 +4,9 @@
 
 */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+import { getFilteredElements } from '../../../utilities/focus';
 
 import TabsNav from './TabsNav';
 import TabPanel from './TabPanel';
@@ -40,6 +42,9 @@ const Tabs = () => {
 
     const [activeTab, setActiveTab] = useState(data[0].title);
 
+	const tabs = useRef(null);
+	const tabButtons = useRef(null);
+
 	const handleClick = (e) => {
 
 		const clicked = e.target.dataset.title;
@@ -47,6 +52,63 @@ const Tabs = () => {
 		activeTab === clicked
 			? setActiveTab(data[0].title)
 			: setActiveTab(clicked);
+	};
+
+	const handleKeyDown = (e) => {
+
+		if (e.target === document.activeElement) {
+
+			const pressed = e.target.dataset.index;
+
+			const focusLastTab = (e) => {
+				e.preventDefault();
+				tabButtons.current[tabButtons.current.length - 1].focus();
+			};
+
+			const focusFirstTab = (e) => {
+				e.preventDefault();
+				tabButtons.current[0].focus();
+			};
+
+			const directionalFocus = (dir) => {
+
+				e.preventDefault();
+
+				if (tabButtons.current) {
+					
+					let targetFocus = parseInt(pressed) + dir;
+
+					console.log(`My target is ${targetFocus}`);
+
+					if (dir === -1 && targetFocus < 0) {
+						tabButtons.current[tabButtons.current.length -1].focus();
+					} else if (dir === 1 && targetFocus >= tabButtons.current.length) {
+						tabButtons.current[0].focus();
+					} else {
+						tabButtons.current[targetFocus].focus();
+					}
+				}
+
+			}
+
+			 switch (e.code) {
+                        case 'Home':
+                            focusFirstTab(e)
+                            break;
+                        case 'End':
+                            focusLastTab(e)
+                            break;
+                        case 'ArrowLeft':
+                            directionalFocus(-1);
+                            break;
+                        case 'ArrowRight':
+                            directionalFocus(1);
+                            break;
+                        default:
+                        // do nothing
+                    }
+
+		}
 	};
 
 	const tabPanels = data.map((panel, index) => (
@@ -58,19 +120,27 @@ const Tabs = () => {
         </TabPanel>
 	));
 
+	useEffect(() => {
+		tabButtons.current = getFilteredElements(tabs.current, 'tab__button');
+	});
+
 	return (
-        <div className="tabs box-shadow-1" role="tablist">
+		<div
+			className='tabs box-shadow-1'
+			role='tablist'
+			ref={tabs}
+		>
 
-            <TabsNav
-                data={data}
-                activeTab={activeTab}
-                handleClick={handleClick}
-            />
+			<TabsNav
+				data={data} 
+				activeTab={activeTab}
+				handleClick={handleClick}
+				handleKeyDown={handleKeyDown}
+			/>
 
-            {tabPanels}
-
-        </div>
-    );
+			{tabPanels}
+		</div>
+	);
 };
 
 export default Tabs;

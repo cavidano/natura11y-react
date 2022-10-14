@@ -31,33 +31,25 @@ export const getFocusableElements = (element = document) => {
 //////////////////////////////////////////////
 
 export const getFilteredElements = (
-	elementParent = document,
-	classFilter = null
+		elementParent = document,
+		classFilter = ''
 	) => {
     
-	let nodeList = [];
-	
-	const getNodes = function (node) {
-
-		if (node.classList.contains(classFilter)) {
-			return NodeFilter.FILTER_ACCEPT;
-		} else {
-			return NodeFilter.FILTER_Reject;
-		}
-	};
-
-	const treeWalker = document.createTreeWalker(
+	const nodeIterator = document.createNodeIterator(
 		elementParent,
 		NodeFilter.SHOW_ELEMENT,
-		classFilter !== null && getNodes
+		(node) => node.classList.contains(classFilter)
+			? NodeFilter.FILTER_ACCEPT
+			: NodeFilter.FILTER_REJECT
 	);
 
-	let node = treeWalker.nextNode;
+	const elementList = [];
 
-	while (node) {
-		nodeList.push(node);
-		node = treeWalker.nextNode();
+	let currentNode;
+
+	while (currentNode = nodeIterator.nextNode()) {
+		elementList.push(currentNode);
 	}
-	
-	return nodeList.filter(node => node.classList);
+
+	return elementList.filter(node => node.classList);
 }
