@@ -11,6 +11,7 @@ const TabsNav = ( props ) => {
     } = props;
 
 	const tabButtons = data.map((button, index) => (
+
 		<li key={index}>        
             <button
                 className='tab__button' 
@@ -26,6 +27,7 @@ const TabsNav = ( props ) => {
                 {button.title}
             </button>
         </li>
+        
 	));
 
 	return (
