@@ -87,48 +87,48 @@ const Accordion = () => {
 
 	const handleKeyDown = (e) => {
 
-		// if document.active ????????????????????
+		if (e.target === document.activeElement) {
 
-		console.log(document.activeElement);
+			const pressed = e.target.dataset.index;
 
-		const pressed = e.target.dataset.index;
+			const directionalFocus = (dir) => {
 
-		const directionalFocus = (dir) => {
+				e.preventDefault();
 
-			e.preventDefault();
+				if (focusEls) {
+					
+					let targetFocus = parseInt(pressed) + dir;
 
-			if (focusEls) {
-				
-				let targetFocus = parseInt(pressed) + dir;
+					console.log(`My target is ${targetFocus}`);
 
-				console.log(`My target is ${targetFocus}`);
-
-				if (dir === -1 && targetFocus < 0) {
-					focusEls[focusEls.length -1].focus();
-				} else if (dir === 1 && targetFocus >= focusEls.length) {
-					focusEls[0].focus();
-				} else {
-					focusEls[targetFocus].focus();
+					if (dir === -1 && targetFocus < 0) {
+						focusEls[focusEls.length -1].focus();
+					} else if (dir === 1 && targetFocus >= focusEls.length) {
+						focusEls[0].focus();
+					} else {
+						focusEls[targetFocus].focus();
+					}
 				}
+
 			}
 
-		}
+			switch (e.code) {
+				case 'ArrowLeft':
+					directionalFocus(-1);
+					break;
+				case 'ArrowUp':
+					directionalFocus(-1);
+					break;
+				case 'ArrowRight':
+					directionalFocus(1);
+					break;
+				case'ArrowDown':
+					directionalFocus(1);
+					break;
+				default:
+				// do nothing
+			}
 
-		switch (e.code) {
-			case 'ArrowLeft':
-				directionalFocus(-1);
-				break;
-			case 'ArrowUp':
-				directionalFocus(-1);
-				break;
-			case 'ArrowRight':
-				directionalFocus(1);
-				break;
-			case'ArrowDown':
-				directionalFocus(1);
-				break;
-			default:
-			// do nothing
 		}
 	};
 
