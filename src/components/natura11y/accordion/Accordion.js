@@ -8,7 +8,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import AccordionItem from './AccordionItem';
 
-import { getKeyboardFocusableNodes } from '../../../utilities/focus';
+import { getFilteredElements } from '../../../utilities/focus';
 
 const Accordion = () => {
 
@@ -150,7 +150,7 @@ const Accordion = () => {
 	));
 	
 	useEffect(() => {
-		focusEls = getKeyboardFocusableNodes(accordion.current, 'accordion__button');
+		focusEls = getFilteredElements(accordion.current, 'accordion__button');
 	});
 
 	return (
