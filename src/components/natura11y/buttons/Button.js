@@ -1,36 +1,27 @@
-/*
+import React from 'react';
 
-// Button Icon Only
-
-*/
-
-import React, { forwardRef } from 'react';
-
-import { Link } from 'react-router-dom';
-
-const ButtonIconOnly = forwardRef(( props, ref ) => {
+const Button = () => {
 
     const {
         tag = 'button',
+        hasIcon = false,
         iconClassSuffix = 'home',
         ariaLabel = null,
         clickHandler = null,
 		ariaExpanded = null
     } = props;
 
-    const buttonIcon = <span className={`icon icon-${iconClassSuffix}`} aria-hidden='true'></span>;
-
-    let button;
+	let button;
 
 	switch (tag) {
 		case 'button':
 			button = (
 				<button
 					ref={ref}
-					className='button button--icon-only'
+					className='button'
 					onClick={clickHandler}
 					aria-label={ariaLabel}
-						aria-expanded={ariaExpanded}
+					aria-expanded={ariaExpanded}
 				>
 					{buttonIcon}
 				</button>
@@ -40,20 +31,20 @@ const ButtonIconOnly = forwardRef(( props, ref ) => {
 		case 'link':
 			button = (
 				<Link
-					className='button button--icon-only'
+					className='button'
 					to='#1'
 					aria-label={ariaLabel}
 				>
 					{buttonIcon}
 				</Link>
 			);
-			
+
 			break;
-		
+
 		default:
 			button = (
 				<a
-					className='button button--icon-only'
+					className='button'
 					href='#1'
 					aria-label={ariaLabel}
 				>
@@ -62,7 +53,7 @@ const ButtonIconOnly = forwardRef(( props, ref ) => {
 			);
 	}
 
-    return button;
-});
+	return button;
+};
 
-export default ButtonIconOnly;
+export default Button;

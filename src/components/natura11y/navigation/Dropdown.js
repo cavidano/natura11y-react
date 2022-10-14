@@ -4,8 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Dropdown = () => {
 
-  const dropdownButtonRef = useRef();
-  const dropdownMenuRef = useRef();
+  const dropdownButton = useRef();
+  const dropdownMenu = useRef();
 
   const [dropdownShow, setDropdownShow] = useState(false);
 
@@ -13,7 +13,7 @@ const Dropdown = () => {
 
     useEffect(() => {
 
-        let dropdownButtonParent = dropdownButtonRef.current.closest('li');
+        let dropdownButtonParent = dropdownButton.current.closest('li');
 
         const dropdownClickListener = (e) => {
         
@@ -43,7 +43,7 @@ const Dropdown = () => {
     return (
         <>
             <button
-                ref={dropdownButtonRef}
+                ref={dropdownButton}
                 data-toggle="dropdown"
                 aria-expanded={dropdownShow ? true : false}
                 onClick={handleClick}>
@@ -51,7 +51,7 @@ const Dropdown = () => {
             </button>
 
             <ul
-                ref={dropdownMenuRef}
+                ref={dropdownMenu}
                 className={`nav__dropdown box-shadow-1--lg ${dropdownShow ? 'shown' : ''}`}>
                 <li>
                     <Link to="#1">One</Link>

@@ -16,11 +16,9 @@ import Brand from './Brand';
 const PrimaryNavigation = ( props ) => {
 
 	const { 
-		navType = 'inline', // 'inline' or 'below'
-		breakpoint = 'lg' // breakpoint from mobile to desktop
+		navType = 'inline',
+		breakpoint = 'lg'
 	} = props;
-
-	const menuButtonRef = useRef();
 
 	const [menuShow, setMenuShow] = useState(false);
 
@@ -62,7 +60,6 @@ const PrimaryNavigation = ( props ) => {
 			<div className='primary-nav__toggle'>
 
 				<ButtonIconOnly
-					ref={menuButtonRef}
 					iconClassSuffix={menuShow ? 'close' : 'menu'}
 					clickHandler={handleClick}
 					ariaLabel='Menu'
