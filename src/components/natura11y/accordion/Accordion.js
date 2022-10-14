@@ -122,7 +122,7 @@ const Accordion = () => {
 					directionalFocus(1);
 					break;
 				default:
-				// do nothing
+					// do nothing
 			}
 
 		}
