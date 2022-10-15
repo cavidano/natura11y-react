@@ -136,11 +136,11 @@ In this file:
         }
 
         .border-radius-pill#{$mod} {
-            border-radius: 40rem;
+            border-radius: 40rem !important;
         }
 
         .border-radius-circle#{$mod} {
-            border-radius: 100%;
+            border-radius: 100% !important;
         }
 
     }

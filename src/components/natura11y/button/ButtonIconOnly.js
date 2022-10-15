@@ -8,17 +8,17 @@ import React, { forwardRef } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import Icon from '../icon/Icon.js'
+
 const ButtonIconOnly = forwardRef(( props, ref ) => {
 
     const {
         tag = 'button',
-        iconClassSuffix = 'home',
+        iconHandle = 'home',
         ariaLabel = null,
         clickHandler = null,
 		ariaExpanded = null
     } = props;
-
-    const buttonIcon = <span className={`icon icon-${iconClassSuffix}`} aria-hidden='true'></span>;
 
     let button;
 
@@ -30,9 +30,9 @@ const ButtonIconOnly = forwardRef(( props, ref ) => {
 					className='button button--icon-only'
 					onClick={clickHandler}
 					aria-label={ariaLabel}
-						aria-expanded={ariaExpanded}
+					aria-expanded={ariaExpanded}
 				>
-					{buttonIcon}
+					<Icon iconHandle={iconHandle} />
 				</button>
 			);
 			break;
@@ -44,7 +44,7 @@ const ButtonIconOnly = forwardRef(( props, ref ) => {
 					to='#1'
 					aria-label={ariaLabel}
 				>
-					{buttonIcon}
+					<Icon iconHandle={iconHandle} />
 				</Link>
 			);
 			
@@ -57,7 +57,7 @@ const ButtonIconOnly = forwardRef(( props, ref ) => {
 					href='#1'
 					aria-label={ariaLabel}
 				>
-					{buttonIcon}
+					<Icon iconHandle={iconHandle} />
 				</a>
 			);
 	}

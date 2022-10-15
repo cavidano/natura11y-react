@@ -4,7 +4,7 @@
 
 */
 
-import ButtonIconOnly from '../buttons/ButtonIconOnly';
+import ButtonIconOnly from '../button/ButtonIconOnly';
 
 import React, { useRef, useState } from 'react';
 
@@ -60,7 +60,7 @@ const PrimaryNavigation = ( props ) => {
 			<div className='primary-nav__toggle'>
 
 				<ButtonIconOnly
-					iconClassSuffix={menuShow ? 'close' : 'menu'}
+					iconHandle={menuShow ? 'close' : 'menu'}
 					clickHandler={handleClick}
 					ariaLabel='Menu'
 					ariaExpanded={menuShow ? true : false}
@@ -71,7 +71,7 @@ const PrimaryNavigation = ( props ) => {
 			<div className='primary-nav__actions'>
 
 				<ButtonIconOnly
-					iconClassSuffix='mode-light-dark'
+					iconHandle='mode-light-dark'
 				/>
 
 			</div>

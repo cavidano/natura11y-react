@@ -22,6 +22,14 @@ const App = () => {
 			slug: 'backdrop'
 		},
 		{
+			title: 'Button',
+			slug: 'button'
+		},
+		{
+			title: 'Icon',
+			slug: 'icon'
+		},
+		{
 			title: 'Modal',
 			slug: 'modal'
 		},

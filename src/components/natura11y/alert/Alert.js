@@ -6,7 +6,8 @@
 
 import React, { useRef } from 'react';
 
-import ButtonIconOnly from '../buttons/ButtonIconOnly';
+import ButtonIconOnly from '../button/ButtonIconOnly';
+import Icon from '../icon/Icon';
 
 const Alert = ( props ) => {
 
@@ -24,7 +25,7 @@ const Alert = ( props ) => {
 	let classWarn = success === false ? ' alert--warn' : '';
 	let modifierInverse = inverse === true ? '--inverse' : '';
 	let classDismissable = handleAlertClose !== null ? ' alert--dismissable' : '';
-	let iconClass = success === true ? 'icon-confirm' : 'icon-warn';
+	let iconHandle = success === true ? 'confirm' : 'warn';
 
 	return (
 		<div
@@ -36,17 +37,14 @@ const Alert = ( props ) => {
 			{handleAlertClose !== null && (
 				<ButtonIconOnly
 					ref={closeButtonRef}
-					iconClassSuffix='close'
+					iconHandle='close'
 					clickHandler={handleAlertClose}
 					ariaLabel='Close'
 				/>
 			)}
 
 			<div className='alert__title h5'>
-				<span
-					className={`icon ${iconClass}`}
-					aria-hidden='true'
-				></span>
+				<Icon iconHandle={iconHandle} />
 				<span className='alert__title__text' id='alert-label'>
 					{title}
 				</span>
