@@ -74,7 +74,7 @@ const Accordion = () => {
   	const [openAccordion, setOpenAccordion] = useState(null);
 
 	const accordion = useRef(null);
-	const accordionButtons = useRef(null);
+	const accordionButtons = useRef();
 
 	const handleClick = (e) => {
 
@@ -83,6 +83,7 @@ const Accordion = () => {
 		openAccordion === clicked
 			? setOpenAccordion(null)
 			: setOpenAccordion(clicked);
+
 	};
 
 	const handleKeyDown = (e) => {
