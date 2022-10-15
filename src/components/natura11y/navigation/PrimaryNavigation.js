@@ -16,7 +16,7 @@ import Brand from './Brand';
 const PrimaryNavigation = ( props ) => {
 
 	const { 
-		navType = 'inline',
+		navType = 'inline', // 'inline' or 'below'
 		breakpoint = 'lg'
 	} = props;
 
