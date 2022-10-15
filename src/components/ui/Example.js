@@ -52,7 +52,11 @@ const Example = ({ data }) => {
 					<>
 						<div className='medium margin-x-auto text-color-link button-group justify-content-center margin-y-3'>
 							<ButtonIconOnly />
-							<ButtonIconOnly iconHandle='settings' utilities='theme-secondary border-radius-circle' />
+							<ButtonIconOnly
+								iconHandle='settings'
+								utilities='theme-primary'
+								tag='link'
+							/>
 							<ButtonIconOnly iconHandle='bell' />
 							<ButtonIconOnly iconHandle='calendar' />
 						</div>

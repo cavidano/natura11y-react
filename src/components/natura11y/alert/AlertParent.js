@@ -22,7 +22,7 @@ const AlertParent = () => {
 			{showAlert && (
 				<Alert
 					handleAlertClose={handleAlertClose}
-					utilities={classNames('box-shadow-3', 'border-radius')}
+					utilities={classNames('box-shadow-1')}
 				>
 					<p>
 						Thank you for your feedback. A confirmation message has been sent to

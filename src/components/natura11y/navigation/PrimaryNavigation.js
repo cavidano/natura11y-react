@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import classNames from 'classnames';
+
 import ButtonIconOnly from '../button/ButtonIconOnly';
 
 import { Link } from 'react-router-dom';
@@ -11,7 +13,8 @@ const PrimaryNavigation = ( props ) => {
 
 	const { 
 		navType = 'inline', // 'inline' or 'below'
-		breakpoint = 'lg'
+		breakpoint = 'lg',
+		utilities = null,
 	} = props;
 
 	const [menuShow, setMenuShow] = useState(false);
@@ -20,9 +23,16 @@ const PrimaryNavigation = ( props ) => {
 		setMenuShow(!menuShow);
 	};
 
+	const componentClasses = classNames(
+		`primary-nav--${navType}--${breakpoint}`,
+		{ 
+			[`${utilities}`] : utilities !== null
+		}
+	);
+
 	return (
 
-		<div className={`primary-nav--${navType}--${breakpoint}`}>
+		<div className={`${componentClasses}`}>
 		
 			<div className='primary-nav__logo'>
 				<Link to='/' title='Home' data-logo='brand'>
