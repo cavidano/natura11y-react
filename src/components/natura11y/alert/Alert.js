@@ -6,6 +6,8 @@
 
 import React, { useRef } from 'react';
 
+import classNames from 'classnames';
+
 import ButtonIconOnly from '../button/ButtonIconOnly';
 import Icon from '../icon/Icon';
 
@@ -17,19 +19,33 @@ const Alert = ( props ) => {
 		handleAlertClose = null,
 		title = 'Alert Title',
 		children = <p>Alert Description</p>,
+		utilities = null
 	} = props;
 
 	const closeButtonRef = useRef();
 
-	let classConfirm = success === true ? ' alert--confirm' : '';
-	let classWarn = success === false ? ' alert--warn' : '';
-	let modifierInverse = inverse === true ? '--inverse' : '';
-	let classDismissable = handleAlertClose !== null ? ' alert--dismissable' : '';
-	let iconHandle = success === true ? 'confirm' : 'warn';
+	const componentClasses = classNames(
+		'alert',
+		{ 
+			'alert--confirm' : success && !inverse,
+			'alert--confirm--inverse' : success && inverse,
+			'alert--warn' : !success && !inverse,
+			'alert--warn--inverse' : !success && inverse,
+			'alert--dismissable' : handleAlertClose !== null,
+			[`${utilities}`] : utilities !== null
+		}
+	);
+
+	const iconClass = classNames(
+		{ 
+			'confirm' : success,
+			'warn' : !success
+		}
+	);
 
 	return (
 		<div
-			className={`alert${classConfirm}${classWarn}${modifierInverse}${classDismissable}`}
+			className={`${componentClasses}`}
 			aria-labelledby='alert-label'
 			aria-describedby='alert-description'
 			role='alert'
@@ -44,7 +60,7 @@ const Alert = ( props ) => {
 			)}
 
 			<div className='alert__title h5'>
-				<Icon iconHandle={iconHandle} />
+				<Icon iconHandle={iconClass} />
 				<span className='alert__title__text' id='alert-label'>
 					{title}
 				</span>

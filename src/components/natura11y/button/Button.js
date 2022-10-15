@@ -1,5 +1,7 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 import { Link } from 'react-router-dom';
 
 import Icon from '../icon/Icon';
@@ -10,14 +12,20 @@ const Button = ( props ) => {
         tag = 'button',
 		title = 'Button',
 		linkUrl = '#1',
-        iconHandle = null,
 		outline = false,
-        clickHandler = null,
-		utilityClasses = null
+        iconHandle = null,
+		utilities = null,
+        clickHandler = null
     } = props;
 
-	let classHasIcon =  iconHandle !== null ? 'button--has-icon' : '';
-	let classOutline =  outline ? 'button--outline' : '';
+	const componentClasses = classNames(
+		'button',
+		{ 
+			'button--outline' : outline,
+			'button--has-icon' : iconHandle !== null,
+			[`${utilities}`] : utilities !== null
+		}
+	);
 
 	const buttonContents = () => {
 		return iconHandle !== null 
@@ -37,7 +45,7 @@ const Button = ( props ) => {
 		case 'button':
 			button = (
 				<button
-					className={`button ${classOutline} ${classHasIcon} ${utilityClasses}`}
+					className={`${componentClasses}`}
 					onClick={clickHandler}
 				>
 					{buttonContents()}
@@ -48,7 +56,7 @@ const Button = ( props ) => {
 		case 'link':
 			button = (
 				<Link
-					className={`button ${classOutline} ${classHasIcon}`}
+					className={`${componentClasses}`}
 					to={linkUrl}
 				>
 					{buttonContents()}
@@ -60,7 +68,7 @@ const Button = ( props ) => {
 		default:
 			button = (
 				<a
-					className={`button ${classOutline} ${classHasIcon}`}
+					className={`${componentClasses}`}
 					href={linkUrl}
 				>
 					{buttonContents()}

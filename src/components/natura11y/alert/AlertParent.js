@@ -6,6 +6,7 @@
 
 import React, { useState } from 'react';
 
+import classNames from 'classnames';
 import Alert from './Alert';
 
 const AlertParent = () => {
@@ -19,7 +20,10 @@ const AlertParent = () => {
 	return (
 		<>
 			{showAlert && (
-				<Alert handleAlertClose={handleAlertClose} inverse={true}>
+				<Alert
+					handleAlertClose={handleAlertClose}
+					utilities={classNames('box-shadow-3', 'border-radius')}
+				>
 					<p>
 						Thank you for your feedback. A confirmation message has been sent to
 						your email. Return to our <a href='#1'>homepage</a>.
@@ -28,9 +32,11 @@ const AlertParent = () => {
 			)}
 
 			<div className="margin-y-4">
-				<Alert success={false}>
+				<Alert
+					success={false}
+				>
 					<p>
-						Thank you for your feedback. A confirmation message has been sent to
+						Your feedback was not sent. A confirmation message has been sent to
 						your email. Return to our <a href='#1'>homepage</a>.
 					</p>
 				</Alert>

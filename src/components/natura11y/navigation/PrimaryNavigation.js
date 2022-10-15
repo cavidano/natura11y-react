@@ -1,12 +1,6 @@
-/*
-
-// Primary Navigation
-
-*/
+import React, { useState } from 'react';
 
 import ButtonIconOnly from '../button/ButtonIconOnly';
-
-import React, { useRef, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 

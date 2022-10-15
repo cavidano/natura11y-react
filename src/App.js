@@ -1,8 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import classNames from 'classnames';
+
 import Header from './components/ui/Header';
 import Home from './components/ui/Home';
 import Example from './components/ui/Example';
+
+
 
 const App = () => {
 
@@ -51,7 +55,7 @@ const App = () => {
 			
 			<Header />
 
-			<main className='container wide'>
+			<main className={classNames('container', 'wide')}>
 				<Routes>
 					<Route path='/' element={<Home data={data} />}>
 						<Route path=':slug' element={<Example data={data} />} />

@@ -50,14 +50,15 @@ const Example = ({ data }) => {
 			case 'button':
 				return (
 					<>
-						<div className='medium margin-x-auto button-group justify-content-center margin-y-3'>
+						<div className='medium margin-x-auto text-color-link button-group justify-content-center margin-y-3'>
 							<ButtonIconOnly />
-							<ButtonIconOnly iconHandle='settings' />
+							<ButtonIconOnly iconHandle='settings' utilities='theme-secondary border-radius-circle' />
 							<ButtonIconOnly iconHandle='bell' />
 							<ButtonIconOnly iconHandle='calendar' />
 						</div>
 						<div className='medium margin-x-auto button-group justify-content-center margin-y-3'>
 							<Button
+								utilities='theme-primary border-radius-pill'
 								iconHandle='home'
 								utilityClasses='theme-light border-radius-pill'
 							/>
