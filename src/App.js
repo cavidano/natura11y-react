@@ -15,7 +15,7 @@ const App = () => {
 		},
 		{
 			title: 'Alert',
-			slug: 'alerts'
+			slug: 'alert'
 		},
 		{
 			title: 'Backdrop',
@@ -30,8 +30,8 @@ const App = () => {
 			slug: 'navigation'
 		},
 		{
-			title: 'Tabs',
-			slug: 'tabs'
+			title: 'Tab',
+			slug: 'tab'
 		},
 		{
 			title: 'Table',
