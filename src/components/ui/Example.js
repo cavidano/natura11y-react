@@ -56,10 +56,19 @@ const Example = ({ data }) => {
 							<ButtonIconOnly iconHandle='bell' />
 							<ButtonIconOnly iconHandle='calendar' />
 						</div>
-						<div className='medium button-group font-size-xl justify-content-center margin-x-auto margin-y-3 align-content-center'>
-							<Button iconHandle='home' utilityClasses='theme-light border-radius-pill' />
-							<Button iconHandle='bell' title='Notifications' />
-							<Button outline={true} title='Settings' />
+						<div className='medium margin-x-auto button-group justify-content-center margin-y-3'>
+							<Button
+								iconHandle='home'
+								utilityClasses='theme-light border-radius-pill'
+							/>
+							<Button
+								iconHandle='bell'
+								title='Notifications'
+							/>
+							<Button
+								outline={true}
+								title='Settings'
+							/>
 						</div>
 					</>
 				);
@@ -108,12 +117,12 @@ const Example = ({ data }) => {
 							title={header.title}
 							fixedHeight='400px'
 							imageURL={`images/banner/${header.slug}.jpg`}
-						/>						
+						/>
 					))}
 
-					<div className="margin-y-5">
-						{activeExample()}
-					</div>
+				<div className='margin-y-5'>
+					{activeExample()}
+				</div>
 			</div>
 		</div>
 	);
