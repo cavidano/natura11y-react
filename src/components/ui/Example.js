@@ -82,7 +82,7 @@ const Example = ({ data }) => {
 
 			case 'form':
 				return (
-					<div className='medium margin-x-auto'>
+					<div className='narrow margin-x-auto'>
 						<Form />
 					</div>
 				);

@@ -8,7 +8,7 @@ const FormEntry = ( props ) => {
 		labelText = 'Label',
 		labelVisible = true,
 		required = true,
-		helpText = 'Help text'
+		helpText = null
 	} = props;
 
 	const screenReaderOnly = classNames(
@@ -29,7 +29,9 @@ const FormEntry = ( props ) => {
 
 	return (
 
-		<div className='form-entry' data-required={required}>
+		<div
+			className='form-entry'
+			data-required={required}>
 
 			<label className='form-entry__field'>
 
@@ -48,11 +50,14 @@ const FormEntry = ( props ) => {
 						required={required}
 					/>
 				</span>
-				
+
 			</label>
 
 			{helpText && (
-				<small className='form-entry__help' id='help-first-and-last-name'>
+				<small
+					className='form-entry__help'
+					id='help-first-and-last-name'
+				>
 					{helpText}
 				</small>
 			)}

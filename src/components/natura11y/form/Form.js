@@ -7,8 +7,14 @@ const Form = () => {
   return (
     <form>
         <RequiredIndicator />
-        <FormEntry />
-        <FormEntry />
+        <FormEntry
+          labelText='Full Name'
+          helpText='Enter your first and last name'
+        />
+        <FormEntry
+          labelText='Twitter Handle'
+        />
+        <FormEntry  />
     </form>
   );
 }
