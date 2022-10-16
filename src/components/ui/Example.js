@@ -10,6 +10,8 @@ import ButtonIconOnly from '../natura11y/button/ButtonIconOnly';
 
 import Button from '../natura11y/button/Button';
 
+import Form from '../natura11y/form/Form';
+
 import PrimaryNavigation from '../natura11y/navigation/PrimaryNavigation';
 
 import ModalParent from '../natura11y/modal/ModalParent';
@@ -46,7 +48,7 @@ const Example = ({ data }) => {
 						<Backdrop />
 					</div>
 				);
-
+			
 			case 'button':
 				return (
 					<>
@@ -76,6 +78,13 @@ const Example = ({ data }) => {
 							/>
 						</div>
 					</>
+				);
+
+			case 'form':
+				return (
+					<div className='medium margin-x-auto'>
+						<Form />
+					</div>
 				);
 
 			case 'modal':

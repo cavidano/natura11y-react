@@ -4,9 +4,9 @@ import RequiredIndicator from './RequiredIndicator';
 
 const Form = () => {
   return (
-    <Form>
+    <form>
         <RequiredIndicator />
-    </Form>
+    </form>
   );
 }
 
