@@ -5,11 +5,10 @@ import classNames from 'classnames';
 const FormEntry = ( props ) => {
 
 	const {
-
 		labelText = 'Label',
 		labelVisible = true,
-		helpText = 'Include first and last name'
-	
+		required = true,
+		helpText = 'Help text'
 	} = props;
 
 	const screenReaderOnly = classNames(
@@ -18,30 +17,48 @@ const FormEntry = ( props ) => {
 		}
 	);
 
-	return (
-		<div className='form-entry'>
+	let activeTarget = '.form-entry';
 
-			<label class='form-entry__field'>
-				<span class={`form-entry__field__label ${screenReaderOnly}`}>
-				{labelText}
+	const handleFocus = (e) => {
+		e.target.closest(activeTarget).classList.add('active');
+	};
+
+	const handleBlur = (e) => {
+		e.target.closest(activeTarget).classList.remove('active');
+	};
+
+	return (
+
+		<div className='form-entry' data-required={required}>
+
+			<label className='form-entry__field'>
+
+				<span className={`form-entry__field__label ${screenReaderOnly}`}>
+					{labelText}
 				</span>
-				<span class='form-entry__field__input'>
+
+				<span className='form-entry__field__input'>
 					<input
 						type='text'
 						name='textInputExample'
 						id='first-and-last-name'
 						aria-describedby='help-first-and-last-name'
+						onFocus={handleFocus}
+						onBlur={handleBlur}
+						required={required}
 					/>
 				</span>
+				
 			</label>
 
 			{helpText && (
-				<small class='form-entry__help' id='help-first-and-last-name'>
+				<small className='form-entry__help' id='help-first-and-last-name'>
 					{helpText}
 				</small>
 			)}
 
 		</div>
+
 	);
 };
 
