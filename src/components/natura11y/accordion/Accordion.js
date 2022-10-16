@@ -1,9 +1,3 @@
-/*
-
-// Accordion
-
-*/ 
-
 import React, { useState, useEffect, useRef } from 'react';
 
 import AccordionItem from './AccordionItem';

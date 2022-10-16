@@ -1,5 +1,3 @@
-import React from 'react';
-
 const TabPanel = ( props ) => {
     const {
         isActive = false,

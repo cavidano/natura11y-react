@@ -1,9 +1,3 @@
-/*
-
-// Backdrop
-
-*/
-
 const Backdrop = ( props ) => {
 
     const { 

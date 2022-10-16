@@ -1,9 +1,3 @@
-/*
-
-// Modal
-
-*/
-
 import React, { useEffect, useRef } from 'react';
 
 import { getFocusableElements } from '../../../utilities/focus';

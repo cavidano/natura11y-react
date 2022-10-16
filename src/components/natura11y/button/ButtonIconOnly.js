@@ -1,9 +1,3 @@
-/*
-
-// Button Icon Only
-
-*/
-
 import React, { forwardRef } from 'react';
 
 import classNames from 'classnames';
