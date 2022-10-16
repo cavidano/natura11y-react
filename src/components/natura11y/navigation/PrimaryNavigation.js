@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import ButtonIconOnly from '../button/ButtonIconOnly';
+import Button from '../button/Button';
 
 import { Link } from 'react-router-dom';
 
@@ -100,7 +101,7 @@ const PrimaryNavigation = ( props ) => {
 						<div className='form-entry__field'>
 							<span className='form-entry__field__input'>
 								<input type='text' name='global-search' />
-								<button className='button'>Search</button>
+								<Button title="Search" />
 							</span>
 						</div>
 					</div>
