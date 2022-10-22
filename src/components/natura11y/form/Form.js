@@ -2,7 +2,6 @@ import React from 'react';
 
 import RequiredIndicator from './RequiredIndicator';
 import FormEntry from './FormEntry';
-import FileUpload from './FileUpload';
 
 const Form = () => {
   return (
@@ -23,8 +22,11 @@ const Form = () => {
         <FormEntry entryType='select' />
 
         <FormEntry entryType='groupRadio' />
-        
-        <FileUpload />
+
+        <FormEntry entryType='groupCheck' />
+
+        <FormEntry entryType='fileUpload' />
+
 
     </form>
 

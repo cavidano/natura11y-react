@@ -29,7 +29,7 @@ const FormEntry = ( props ) => {
 
 	const formEntryFieldClass = classNames(
 		{ 
-			'form-entry__field__input' : entryType === 'input' || entryType === 'textarea',
+			'form-entry__field__input' : entryType === 'input' || entryType === 'textarea' || entryType === 'fileUpload',
 			'form-entry__field__select' : entryType === 'select',
 			'form-entry__option' : entryType === 'groupRadio' || entryType === 'groupCheck',
 		}
@@ -51,11 +51,12 @@ const FormEntry = ( props ) => {
 		setIsFocused(false);
 	};
 
-	const getEntryField = () => {
+	const entryField = () => {
 
 		switch (entryType) {
 
 			case 'input':
+
 				return (
 					<input
 						type='text'
@@ -70,6 +71,7 @@ const FormEntry = ( props ) => {
 				break;
 
 			case 'select':
+
 				return (
 					<select
 						id="select-example"
@@ -102,57 +104,95 @@ const FormEntry = ( props ) => {
 				break;
 
 			case 'groupRadio':
+
+				const radioOptions = ['Option One', 'Option Two', 'Option Three', 'Option Four'];
+				
+				const radios = radioOptions.map((radio, index) =>
+					<div className="form-entry__option__radio" key={index}>
+						<label>
+							<input
+								type="radio"
+								name="radioGroupExample"
+								id={`radio-option-${index}`}
+								value={`option-${index}`}
+							/>
+							<span className="option__label">
+								{radio}
+							</span>
+						</label>
+					</div>
+				);
+				
 				return (
 					<>
-						<div class="form-entry__option__radio">
-							<label>
-								<input
-									type="radio"
-									name="radioGroupExample"
-									id="radio-option-one"
-									value="optionOne"
-								/>
-								<span class="option__label">
-									Option One
-								</span>
-							</label>
-						</div>
-
-						<div class="form-entry__option__radio">
-							<label>
-								<input
-									type="radio"
-									name="radioGroupExample"
-									id="radio-option-two"
-									value="optionTwo"
-								/>
-								<span class="option__label">
-									Option Two
-								</span>
-							</label>
-						</div>
-
-						<div class="form-entry__option__radio">
-							<label>
-								<input
-									type="radio"
-									name="radioGroupExample"
-									id="radio-option-three"
-									value="optionThree" />
-									<span class="option__label">
-										Option Three
-									</span>
-							</label>
-						</div>
+						{radios}
 					</>
 				);
+
+			case 'groupCheck':
+
+
+				const checkOptions = ['Option One', 'Option Two', 'Option Three', 'Option Four'];
+
+				const checkboxes = checkOptions.map((check, index) =>
+					<div className="form-entry__option__check" key={index}>
+						<label>
+							<input
+								type="radio"
+								name="radioGroupExample"
+								id={`check-option-${index}`}
+								value={`option-${index}`}
+							/>
+							<span className="option__label">
+								{check}
+							</span>
+						</label>
+					</div>
+				);
+
+				return (
+					<>
+						{checkboxes}
+					</>
+				);
+
+
+			case 'fileUpload':
+
+				return (
+					
+					<span className='file-upload'>
+
+						<span className='file-upload__drop'>
+							<span className='file-upload__drop__text'>
+								Drag and Drop
+							</span>
+						</span>
+
+						<input
+							className='file-upload__input'
+							type='file'
+							name='fileUploadExample'
+							id='file-uploadsple'
+							accept='image/*'
+						/>
+
+						<span className='button button--outline button--has-icon file-upload__button'>
+							<span className='icon icon-upload'></span>
+							<span className='button__text'>
+								Browse for a File
+							</span>
+						</span>
+
+					</span>
+				);
+
 				break;
 
 			default:
-				//
+			// do nothing
 		}
-	
-	}
+	};
 
 	return (
 
@@ -167,7 +207,7 @@ const FormEntry = ( props ) => {
 				</LabelTag>
 
 				<span className={`${formEntryFieldClass}`}>
-					{getEntryField()}
+					{entryField()}
 				</span>
 
 			</FieldTag>
