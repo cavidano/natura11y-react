@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 import classNames from 'classnames';
 
@@ -9,7 +9,7 @@ const FormEntry = ( props ) => {
 		labelVisible = true,
 		required = true,
 		helpText = null,
-		entryType = 'input' // 'textarea' 'select' 'check' 'radio' 
+		entryType = 'input' // values: 'input' 'textarea' 'select' 'groupRadio' 'groupCheck' 'SingleCheck' 'switch' 'fileUpload'
 	} = props;
 
 	const [isFocused, setIsFocused] = useState(false);
@@ -17,7 +17,7 @@ const FormEntry = ( props ) => {
 	const componentClasses = classNames(
 		'form-entry',
 		{ 
-			'active' : !isFocused
+			'active' : isFocused
 		}
 	);
 
@@ -27,6 +27,22 @@ const FormEntry = ( props ) => {
 		}
 	);
 
+	const formEntryFieldClass = classNames(
+		{ 
+			'form-entry__field__input' : entryType === 'input' || entryType === 'textarea',
+			'form-entry__field__select' : entryType === 'select',
+			'form-entry__option' : entryType === 'groupRadio' || entryType === 'groupCheck',
+		}
+	);
+
+	let FieldTag = `label`; // default
+	let LabelTag = `span`; // default
+
+	if (entryType === 'groupRadio' || entryType === 'groupCheck') {
+		FieldTag = `fieldset`;
+		LabelTag = `legend`;
+	}
+
 	const handleFocus = () => {
 		setIsFocused(true);
 	};
@@ -35,21 +51,12 @@ const FormEntry = ( props ) => {
 		setIsFocused(false);
 	};
 
-	return (
+	const getEntryField = () => {
 
-		<div
-			className={componentClasses}
-			data-required={required}>
+		switch (entryType) {
 
-			<label className='form-entry__field'>
-
-				<span className={`form-entry__field__label ${screenReaderOnly}`}>
-					{labelText}
-				</span>
-
-				{/* if input */}
-
-				<span className='form-entry__field__input'>
+			case 'input':
+				return (
 					<input
 						type='text'
 						name='textInputExample'
@@ -59,15 +66,18 @@ const FormEntry = ( props ) => {
 						onBlur={handleBlur}
 						required={required}
 					/>
-				</span>
+				);
+				break;
 
-				{/* if select */}
-
-				<span className="form-entry__field__select">
+			case 'select':
+				return (
 					<select
 						id="select-example"
 						name="selectExample"
-						aria-describedby="help-select-example">
+						aria-describedby="help-select-example"
+						onFocus={handleFocus}
+						onBlur={handleBlur}
+					>
 							<option value="">Select</option>
 							<option value="Option One">Option One</option>
 							<option value="Option Two">Option Two</option>
@@ -75,65 +85,92 @@ const FormEntry = ( props ) => {
 							<option value="Option Four">Option Four</option>
 							<option value="Option Five">Option Five</option>
 					</select>
-				</span>
+				);
+				break;
 
-				{/* if textarea */}
-
-				<span className="form-entry__field__input">
+			case 'textarea':
+				return (
 					<textarea
 						rows="8"
 						name="textInputExample"
 						id="text-input-example"
 						aria-describedby="help-textarea-example"
+						onFocus={handleFocus}
+						onBlur={handleBlur}
 					></textarea>
+				);
+				break;
+
+			case 'groupRadio':
+				return (
+					<>
+						<div class="form-entry__option__radio">
+							<label>
+								<input
+									type="radio"
+									name="radioGroupExample"
+									id="radio-option-one"
+									value="optionOne"
+								/>
+								<span class="option__label">
+									Option One
+								</span>
+							</label>
+						</div>
+
+						<div class="form-entry__option__radio">
+							<label>
+								<input
+									type="radio"
+									name="radioGroupExample"
+									id="radio-option-two"
+									value="optionTwo"
+								/>
+								<span class="option__label">
+									Option Two
+								</span>
+							</label>
+						</div>
+
+						<div class="form-entry__option__radio">
+							<label>
+								<input
+									type="radio"
+									name="radioGroupExample"
+									id="radio-option-three"
+									value="optionThree" />
+									<span class="option__label">
+										Option Three
+									</span>
+							</label>
+						</div>
+					</>
+				);
+				break;
+
+			default:
+				//
+		}
+	
+	}
+
+	return (
+
+		<div
+			className={componentClasses}
+			data-required={required}>
+
+			<FieldTag className='form-entry__field'>
+
+				<LabelTag className={`form-entry__field__label ${screenReaderOnly}`}>
+					{labelText}
+				</LabelTag>
+
+				<span className={`${formEntryFieldClass}`}>
+					{getEntryField()}
 				</span>
 
-				{/* if option */}
-
-				<div className="form-entry__option">
-
-					<div className="form-entry__option__radio">
-						<label>
-							<input
-								type="radio"
-								name="contactPreferences"
-								id="contact-email"
-								value="optionOne" />
-								<span className="option__label">
-									Contact me by email
-								</span>
-						</label>
-					</div>
-
-					<div className="form-entry__option__radio">
-						<label>
-							<input
-								type="radio"
-								name="contactPreferences"
-								id="contact-phone"
-								value="optionTwo" />
-								<span className="option__label">
-									Contact me by phone
-								</span>
-						</label>
-					</div>
-
-					<div className="form-entry__option__radio">
-						<label>
-							<input
-								type="radio"
-								name="contactPreferences"
-								id="contact-none"
-								value="optionThree" />
-								<span className="option__label">
-									Do not contact me
-								</span>
-						</label>
-					</div>
-
-				</div>
-
-			</label>
+			</FieldTag>
 
 			{helpText && (
 				<small

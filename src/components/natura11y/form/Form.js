@@ -6,6 +6,7 @@ import FileUpload from './FileUpload';
 
 const Form = () => {
   return (
+
     <form>
 
         <RequiredIndicator />
@@ -19,11 +20,14 @@ const Form = () => {
           labelText='Twitter Handle'
         />
 
-        <FormEntry />
+        <FormEntry entryType='select' />
+
+        <FormEntry entryType='groupRadio' />
         
         <FileUpload />
 
     </form>
+
   );
 }
 

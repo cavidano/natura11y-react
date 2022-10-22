@@ -37,25 +37,25 @@ const FileUpload = (props) => {
 
 				<span className='form-entry__field__input'>
 
-					<span class='file-upload'>
+					<span className='file-upload'>
 
-						<span class='file-upload__drop'>
-							<span class='file-upload__drop__text'>
+						<span className='file-upload__drop'>
+							<span className='file-upload__drop__text'>
 								Drag and Drop
 							</span>
 						</span>
 
 						<input
-							class='file-upload__input'
+							className='file-upload__input'
 							type='file'
 							name='fileUploadExample'
 							id='file-uploadsple'
 							accept='image/*'
 						/>
 
-						<span class='button button--outline button--has-icon file-upload__button'>
-							<span class='icon icon-upload'></span>
-							<span class='button__text'>
+						<span className='button button--outline button--has-icon file-upload__button'>
+							<span className='icon icon-upload'></span>
+							<span className='button__text'>
 								Browse for a File
 							</span>
 						</span>

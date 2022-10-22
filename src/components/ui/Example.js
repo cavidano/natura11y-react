@@ -128,21 +128,19 @@ const Example = ({ data }) => {
 
 	return (
 		<div>
-			<div className=''>
-				{data
-					.filter((header) => header.slug === slug)
-					.map((header, index) => (
-						<Backdrop
-							key={index}
-							title={header.title}
-							fixedHeight='400px'
-							imageURL={`images/banner/${header.slug}.jpg`}
-						/>
-					))}
+			{data
+				.filter((header) => header.slug === slug)
+				.map((header, index) => (
+					<Backdrop
+						key={index}
+						title={header.title}
+						fixedHeight='400px'
+						imageURL={`images/banner/${header.slug}.jpg`}
+					/>
+				))}
 
-				<div className='margin-y-5'>
-					{activeExample()}
-				</div>
+			<div className='margin-y-5'>
+				{activeExample()}
 			</div>
 		</div>
 	);
