@@ -9,13 +9,21 @@ const FormEntry = ( props ) => {
 		labelVisible = true,
 		required = true,
 		helpText = null,
-		entryType = 'input' // values: 'input' 'textarea' 'select' 'groupRadio' 'groupCheck' 'SingleCheck' 'switch' 'fileUpload'
+		entryType = 'input', // values: 'input' 'textarea' 'select' 'groupRadio' 'groupCheck' 'SingleCheck' 'switch' 'fileUpload'
+		utilities = null
 	} = props;
 
 	const [isFocused, setIsFocused] = useState(false);
 
 	const componentClasses = classNames(
 		'form-entry',
+		{
+			[`${utilities}`] : utilities !== null
+		}
+
+	);
+
+	const activeClass = classNames(
 		{ 
 			'active' : isFocused
 		}
@@ -108,12 +116,14 @@ const FormEntry = ( props ) => {
 				const radioOptions = ['Option One', 'Option Two', 'Option Three', 'Option Four'];
 				
 				const radios = radioOptions.map((radio, index) =>
-					<div className="form-entry__option__radio" key={index}>
-						<label>
+					<div className={`form-entry__option__radio ${activeClass}`} key={index}>
+						<label className={activeClass}>
 							<input
 								type="radio"
 								name="radioGroupExample"
 								id={`radio-option-${index}`}
+								onFocus={handleFocus}
+								onBlur={handleBlur}
 								value={`option-${index}`}
 							/>
 							<span className="option__label">
@@ -131,17 +141,18 @@ const FormEntry = ( props ) => {
 
 			case 'groupCheck':
 
-
 				const checkOptions = ['Option One', 'Option Two', 'Option Three', 'Option Four'];
 
 				const checkboxes = checkOptions.map((check, index) =>
-					<div className="form-entry__option__check" key={index}>
-						<label>
+					<div className={`form-entry__option__check`} key={index}>
+						<label className={activeClass}>
 							<input
-								type="radio"
-								name="radioGroupExample"
+								type="checkbox"
+								name="checkboxGroupExample"
 								id={`check-option-${index}`}
 								value={`option-${index}`}
+								onFocus={handleFocus}
+								onBlur={handleBlur}
 							/>
 							<span className="option__label">
 								{check}
@@ -197,7 +208,7 @@ const FormEntry = ( props ) => {
 	return (
 
 		<div
-			className={componentClasses}
+			className={`${componentClasses} ${activeClass}`}
 			data-required={required}>
 
 			<FieldTag className='form-entry__field'>

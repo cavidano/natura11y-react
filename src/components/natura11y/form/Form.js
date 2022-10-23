@@ -6,7 +6,7 @@ import FormEntry from './FormEntry';
 const Form = () => {
   return (
 
-    <form>
+    <form className='font-size-md'>
 
         <RequiredIndicator />
 
@@ -15,9 +15,7 @@ const Form = () => {
           helpText='Enter your first and last name'
         />
 
-        <FormEntry
-          labelText='Twitter Handle'
-        />
+        <FormEntry />
 
         <FormEntry entryType='select' />
 
@@ -27,6 +25,7 @@ const Form = () => {
 
         <FormEntry entryType='fileUpload' />
 
+        <button className="button theme-primary width-100 border-radius-pill">Send</button>
 
     </form>
 
