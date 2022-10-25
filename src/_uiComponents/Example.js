@@ -1,24 +1,24 @@
 import { useParams } from 'react-router-dom';
 
-import Accordion from '../natura11y/accordion/Accordion'
+import Accordion from '../natura11yComponents/accordion/Accordion.js'
 
-import AlertParent from '../natura11y/alert/AlertParent';
+import AlertParent from '../natura11yComponents/alert/AlertParent';
 
-import Backdrop from '../natura11y/backdrop/Backdrop.js';
+import Backdrop from '../natura11yComponents/backdrop/Backdrop.js';
 
-import ButtonIconOnly from '../natura11y/button/ButtonIconOnly';
+import ButtonIconOnly from '../natura11yComponents/button/ButtonIconOnly';
 
-import Button from '../natura11y/button/Button';
+import Button from '../natura11yComponents/button/Button';
 
-import Form from '../natura11y/form/Form';
+import Form from '../natura11yComponents/form/Form';
 
-import PrimaryNavigation from '../natura11y/navigation/PrimaryNavigation';
+import PrimaryNavigation from '../natura11yComponents/navigation/PrimaryNavigation';
 
-import ModalParent from '../natura11y/modal/ModalParent';
+import ModalParent from '../natura11yComponents/modal/ModalParent';
 
-import Tabs from '../natura11y/tab/Tabs';
+import Tabs from '../natura11yComponents/tab/Tabs';
 
-import TableScroll from '../natura11y/table/TableScroll';
+import TableScroll from '../natura11yComponents/table/TableScroll';
 
 const Example = ({ data }) => {
 

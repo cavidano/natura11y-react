@@ -2,11 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import classNames from 'classnames';
 
-import Header from './components/ui/Header';
-import Home from './components/ui/Home';
-import Example from './components/ui/Example';
-
-
+import Header from './_uiComponents/Header';
+import Home from './_uiComponents/Home';
+import Example from './_uiComponents/Example';
 
 const App = () => {
 
