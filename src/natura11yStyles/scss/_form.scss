@@ -452,6 +452,8 @@ In this file:
         &::before {
             @extend %caret;
 
+            justify-content: space-between;
+
             position: absolute;
             content: "";
             inset-inline-end: 0;
