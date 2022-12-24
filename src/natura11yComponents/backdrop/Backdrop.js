@@ -32,9 +32,7 @@ const Backdrop = ( props ) => {
 	
 	const imageOpacityModifier = classNames({
 		[`--${stack}`] : stack !== null && fixedHeight === null
-	}
-		
-	);
+	});
 
 	const backdropStyle = {'--backdrop-fixed-height': fixedHeight !== null ? `${fixedHeight}` : null };
 
