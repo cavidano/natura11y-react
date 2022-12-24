@@ -45,7 +45,7 @@ const Example = ({ data }) => {
 			case 'backdrop':
 				return (
 					<div className='medium margin-x-auto'>
-						<Backdrop />
+						<Backdrop stack='lg' utilities='theme-primary' />
 					</div>
 				);
 			
