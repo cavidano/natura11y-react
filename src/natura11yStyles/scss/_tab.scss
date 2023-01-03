@@ -19,13 +19,11 @@ In this file:
 // B. Variables
 ////////////////////////////////////////
 
-// Scoped to Block
-
-%custom-properties {
+:root {
     --tab-button-padding-x: var(--spacer-3);
     --tab-button-padding-y: var(--button-padding-y);
 
-    --tab-accent-bar-size: calc(var(--default-border-width) * 2);
+    --tab-accent-bar-size: calc(var(--border-width) * 2);
 }
 
 ////////////////////////////////////////
@@ -37,8 +35,6 @@ In this file:
     // Tabs Nav
 
     .tabs-nav {
-        @extend %custom-properties;
-
         list-style: none;
 
         // Separator

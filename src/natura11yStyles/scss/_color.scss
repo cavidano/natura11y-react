@@ -20,8 +20,6 @@ In this file:
 // B. Variables
 //////////////////////////////////////////////
 
-// Scoped to Root
-
 :root {
 
     // Theme Color Palette
@@ -31,11 +29,6 @@ In this file:
     --dark: #1f163f;
     --light: #f2edeb;
     --canvas: white;
-
-    // Accessible Link Color
-    // (Used with Canvas and Light Themes)
-
-    --a11y-link: #0066cc;
 
     // Primary Correlated Colors
 
@@ -65,7 +58,7 @@ In this file:
 
     --light-text: var(--dark);
     --light-border: hsla(0, 0%, 50%, 0.25);
-    --light-link: var(--a11y-link);
+    --light-link: #0066cc;
     --light-confirm: #007e35;
     --light-warn: #ce1736;
 
@@ -73,7 +66,7 @@ In this file:
 
     --canvas-text: var(--dark);
     --canvas-border: hsla(0, 0%, 50%, 0.25);
-    --canvas-link: var(--a11y-link);
+    --canvas-link: #0066cc;
     --canvas-confirm: #008237;
     --canvas-warn: #e4193c;
 }
@@ -132,8 +125,7 @@ $theme-colors: (
 
 @layer utility {
 
-    body:not([class*="theme-"]),
-    body > footer:not([class*="theme-"]),
+    html:not([class*="theme-"]),
     [class*="theme-"],
     .backdrop__image__credit {
 
@@ -144,15 +136,15 @@ $theme-colors: (
         border-color: var(--border-color);
 
         * {
-            &:not([class*="theme-"]):not(textarea):not(select):not(footer) {
-                border-color: inherit;
+            &:not([class*="theme-"]):not([class*="border"]):not(select):not(footer) {
+                border-color: var(--border-color, inherit);
             }
         }
 
         :is(
             td > a, 
             .td-content > a,
-            p > a:not([class*="text-"]),
+            p > a:not([class*="text-color"]),
             .text-color-link 
         ) {
             color: var(--link-color);
@@ -237,20 +229,16 @@ $theme-colors: (
         }
     }
 
-} // end @layer
+    @media (prefers-color-scheme: dark) {
 
-//////////////////////////////////////////////
-// D. Prefers Color Scheme 
-//////////////////////////////////////////////
-
-@media (prefers-color-scheme: dark) {
-
-    [class*="theme-canvas"][class*="--prefers"] {
-        --canvas: var(--dark);
-        --canvas-text: var(--dark-text);
-        --canvas-border: var(--dark-border);
-        --canvas-link: var(--dark-link);
-        --canvas-confirm: var(--dark-confirm);
-        --canvas-warn: var(--dark-warn);
+        .theme-canvas--prefers {
+            --background-color: var(--dark);
+            --text-color: var(--dark-text);
+            --border-color: var(--dark-border);
+            --link-color: var(--dark-link);
+            --confirm-color: var(--dark-confirm);
+            --warn-color: var(--dark-warn);
+        }
     }
-}
+
+} // end @layer

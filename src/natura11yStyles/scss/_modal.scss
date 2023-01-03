@@ -12,14 +12,11 @@ In this file:
 // A. Variables
 //////////////////////////////////////////////
 
-
-// Scoped to Block
-
-%modal-vars {
+:root {
   --modal-padding-x: var(--spacer-2);
   --modal-padding-y: var(--spacer-2);
 
-  --modal-overlay-color: black;
+  --modal-overlay-color: #000;
   --modal-overlay-opacity: 0.75;
   
   --modal-z-index: 50000;
@@ -43,8 +40,6 @@ In this file:
   }
 
   .modal {
-    @extend %modal-vars;
-
     display: flex;
     flex-direction: column;
     justify-content: center;

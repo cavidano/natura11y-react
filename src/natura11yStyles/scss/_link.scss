@@ -14,18 +14,15 @@ In this file:
 @layer base {
 
     a {
-        color: inherit;
-
-        &.underline{
-            text-decoration: underline;
-        }
+        color: currentColor;
     }
 
     p > a {
         text-decoration: underline;
 
+        &:hover,
         &:focus {
-            display: inline-flex;
+            text-decoration: none;
         }
     }
 

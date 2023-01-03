@@ -5,12 +5,8 @@ In this file:
 // A. Modules
 // B. Variables
 // C. Selector Resets
-// D. Required Indicator
-// E. Form Entry Block
-// F. Form Entry Elements
-// G. Checkbox and Radio Elements
-// H. File Upload
-// I. Form Feedback
+// D. Placeholders
+// E. Components
 
 */
 
@@ -26,10 +22,8 @@ In this file:
 // B. Variables
 //////////////////////////////////////////////
 
-// Scoped to Root
-
 :root {
-    --form-field-padding-x: var(--spacer-2);
+    --form-field-padding-x: var(--spacer-3);
     --form-field-padding-y: var(--button-padding-y);
 
     --form-field-border-radius: 0.25em;
@@ -154,21 +148,24 @@ In this file:
 } // end @layer
 
 //////////////////////////////////////////////
-// D. Components
+// D. Placeholders
+//////////////////////////////////////////////
+
+%required-icon {
+    @extend .icon_font;
+
+    --icon-size: 0.675em;
+
+    content: var(--icon-required);
+}
+
+//////////////////////////////////////////////
+// E. Components
 //////////////////////////////////////////////
 
 @layer component {
 
-    %required-icon {
-        --icon-size: 0.675em;
-
-        @extend %icon-font-vars;
-        @extend .icon_font;
-
-        content: var(--icon-required);
-
-        display: inline-block;
-    }
+    // Required Indicator
 
     .required-indicator {
         display: flex;
@@ -178,8 +175,8 @@ In this file:
 
         padding-block: 0.25em;
 
-        border-block-end-width: var(--default-border-width);
-        border-block-end-style: var(--default-border-style);
+        border-block-end-width: var(--border-width);
+        border-block-end-style: var(--border-style);
 
         > .icon {
             font-size: 75%;
@@ -188,7 +185,7 @@ In this file:
     }
 
     .required-indicator__text {
-        font-size: var(--font-size-md);
+        font-size: var(--font-size-sm);
 
         font-style: italic;
 
@@ -265,7 +262,7 @@ In this file:
             display: none;
 
             [data-required="true"] & { 
-                display: block !important;
+                display: inline-block !important;
             }
         }
     }
@@ -300,7 +297,7 @@ In this file:
 
             pointer-events: none;
             
-            box-shadow: inset 0 0 0 var(--default-border-width) currentColor;
+            box-shadow: inset 0 0 0 var(--border-width) currentColor;
             
             transition: box-shadow 200ms;
         }
@@ -350,7 +347,7 @@ In this file:
         .form-entry__field__select::after,
         .form-entry__field__input::after,
         .form-entry__option > div > label::after {
-            box-shadow: inset 0 0 0 calc( var(--default-border-width) * 3) currentColor;
+            box-shadow: inset 0 0 0 calc( var(--border-width) * 3) currentColor;
         }
     }
 
@@ -452,9 +449,7 @@ In this file:
         &::before {
             @extend %caret;
 
-            justify-content: space-between;
-
-            position: absolute;
+            position: absolute !important;
             content: "";
             inset-inline-end: 0;
             inset-block-start: 50%;
@@ -473,8 +468,8 @@ In this file:
     .form-entry__option {
         position: relative;
 
-        border-width: var(--default-border-width);
-        border-style: var(--default-border-style);
+        border-width: var(--border-width);
+        border-style: var(--border-style);
         border-radius: var(--form-field-border-radius);
 
         > div {
@@ -484,8 +479,8 @@ In this file:
         }
 
         > div:not(:last-child) {
-            border-block-end-width: var(--default-border-width);
-            border-block-end-style: var(--default-border-style);
+            border-block-end-width: var(--border-width);
+            border-block-end-style: var(--border-style);
             border-block-end-color: inherit;
         }
 
@@ -541,7 +536,6 @@ In this file:
     .option__label {
 
         &::before {
-            @extend %icon-font-vars;
             @extend .icon_font;
 
             position: absolute;
@@ -736,7 +730,7 @@ In this file:
         
         pointer-events: none;
 
-        font-size: var(--font-size-md);
+        font-size: var(--font-size-sm);
 
         @extend %subtle-fill-psuedo;
 
@@ -756,7 +750,7 @@ In this file:
         
         pointer-events: none;
         
-        font-size: var(--font-size-md);
+        font-size: var(--font-size-sm);
     }
 
     .file-upload__data {
@@ -765,7 +759,7 @@ In this file:
 
         margin-block-start: var(--form-field-padding-y);
         
-        font-size: var(--font-size-md);
+        font-size: var(--font-size-sm);
     }
 
     // Form Feedback

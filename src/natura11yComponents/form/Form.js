@@ -6,13 +6,15 @@ import FormEntry from './FormEntry';
 const Form = () => {
   return (
 
-    <form className='font-size-md'>
+    <form >
 
         <RequiredIndicator />
 
         <FormEntry
           labelText='Full Name'
           helpText='Enter your first and last name'
+          entryId='full-name'
+          entryName='fullName'
         />
 
         <FormEntry />

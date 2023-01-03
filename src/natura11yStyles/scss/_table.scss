@@ -22,9 +22,7 @@ In this file:
 // B. Variables
 //////////////////////////////////////////////
 
-// Scoped to Block
-
-%table-vars {
+:root {
     --table-cell-padding-x: var(--spacer-3);
     --table-cell-padding-y: 0.75em;
  
@@ -38,7 +36,6 @@ In this file:
 @layer component {
 
     .table {
-        @extend %table-vars;
         
         table-layout: fixed;
 
@@ -46,13 +43,13 @@ In this file:
         
         border-collapse: collapse;
 
-        font-size: var(--font-size-md);
+        font-size: var(--font-size-sm);
 
         caption-side: bottom;
 
         caption {
-            border-top-width: var(--default-border-width);
-            border-top-style: var(--default-border-style);
+            border-top-width: var(--border-width);
+            border-top-style: var(--border-style);
 
             padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
             
@@ -73,8 +70,8 @@ In this file:
         }
 
         td {
-            border-top-width: var(--default-border-width);
-            border-top-style: var(--default-border-style);
+            border-top-width: var(--border-width);
+            border-top-style: var(--border-style);
         }
 
         thead {
@@ -112,8 +109,8 @@ In this file:
             td 
         ) {
             &:not(:first-child){
-                border-inline-start-width: var(--default-border-width);
-                border-inline-start-style: var(--default-border-style);
+                border-inline-start-width: var(--border-width);
+                border-inline-start-style: var(--border-style);
             }
         }
     }
@@ -149,8 +146,8 @@ In this file:
                 }
 
                 tr:not(:first-child) {
-                    border-block-start-width: calc(var(--default-border-width) * 2);
-                    border-block-start-style: var(--default-border-style);
+                    border-block-start-width: calc(var(--border-width) * 2);
+                    border-block-start-style: var(--border-style);
                 }
 
                 td {

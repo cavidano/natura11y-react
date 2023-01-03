@@ -18,10 +18,8 @@ In this file:
 // B. Variables
 //////////////////////////////////////////////
 
-// Scoped to Block
-
-%article-vars {
-    --article-sidebar-width: 260px;
+:root {
+    --article-sidebar-width: 280px;
 }
 
 //////////////////////////////////////////////
@@ -33,8 +31,6 @@ In this file:
     // Article Block
 
     [class*="article--"] {
-        @extend %article-vars;
-        
         display: grid;
     }
 

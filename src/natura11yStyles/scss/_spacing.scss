@@ -4,8 +4,7 @@ In this file:
 
 // A. Modules
 // B. Variables
-// C. Responsive Spacer Utilities
-// D. Static Spacer Utilities
+// C. Utilities
 
 */
 
@@ -19,8 +18,6 @@ In this file:
 //////////////////////////////////////////////
 // B. Variables
 //////////////////////////////////////////////
-
-// Scoped to Root
 
 :root {
     --spacer-base: 1rem;
@@ -140,14 +137,50 @@ $spacers: (
                     margin-inline-start: calc(#{$value} * -1);
                 }
                     
-                // D. Zero and Auto
+                // Zero and Auto
                 
                 .padding-0#{$mod} {
                     padding: 0;
                 }
+                
+                .padding-x-0#{$mod} {
+                    padding-inline: 0;
+                }
 
+                .padding-y-0#{$mod} {
+                    padding-block: 0;
+                }
+
+                .padding-top-0#{$mod} {
+                    padding-block-start: 0;
+                }
+
+                .padding-right-0#{$mod} {
+                    padding-inline-end: 0;
+                }
+
+                .padding-bottom-0#{$mod} {
+                    padding-block-end: 0;
+                }
+
+                .padding-left-0#{$mod} {
+                    padding-inline-start: 0;
+                }
+
+                .padding-right-0#{$mod} {
+                    padding-block: 0;
+                }
+                
                 .margin-0#{$mod} {
                     margin: 0;
+                }
+
+                .margin-x-0#{$mod} {
+                    margin-inline: 0;
+                }
+
+                .margin-y-0#{$mod} {
+                    margin-block: 0;
                 }
 
                 .margin-top-0#{$mod} {
