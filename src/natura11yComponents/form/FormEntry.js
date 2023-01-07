@@ -16,16 +16,9 @@ const FormEntry = (props) => {
 		utilities = null,
 	} = props;
 
-
 	const ref = useRef();
 
 	const [isFocused, setIsFocused] = useState(false);
-
-	useEffect(() => {
-		if (document.hasFocus() && ref.current?.contains(document.activeElement)) {
-			isFocused(true);
-		}
-	}, [isFocused]);
 
 	const componentClasses = classNames('form-entry', {
 		[`${utilities}`]: utilities !== null,
