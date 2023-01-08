@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 import classNames from 'classnames';
 
@@ -7,7 +7,7 @@ const FormEntry = (props) => {
 	const {
 		labelText = 'Label',
 		labelVisible = true,
-		required = true,
+		required = false,
 		helpText = null,
 		entryType = 'input', // values: 'input' 'textarea' 'select' 'groupRadio' 'groupCheck' 'SingleCheck' 'switch' 'fileUpload'
 		entryId = null,
@@ -20,9 +20,12 @@ const FormEntry = (props) => {
 
 	const [isFocused, setIsFocused] = useState(false);
 
-	const componentClasses = classNames('form-entry', {
-		[`${utilities}`]: utilities !== null,
-	});
+	const componentClasses = classNames(
+		'form-entry',
+		{
+			[`${utilities}`]: utilities !== null,
+		}
+	);
 
 	const activeClass = classNames({
 		active: isFocused,
@@ -39,7 +42,10 @@ const FormEntry = (props) => {
 			entryType === 'fileUpload',
 		'form-entry__field__select': entryType === 'select',
 		'form-entry__option':
-			entryType === 'groupRadio' || entryType === 'groupCheck',
+			entryType === 'groupRadio' || 
+			entryType === 'groupCheck' ||
+			entryType === 'singleCheck' ||
+			entryType === 'singleCheckSwitch',
 	});
 
 	let FieldTag = `label`; // default
@@ -107,6 +113,7 @@ const FormEntry = (props) => {
 				break;
 
 			case 'groupRadio':
+
 				const radioOptions = [
 					'Option One',
 					'Option Two',
@@ -137,6 +144,7 @@ const FormEntry = (props) => {
 				return <>{radios}</>;
 
 			case 'groupCheck':
+
 				const checkOptions = [
 					'Option One',
 					'Option Two',
@@ -162,9 +170,47 @@ const FormEntry = (props) => {
 
 				return <>{checkboxes}</>;
 
+			case 'singleCheck':
+
+				return (
+					<div className='form-entry__option__check'>
+						<label>
+							<input
+								type='checkbox'
+								name='singleOption'
+								id='single-option'
+								value='option'
+								onFocus={handleFocus}
+								onBlur={handleBlur}
+							/>
+							<span className='option__label'>Option</span>
+						</label>
+					</div>
+				);
+
+			case 'singleCheckSwitch':
+
+				return (
+					<div className='form-entry__option__check'>
+						<div className='form-entry__option__switch'>
+							<label>
+								<input
+									type='checkbox'
+									name='singleOption'
+									id='switch-option'
+									value='option'
+								/>
+								<span className='switch__slider'></span>
+								<span className='option__label'>Recieve Notifications</span>
+							</label>
+						</div>
+					</div>
+				);
+
 			case 'fileUpload':
 				return (
 					<span className='file-upload'>
+
 						<span className='file-upload__drop'>
 							<span className='file-upload__drop__text'>Drag and Drop</span>
 						</span>
@@ -181,6 +227,7 @@ const FormEntry = (props) => {
 							<span className='icon icon-upload'></span>
 							<span className='button__text'>Browse for a File</span>
 						</span>
+
 					</span>
 				);
 
@@ -201,7 +248,9 @@ const FormEntry = (props) => {
 					{labelText}
 				</LabelTag>
 
-				<span className={`${formEntryFieldClass}`}>{entryField()}</span>
+				<span className={`${formEntryFieldClass}`}>
+					{entryField()}
+				</span>
 			</FieldTag>
 
 			{helpText && (
