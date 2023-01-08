@@ -17,7 +17,11 @@ const FormValidate = () => {
 
     event.preventDefault();
 
-    console.log(`I entered ${enteredName}`)
+    console.log(`I entered ${enteredName}`);
+    
+    const enteredValue = nameInputRef.current.value;
+
+    console.log(`My entered value is ${enteredValue}`);
 
   }
   
@@ -29,6 +33,7 @@ const FormValidate = () => {
         <RequiredIndicator />
 
         <FormEntry
+          ref={nameInputRef}
           labelText='First Name'
           required={true}
           helpText='Enter your first name only'

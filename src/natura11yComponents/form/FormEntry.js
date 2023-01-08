@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, forwardRef } from 'react';
 
 import classNames from 'classnames';
 
-const FormEntry = (props) => {
+const FormEntry = forwardRef((props, ref) => {
 
 	const {
 		labelText = 'Label',
@@ -17,8 +17,6 @@ const FormEntry = (props) => {
 		ariaDescribedBy = null,
 		utilities = null,
 	} = props;
-
-	const ref = useRef();
 
 	const [isFocused, setIsFocused] = useState(false);
 
@@ -71,6 +69,7 @@ const FormEntry = (props) => {
 			case 'input':
 				return (
 					<input
+						ref={ref}
 						type='text'
 						name={entryName ? entryName : 'textInputId'}
 						id={entryId ? entryId : 'text-input-id'}
@@ -264,6 +263,6 @@ const FormEntry = (props) => {
 			)}
 		</div>
 	);
-};
+});
 
 export default FormEntry;
