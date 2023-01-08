@@ -12,6 +12,8 @@ const FormEntry = (props) => {
 		entryType = 'input', // values: 'input' 'textarea' 'select' 'groupRadio' 'groupCheck' 'SingleCheck' 'switch' 'fileUpload'
 		entryId = null,
 		entryName = null,
+		inputValue = '',
+		onChangeHandler = null,
 		ariaDescribedBy = null,
 		utilities = null,
 	} = props;
@@ -73,8 +75,10 @@ const FormEntry = (props) => {
 						name={entryName ? entryName : 'textInputId'}
 						id={entryId ? entryId : 'text-input-id'}
 						aria-describedby={ariaDescribedBy ? ariaDescribedBy : 'text-input-help-id'}
+						onChange={onChangeHandler}
 						onFocus={handleFocus}
 						onBlur={handleBlur}
+						value={inputValue}
 						required={required}
 					/>
 				);
