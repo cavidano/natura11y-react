@@ -1,46 +1,95 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 import RequiredIndicator from './RequiredIndicator';
 import FormEntry from './FormEntry';
 
 const FormValidate = () => {
-  
-  const nameInputRef = useRef();
 
-  const [enteredName, setEnteredName] = useState('');
+  const [enteredFirstName, setEnteredFirstName] = useState('');
+  const [enteredFirstNameIsValid, setEnteredFirstNameIsValid] = useState(false);
+  const [enteredLastNameTouched, setEnteredLastNameTouched] = useState(false);
 
-  const nameInputChangeHandler = (event) => {
-    setEnteredName(event.target.value);
+  const [enteredLastName, setEnteredLastName] = useState('');
+  const [enteredLastNameIsValid, setEnteredLastNameIsValid] = useState(false);
+  const [enteredFirstNameTouched, setEnteredFirstNameTouched] = useState(false);
+
+  const firstNameIsInvalid = !enteredFirstNameIsValid && enteredFirstNameTouched;
+  const lastNameIsInvalid = !enteredLastNameIsValid && enteredLastNameTouched;
+
+  const firstNameInputChangeHandler = (event) => {
+    setEnteredFirstName(event.target.value); 
+    setEnteredFirstNameTouched(true);
+
+    if (event.target.value !== '') {
+			setEnteredFirstNameIsValid(true);
+		} else {
+			setEnteredFirstNameIsValid(false);
+		}
+  }
+
+  const lastNameInputChangeHandler = (event) => {
+    setEnteredLastName(event.target.value); 
+    setEnteredLastNameTouched(true);
+
+    if (event.target.value !== '') {
+			setEnteredLastNameIsValid(true);
+		} else {
+			setEnteredLastNameIsValid(false);
+		}
   }
 
   const formSubmitHandler = (event) => {
 
     event.preventDefault();
 
-    console.log(`I entered ${enteredName}`);
-    
-    const enteredValue = nameInputRef.current.value;
+    setEnteredFirstNameTouched(true);
+    setEnteredLastNameTouched(true);
 
-    console.log(`My entered value is ${enteredValue}`);
+    if( enteredFirstName.trim() === '') { 
+      setEnteredFirstNameIsValid(false);
+      return;
+    }
+
+    setEnteredFirstNameIsValid(true);
+
+    if( enteredLastName.trim()  === '') {
+      setEnteredLastNameIsValid(false);
+      return;
+    }
+
+    setEnteredLastNameIsValid(true);
+
+    setEnteredFirstName('');
+    setEnteredLastName('');
 
   }
   
-
   return (
 
-    <form autoComplete='off' onSubmit={formSubmitHandler}>
+    <form onSubmit={formSubmitHandler} autoComplete='off' noValidate>
 
         <RequiredIndicator />
 
         <FormEntry
-          ref={nameInputRef}
           labelText='First Name'
           required={true}
           helpText='Enter your first name only'
           entryId='first-name'
           entryName='firstName'
-          inputValue={enteredName}
-          onChangeHandler={nameInputChangeHandler}
+          inputValue={enteredFirstName}
+          onChangeHandler={firstNameInputChangeHandler}
+          showError={firstNameIsInvalid ? true : false}
+        />
+
+        <FormEntry
+          labelText='Last Name'
+          required={true}
+          helpText='Enter your last name only'
+          entryId='last-name'
+          entryName='lastName'
+          inputValue={enteredLastName}
+          onChangeHandler={lastNameInputChangeHandler}
+          showError={lastNameIsInvalid ? true : false}
         />
 
         <button className="button theme-primary width-100 border-radius-pill margin-y-5">Send</button>

@@ -5,10 +5,11 @@ import classNames from 'classnames';
 const FormEntry = forwardRef((props, ref) => {
 
 	const {
-		labelText = 'Label',
 		labelVisible = true,
-		required = false,
+		labelText = 'Label',
 		helpText = null,
+		required = false,
+		showError = false,
 		entryType = 'input', // values: 'input' 'textarea' 'select' 'groupRadio' 'groupCheck' 'SingleCheck' 'switch' 'fileUpload'
 		entryId = null,
 		entryName = null,
@@ -23,7 +24,8 @@ const FormEntry = forwardRef((props, ref) => {
 	const componentClasses = classNames(
 		'form-entry',
 		{
-			[`${utilities}`]: utilities !== null,
+			'is-invalid': showError,
+			[`${utilities}`]: utilities !== null
 		}
 	);
 
@@ -67,6 +69,7 @@ const FormEntry = forwardRef((props, ref) => {
 	const entryField = () => {
 		switch (entryType) {
 			case 'input':
+
 				return (
 					<input
 						ref={ref}
@@ -84,6 +87,7 @@ const FormEntry = forwardRef((props, ref) => {
 				break;
 
 			case 'select':
+
 				return (
 					<select
 						id='select-example'
@@ -103,6 +107,7 @@ const FormEntry = forwardRef((props, ref) => {
 				break;
 
 			case 'textarea':
+			
 				return (
 					<textarea
 						rows='8'
@@ -211,6 +216,7 @@ const FormEntry = forwardRef((props, ref) => {
 				);
 
 			case 'fileUpload':
+
 				return (
 					<span className='file-upload'>
 
@@ -243,24 +249,40 @@ const FormEntry = forwardRef((props, ref) => {
 
 	return (
 		<div
-			className={`${componentClasses} ${entryType !== 'groupRadio' || entryType !== 'groupCheck'  ? activeClass : null}`}
+			className={`${componentClasses} ${entryType !== 'groupRadio' || entryType !== 'groupCheck' ? activeClass : null}`}
 			data-required={required}
 		>
 			<FieldTag className='form-entry__field'>
+
 				<LabelTag className={`form-entry__field__label ${screenReaderOnly}`}>
 					{labelText}
 				</LabelTag>
 
+				{showError && (
+
+				<small className="form-entry__feedback">
+					<span className="icon icon-warn" aria-hidden="true"></span>
+					<span className="message">
+						<strong>Custom Error Message</strong>
+					</span>	
+				</small>
+				
+				)}
+				
 				<span className={`${formEntryFieldClass}`}>
 					{entryField()}
 				</span>
+			
 			</FieldTag>
 
 			{helpText && (
-				<small className='form-entry__help' id={`help-${entryId ? entryId : 'text-input-id'}`}>
-					{helpText}
-				</small>
+
+			<small className='form-entry__help' id={`help-${entryId ? entryId : 'text-input-id'}`}>
+				{helpText}
+			</small>
+			
 			)}
+
 		</div>
 	);
 });
