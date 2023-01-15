@@ -10,7 +10,7 @@ const FormEntry = forwardRef((props, ref) => {
 		helpText = null,
 		required = false,
 		showError = false,
-		entryType = 'input', // values: 'input' 'textarea' 'select' 'groupRadio' 'groupCheck' 'SingleCheck' 'switch' 'fileUpload'
+		entryType = 'text',
 		entryId = null,
 		entryName = null,
 		inputValue = '',
@@ -36,8 +36,13 @@ const FormEntry = forwardRef((props, ref) => {
 
 	const formEntryFieldClass = classNames({
 		'form-entry__field__input':
-			entryType === 'input' ||
+			entryType === 'email' ||
+			entryType === 'password' ||
+			entryType === 'search' ||
+			entryType === 'text' ||
+			entryType === 'tel' ||
 			entryType === 'textarea' ||
+			entryType === 'url' ||
 			entryType === 'fileUpload',
 		'form-entry__field__select': entryType === 'select',
 		'form-entry__option':
@@ -65,12 +70,17 @@ const FormEntry = forwardRef((props, ref) => {
 
 	const entryField = () => {
 		switch (entryType) {
-			case 'input':
+			case 'email':
+			case 'password':
+			case 'search':
+			case 'text':
+			case 'tel':
+			case 'url':
 
 				return (
 					<input
 						ref={ref}
-						type='text'
+						type={entryType ? entryType : 'text'}
 						name={entryName ? entryName : 'textInputId'}
 						id={entryId ? entryId : 'text-input-id'}
 						aria-describedby={ariaDescribedBy ? ariaDescribedBy : 'text-input-help-id'}

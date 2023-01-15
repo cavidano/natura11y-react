@@ -11,7 +11,8 @@ import ButtonIconOnly from '../natura11yComponents/button/ButtonIconOnly';
 import Button from '../natura11yComponents/button/Button';
 
 import Form from '../natura11yComponents/form/Form';
-import FormValidate from '../natura11yComponents/form/FormValidate';
+
+import FormValidation from '../natura11yComponents/form/FormValidation';
 
 import PrimaryNavigation from '../natura11yComponents/navigation/PrimaryNavigation';
 
@@ -84,7 +85,7 @@ const Example = ({ data }) => {
 			case 'form':
 				return (
 					<div className='narrow margin-x-auto'>
-						<FormValidate />
+						<FormValidation />
 					</div>
 				);
 

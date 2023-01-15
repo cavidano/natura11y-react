@@ -3,27 +3,27 @@ import React, { useState, createRef } from 'react';
 import RequiredIndicator from './RequiredIndicator';
 import FormEntry from './FormEntry';
 
-const FormValidate = () => {
+const FormValidation = () => {
 
   const [formComplete, setFormComplete] = useState(false);
 
-  const [enteredFirstName, setEnteredFirstName] = useState('');
-  const [enteredFirstNameIsValid, setEnteredFirstNameIsValid] = useState(false);
-  const [enteredFirstNameTouched, setEnteredFirstNameTouched] = useState(false);
+  const [enteredName, setEnteredName] = useState('');
+  const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
+  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
-  const [enteredLastName, setEnteredLastName] = useState('');
-  const [enteredLastNameIsValid, setEnteredLastNameIsValid] = useState(false);
-  const [enteredLastNameTouched, setEnteredLastNameTouched] = useState(false);
+  const [enteredEmail, setEnteredEmail] = useState('');
+  const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(false);
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
 
   const [enteredFavBird, setEnteredFavBird] = useState('');
   const [enteredFavBirdIsValid, setEnteredFavBirdIsValid] = useState(false);
   const [enteredFavBirdTouched, setEnteredFavBirdTouched] = useState(false);
 
-  const firstNameIsInvalid = !enteredFirstNameIsValid && enteredFirstNameTouched;
-  const lastNameIsInvalid = !enteredLastNameIsValid && enteredLastNameTouched;
+  const nameIsInvalid = !enteredNameIsValid && enteredNameTouched;
+  const emailIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
   const favBirdIsInvalid = !enteredFavBirdIsValid && enteredFavBirdTouched;
 
-	const radioRef = createRef()
+	const radioRef = createRef();
 
   const favBirdChangeHandler = (event) => {
     setEnteredFavBird(event.target.value); 
@@ -36,25 +36,25 @@ const FormValidate = () => {
 		}
   }
 
-  const firstNameInputChangeHandler = (event) => {
-    setEnteredFirstName(event.target.value); 
-    setEnteredFirstNameTouched(true);
+  const nameInputChangeHandler = (event) => {
+    setEnteredName(event.target.value); 
+    setEnteredNameTouched(true);
 
     if (event.target.value !== '') {
-			setEnteredFirstNameIsValid(true);
+			setEnteredNameIsValid(true);
 		} else {
-			setEnteredFirstNameIsValid(false);
+			setEnteredNameIsValid(false);
 		}
   }
 
-  const lastNameInputChangeHandler = (event) => {
-    setEnteredLastName(event.target.value); 
-    setEnteredLastNameTouched(true);
+  const emailInputChangeHandler = (event) => {
+    setEnteredEmail(event.target.value); 
+    setEnteredEmailTouched(true);
 
     if (event.target.value !== '') {
-			setEnteredLastNameIsValid(true);
+			setEnteredEmailIsValid(true);
 		} else {
-			setEnteredLastNameIsValid(false);
+			setEnteredEmailIsValid(false);
 		}
   }
 
@@ -62,23 +62,23 @@ const FormValidate = () => {
 
     event.preventDefault();
 
-    setEnteredFirstNameTouched(true);
-    setEnteredLastNameTouched(true);
+    setEnteredNameTouched(true);
+    setEnteredEmailTouched(true);
     setEnteredFavBirdTouched(true);
 
-    if(enteredFirstName.trim() === '') { 
-      setEnteredFirstNameIsValid(false);
+    if(enteredName.trim() === '') { 
+      setEnteredNameIsValid(false);
       return;
     }
 
-    setEnteredFirstNameIsValid(true);
+    setEnteredNameIsValid(true);
 
-    if(enteredLastName.trim()  === '') {
-      setEnteredLastNameIsValid(false);
+    if(enteredEmail.trim()  === '') {
+      setEnteredEmailIsValid(false);
       return;
     }
 
-    setEnteredLastNameIsValid(true);
+    setEnteredEmailIsValid(true);
 
     if(enteredFavBird === '') {
       setEnteredFavBirdIsValid(false);
@@ -101,25 +101,26 @@ const FormValidate = () => {
             <RequiredIndicator />
 
             <FormEntry
-              labelText='First Name'
+              labelText='Name'
               required={true}
-              helpText='Enter your first name only'
-              entryId='first-name'
-              entryName='firstName'
-              inputValue={enteredFirstName}
-              onChangeHandler={firstNameInputChangeHandler}
-              showError={firstNameIsInvalid ? true : false}
+              helpText='Enter your first and last name'
+              entryId='name'
+              entryName='name'
+              inputValue={enteredName}
+              onChangeHandler={nameInputChangeHandler}
+              showError={nameIsInvalid ? true : false}
             />
 
             <FormEntry
-              labelText='Last Name'
+              labelText='Email'
               required={true}
-              helpText='Enter your last name only'
-              entryId='last-name'
-              entryName='lastName'
-              inputValue={enteredLastName}
-              onChangeHandler={lastNameInputChangeHandler}
-              showError={lastNameIsInvalid ? true : false}
+              helpText='Example: janeDoe@email.com'
+              entryType='email'
+              entryId='email'
+              entryName='email'
+              inputValue={enteredEmail}
+              onChangeHandler={emailInputChangeHandler}
+              showError={emailIsInvalid ? true : false}
             />
 
             <FormEntry
@@ -146,4 +147,4 @@ const FormValidate = () => {
   );
 }
 
-export default FormValidate;
+export default FormValidation;
