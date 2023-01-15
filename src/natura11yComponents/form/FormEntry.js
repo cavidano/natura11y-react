@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState, forwardRef, createRef } from 'react';
 
 import classNames from 'classnames';
 
@@ -16,7 +16,7 @@ const FormEntry = forwardRef((props, ref) => {
 		inputValue = '',
 		onChangeHandler = null,
 		ariaDescribedBy = null,
-		utilities = null,
+		utilities = null
 	} = props;
 
 	const [isFocused, setIsFocused] = useState(false);
@@ -137,12 +137,14 @@ const FormEntry = forwardRef((props, ref) => {
 						<label>
 							<input
 								ref={ref}
+								required={index === 0 && required}
 								type='radio'
-								name='radioGroupExample'
+								name={entryName ? entryName : 'radioGroupExample'}
 								id={`radio-option-${index}`}
 								onFocus={handleFocus}
 								onBlur={handleBlur}
 								value={`option-${index}`}
+								onChange={onChangeHandler}
 							/>
 							<span className='option__label'>{radio}</span>
 						</label>
@@ -263,7 +265,7 @@ const FormEntry = forwardRef((props, ref) => {
 				<small className="form-entry__feedback">
 					<span className="icon icon-warn" aria-hidden="true"></span>
 					<span className="message">
-						<strong>Custom Error Message</strong>
+						<strong>Custom Error Message</strong> {helpText}
 					</span>	
 				</small>
 				
