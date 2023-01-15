@@ -25,13 +25,10 @@ const FormEntry = forwardRef((props, ref) => {
 		'form-entry',
 		{
 			'is-invalid': showError,
+			'active': isFocused && entryType !== 'groupRadio' && entryType !== 'groupCheck',
 			[`${utilities}`]: utilities !== null
 		}
 	);
-
-	const activeClass = classNames({
-		active: isFocused,
-	});
 
 	const screenReaderOnly = classNames({
 		'screen-reader-only': !labelVisible,
@@ -96,7 +93,7 @@ const FormEntry = forwardRef((props, ref) => {
 						onFocus={handleFocus}
 						onBlur={handleBlur}
 					>
-						<option value=''>Select</option>
+						<option>Select</option>
 						<option value='Option One'>Option One</option>
 						<option value='Option Two'>Option Two</option>
 						<option value='Option Three'>Option Three</option>
@@ -131,7 +128,7 @@ const FormEntry = forwardRef((props, ref) => {
 
 				const radios = radioOptions.map((radio, index) => (
 					<div
-						className={`form-entry__option__radio ${activeClass}`}
+						className={`form-entry__option__radio`}
 						key={index}
 					>
 						<label>
@@ -164,7 +161,7 @@ const FormEntry = forwardRef((props, ref) => {
 
 				const checkboxes = checkOptions.map((check, index) => (
 					<div className={`form-entry__option__check`} key={index}>
-						<label className={activeClass}>
+						<label>
 							<input
 								type='checkbox'
 								name='checkboxGroupExample'
@@ -251,7 +248,7 @@ const FormEntry = forwardRef((props, ref) => {
 
 	return (
 		<div
-			className={`${componentClasses} ${entryType !== 'groupRadio' || entryType !== 'groupCheck' ? activeClass : null}`}
+			className={`${componentClasses}`}
 			data-required={required}
 		>
 			<FieldTag className='form-entry__field'>
