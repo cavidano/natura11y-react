@@ -1,8 +1,8 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState } from 'react';
 
 import classNames from 'classnames';
 
-const FormEntry = forwardRef((props, ref) => {
+const FormEntry = (props) => {
 
 	const {
 		labelVisible = true,
@@ -70,6 +70,7 @@ const FormEntry = forwardRef((props, ref) => {
 
 	const entryField = () => {
 		switch (entryType) {
+
 			case 'email':
 			case 'password':
 			case 'search':
@@ -79,7 +80,6 @@ const FormEntry = forwardRef((props, ref) => {
 
 				return (
 					<input
-						ref={ref}
 						type={entryType ? entryType : 'text'}
 						name={entryName ? entryName : 'textInputId'}
 						id={entryId ? entryId : 'text-input-id'}
@@ -90,6 +90,21 @@ const FormEntry = forwardRef((props, ref) => {
 						value={inputValue}
 						required={required}
 					/>
+				);
+				break;
+
+			case 'textarea':
+			
+				return (
+					<textarea
+						rows='8'
+						name={entryName ? entryName : 'textareaEntry'}
+						id={entryId ? entryId : 'textarea-entry'}
+						aria-describedby={ariaDescribedBy ? ariaDescribedBy : 'textarea-help-id'}
+						onChange={onChangeHandler}
+						onFocus={handleFocus}
+						onBlur={handleBlur}
+					></textarea>
 				);
 				break;
 
@@ -113,19 +128,6 @@ const FormEntry = forwardRef((props, ref) => {
 				);
 				break;
 
-			case 'textarea':
-			
-				return (
-					<textarea
-						rows='8'
-						name='textInputExample'
-						id='text-input-example'
-						aria-describedby='help-textarea-example'
-						onFocus={handleFocus}
-						onBlur={handleBlur}
-					></textarea>
-				);
-				break;
 
 			case 'groupRadio':
 
@@ -143,7 +145,6 @@ const FormEntry = forwardRef((props, ref) => {
 					>
 						<label>
 							<input
-								ref={ref}
 								required={index === 0 && required}
 								type='radio'
 								name={entryName ? entryName : 'radioGroupExample'}
@@ -294,6 +295,6 @@ const FormEntry = forwardRef((props, ref) => {
 
 		</div>
 	);
-});
+};
 
 export default FormEntry;
