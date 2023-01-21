@@ -41,6 +41,7 @@ const PrimaryNavigation = ( props ) => {
 
 	return (
 		<div className={`${componentClasses}`}>
+		
 			<div className='primary-nav__logo'>
 				<Link to='/' title='Home' data-logo='brand'>
 					<Brand />

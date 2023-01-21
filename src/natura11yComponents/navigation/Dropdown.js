@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, Fragment } from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
 
@@ -41,7 +41,7 @@ const Dropdown = () => {
     }
 
     return (
-        <>
+        <Fragment>
             <button
                 ref={dropdownButton}
                 data-toggle="dropdown"
@@ -64,7 +64,7 @@ const Dropdown = () => {
                 </li>
             </ul>
 
-        </>
+        </Fragment>
     );
 }
 
