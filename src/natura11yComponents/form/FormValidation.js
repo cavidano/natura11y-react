@@ -25,25 +25,22 @@ const FormValidation = () => {
   const [enteredMessageIsValid, setEnteredMessageIsValid] = useState(false);
   const [enteredMessageTouched, setEnteredMessageTouched] = useState(false);
 
-  const [enteredFavBird, setEnteredFavBird] = useState('');
-  const [enteredFavBirdIsValid, setEnteredFavBirdIsValid] = useState(false);
-  const [enteredFavBirdTouched, setEnteredFavBirdTouched] = useState(false);
+  const [enteredContactPreference, setEnteredContactPreference] = useState('');
+  const [enteredContactPreferenceIsValid, setEnteredContactPreferenceIsValid] = useState(false);
+  const [enteredContactPreferenceTouched, setEnteredContactPreferenceTouched] = useState(false);
 
   const nameIsInvalid = !enteredNameIsValid && enteredNameTouched;
   const emailIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
   const phoneIsInvalid = !enteredPhoneIsValid && enteredPhoneTouched;
   const messageIsInvalid = !enteredMessageIsValid && enteredMessageTouched;
 
-  const favBirdIsInvalid = !enteredFavBirdIsValid && enteredFavBirdTouched;
+  const contactPreferenceIsInvalid = !enteredContactPreferenceIsValid && enteredContactPreferenceTouched;
 
-  const form = useRef();
+  const formRef = useRef();
 
   useEffect(() => {
-  
-    console.log(`Hello ${formErrors}`);
 
-	const coolForm = form;
-    const element = coolForm.querySelector('.is-invalid');
+    const element = formRef.current.querySelector('.is-invalid');
 
     if (element) {
 			element.scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -86,7 +83,6 @@ const FormValidation = () => {
   }
 
   const messageChangeHandler = (event) => {
-    console.log(`MY MESSAGE IS: ${event.target.value}`)
     setEnteredMessage(event.target.value); 
     setEnteredMessageTouched(true);
 
@@ -97,14 +93,14 @@ const FormValidation = () => {
 		}
   }
 
-  const favBirdChangeHandler = (event) => {
-    setEnteredFavBird(event.target.value); 
-    setEnteredFavBirdTouched(true);
+  const contactPreferenceChangeHandler = (event) => {
+    setEnteredContactPreference(event.target.value); 
+    setEnteredContactPreferenceTouched(true);
 
     if (event.target.value !== '') {
-			setEnteredFavBirdIsValid(true);
+			setEnteredContactPreferenceIsValid(true);
 		} else {
-			setEnteredFavBirdIsValid(false);
+			setEnteredContactPreferenceIsValid(false);
 		}
   }
 
@@ -116,7 +112,7 @@ const FormValidation = () => {
     setEnteredEmailTouched(true);
     setEnteredPhoneTouched(true);
     setEnteredMessageTouched(true);
-    setEnteredFavBirdTouched(true);
+    setEnteredContactPreferenceTouched(true);
 
     if (enteredName.trim() === '') {
 			setEnteredNameIsValid(false);
@@ -149,12 +145,12 @@ const FormValidation = () => {
 
 		setEnteredMessageIsValid(true);
 
-		if (enteredFavBird === '') {
-			setEnteredFavBirdIsValid(false);
+		if (enteredContactPreference === '') {
+			setEnteredContactPreferenceIsValid(false);
 			return;
 		}
 
-		setEnteredFavBirdIsValid(true);
+		setEnteredContactPreferenceIsValid(true);
 
     setFormComplete(true);
 
@@ -167,15 +163,13 @@ const FormValidation = () => {
 				<form
 					onSubmit={formSubmitHandler}
 					autoComplete='off'
-					ref={form}
-					noValidate
-				>
+					ref={formRef}
+					noValidate>
 				
 					<RequiredIndicator />
 
 					<FormEntry
 						labelText='Name'
-						labelFloat={true}
 						required={true}
 						helpText='Enter your first and last name'
 						entryId='name'
@@ -220,14 +214,13 @@ const FormValidation = () => {
 					/>
 
 					<FormEntry
-						labelText='Favorite Bird'
+						labelText='Contact Preference'
 						entryType='groupRadio'
 						required={true}
-						helpText='Pick your favorite bird'
-						entryId='fav-bird'
-						entryName='favBird'
-						onChangeHandler={favBirdChangeHandler}
-						showError={favBirdIsInvalid ? true : false}
+						entryId='contact-preference'
+						entryName='contactPreference'
+						onChangeHandler={contactPreferenceChangeHandler}
+						showError={contactPreferenceIsInvalid ? true : false}
 					/>
 
 					<button className='button theme-primary width-100 border-radius-pill margin-y-4'>
