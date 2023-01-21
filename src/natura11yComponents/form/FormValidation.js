@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 
 import RequiredIndicator from './RequiredIndicator';
 import FormEntry from './FormEntry';
@@ -36,10 +36,14 @@ const FormValidation = () => {
 
   const favBirdIsInvalid = !enteredFavBirdIsValid && enteredFavBirdTouched;
 
+  const form = useRef();
+
   useEffect(() => {
   
     console.log(`Hello ${formErrors}`);
-    const element = document.querySelector('.is-invalid');
+
+	const coolForm = form;
+    const element = coolForm.querySelector('.is-invalid');
 
     if (element) {
 			element.scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -159,11 +163,19 @@ const FormValidation = () => {
   return (
 		<Fragment>
 			{!formComplete ? (
-				<form onSubmit={formSubmitHandler} autoComplete='off' noValidate>
+
+				<form
+					onSubmit={formSubmitHandler}
+					autoComplete='off'
+					ref={form}
+					noValidate
+				>
+				
 					<RequiredIndicator />
 
 					<FormEntry
 						labelText='Name'
+						labelFloat={true}
 						required={true}
 						helpText='Enter your first and last name'
 						entryId='name'

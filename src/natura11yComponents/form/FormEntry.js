@@ -5,30 +5,36 @@ import classNames from 'classnames';
 const FormEntry = (props) => {
 
 	const {
-		labelVisible = true,
 		labelText = 'Label',
+		labelVisible = true,
+		labelFloat = false,
 		helpText = null,
 		required = false,
 		showError = false,
 		entryType = 'text',
 		entryId = null,
 		entryName = null,
-		inputValue = '',
 		onChangeHandler = null,
 		ariaDescribedBy = null,
 		utilities = null
 	} = props;
 
 	const [isFocused, setIsFocused] = useState(false);
+	const [hasValue, setHasValue] = useState(false);
 
 	const componentClasses = classNames(
 		'form-entry',
 		{
 			'is-invalid': showError,
+			'has-value': hasValue,
 			'active': isFocused && entryType !== 'groupRadio' && entryType !== 'groupCheck',
 			[`${utilities}`]: utilities !== null
 		}
 	);
+
+	const floatClass = classNames({
+		'form-entry__field--float': labelFloat,
+	});
 
 	const screenReaderOnly = classNames({
 		'screen-reader-only': !labelVisible,
@@ -64,8 +70,13 @@ const FormEntry = (props) => {
 		setIsFocused(true);
 	};
 
-	const handleBlur = () => {
+	const handleBlur = (e) => {
 		setIsFocused(false);
+		if (e.target.value !== '') {
+			setHasValue(true);
+		} else {
+			setHasValue(false);
+		}
 	};
 
 	const entryField = () => {
@@ -87,7 +98,6 @@ const FormEntry = (props) => {
 						onChange={onChangeHandler}
 						onFocus={handleFocus}
 						onBlur={handleBlur}
-						value={inputValue}
 						required={required}
 					/>
 				);
@@ -258,41 +268,32 @@ const FormEntry = (props) => {
 	};
 
 	return (
-		<div
-			className={`${componentClasses}`}
-			data-required={required}
-		>
-			<FieldTag className='form-entry__field'>
-
+		<div className={`${componentClasses}`} data-required={required}>
+			<FieldTag className={`form-entry__field ${floatClass}`}>
 				<LabelTag className={`form-entry__field__label ${screenReaderOnly}`}>
 					{labelText}
 				</LabelTag>
 
 				{showError && (
-
-				<small className="form-entry__feedback">
-					<span className="icon icon-warn" aria-hidden="true"></span>
-					<span className="message">
-						<strong>Custom Error Message</strong> {helpText}
-					</span>	
-				</small>
-				
+					<small className='form-entry__feedback'>
+						<span className='icon icon-warn' aria-hidden='true'></span>
+						<span className='message'>
+							<strong>Custom Error Message</strong> {helpText}
+						</span>
+					</small>
 				)}
-				
-				<span className={`${formEntryFieldClass}`}>
-					{entryField()}
-				</span>
-			
+
+				<span className={`${formEntryFieldClass}`}>{entryField()}</span>
 			</FieldTag>
 
 			{helpText && (
-
-			<small className='form-entry__help' id={`help-${entryId ? entryId : 'text-input-id'}`}>
-				{helpText}
-			</small>
-			
+				<small
+					className='form-entry__help'
+					id={`help-${entryId ? entryId : 'text-input-id'}`}
+				>
+					{helpText}
+				</small>
 			)}
-
 		</div>
 	);
 };
