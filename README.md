@@ -1,8 +1,10 @@
 ![Naturally Inclusive Framework Logo](./naturally-logo.svg)
 
-# Natura11y
+# Natura11y React Components
 
-Natura11y is an open-source front-end toolkit for building modern websites. It's easy to use for developers at different skill levels.
+Natura11y's prebuilt React components make starting any React project a breeze. Combine the ease of styling with Natura11y and React's efficient, component-based development experience.
+
+Natura11y is an open-source front-end toolkit for building modern websites. 
 
 [https://gonatura11y.com](https://gonatura11y.com)
 
