@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+![Naturally Inclusive Framework Logo](./naturally-logo.svg)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Natura11y
+
+Natura11y is an open-source front-end toolkit for building modern websites. It's easy to use for developers at different skill levels.
+
+[https://gonatura11y.com](https://gonatura11y.com)
 
 ## Available Scripts
 
