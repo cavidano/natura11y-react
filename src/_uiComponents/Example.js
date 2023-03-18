@@ -10,8 +10,6 @@ import ButtonIconOnly from '../natura11yComponents/button/ButtonIconOnly';
 
 import Button from '../natura11yComponents/button/Button';
 
-import Form from '../natura11yComponents/form/Form';
-
 import FormValidation from '../natura11yComponents/form/FormValidation';
 
 import PrimaryNavigation from '../natura11yComponents/navigation/PrimaryNavigation';
@@ -19,6 +17,8 @@ import PrimaryNavigation from '../natura11yComponents/navigation/PrimaryNavigati
 import ModalParent from '../natura11yComponents/modal/ModalParent';
 
 import Tabs from '../natura11yComponents/tab/Tabs';
+
+import Table from '../natura11yComponents/table/Table.js';
 
 import TableScroll from '../natura11yComponents/table/TableScroll';
 
@@ -120,6 +120,7 @@ const Example = ({ data }) => {
 				return (
 					<div className='wide margin-x-auto'>
 						<TableScroll />
+						<Table utilities={'table--stack--lg margin-y-5'} />
 					</div>
 				);
 
