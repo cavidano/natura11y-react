@@ -19,8 +19,9 @@ In the project directory, you can run:
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+---
 
-Related:
+### Related:
 
 - [Repo: Natura11y Inclusive Framework](https://github.com/cavidano/natura11y)
 - [Repo: Natura11y Icons](https://github.com/cavidano/natura11y-icons)
