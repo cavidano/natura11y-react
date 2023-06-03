@@ -16,15 +16,29 @@ import PrimaryNavigation from '../natura11yComponents/navigation/PrimaryNavigati
 
 import ModalParent from '../natura11yComponents/modal/ModalParent';
 
+import Lightbox from '../natura11yComponents/lightbox';
+
 import Tabs from '../natura11yComponents/tab/Tabs';
 
 import Table from '../natura11yComponents/table/Table.js';
 
 import TableScroll from '../natura11yComponents/table/TableScroll';
 
-const Example = ({ data }) => {
+const Example = ({ examples }) => {
 
 	const { slug } = useParams();
+
+	const examplesList = examples
+		.filter((header) => header.slug === slug)
+		.map((header, index) => (
+			<Backdrop
+				key={index}
+				title={header.title}
+				fixedHeight='400px'
+				imageURL={`images/banner/${header.slug}.jpg`}
+			/>
+	));
+
 
 	const activeExample = () => {
 
@@ -96,6 +110,13 @@ const Example = ({ data }) => {
 					</div>
 				);
 
+			case 'lightbox':
+				return (
+					<div className='medium margin-x-auto'>
+						<Lightbox />
+					</div>
+				);
+
 			case 'navigation':
 				return (
 				<div className="grid">
@@ -131,16 +152,7 @@ const Example = ({ data }) => {
 
 	return (
 		<div>
-			{data
-				.filter((header) => header.slug === slug)
-				.map((header, index) => (
-					<Backdrop
-						key={index}
-						title={header.title}
-						fixedHeight='400px'
-						imageURL={`images/banner/${header.slug}.jpg`}
-					/>
-				))}
+			{examplesList}
 
 			<div className='margin-y-5'>
 				{activeExample()}

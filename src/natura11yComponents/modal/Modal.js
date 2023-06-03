@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 
 import { getFocusableElements } from '../../utilities/focus';
 
-const Modal = ( props ) => {
+const Modal = forwardRef((props, ref) => {
 
 	const {
 		scrollAll = false,
@@ -14,8 +14,10 @@ const Modal = ( props ) => {
 
 	} = props;
 
-	const modalContainer = useRef();
-	const modalContent = useRef();
+	const modalContainer = useRef(null);
+	const modalContent = useRef(null);
+
+	useImperativeHandle(ref, () => modalContainer.current);
 
   	let classScrolAll = scrollAll === true ? ' modal--scroll-all' : '';
 
@@ -70,21 +72,6 @@ const Modal = ( props ) => {
 		}
 	};
 
-	useEffect(() => {
-
-		if (isOpen) {
-			document.querySelector('body').classList.add('modal-open');
-
-			modalContent.current.setAttribute('tabindex', 0);
-			modalContent.current.focus();
-			modalContent.current.setAttribute('tabindex', -1);
-			
-			modalContainer.current.scrollTop = 0;
-		} else {
-			document.querySelector('body').classList.remove('modal-open');
-		}
-	}, [isOpen]);
-
 	return (
 		<div
 			className={`modal ${classScrolAll} padding-4`}
@@ -131,6 +118,6 @@ const Modal = ( props ) => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default Modal;

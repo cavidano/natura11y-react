@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import AccordionItem from './AccordionItem';
 
-import { getFilteredElements } from '../../utilities/focus';
+import { getFilteredElements } from '../../utilities/filter';
 
 const Accordion = () => {
 
@@ -149,9 +149,7 @@ const Accordion = () => {
 			className='accordion'
 			ref={accordion}
 		>
-
 			{accordionItems}
-		
 		</div>
 	);
 

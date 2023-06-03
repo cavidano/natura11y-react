@@ -8,11 +8,11 @@ import { useParams, Outlet } from 'react-router-dom';
 
 import Preview from '../_uiComponents/Preview';
 
-const Home = ({ data }) => {
+const Home = ({ examples }) => {
 
 	const { slug } = useParams();
 
-	const exampleLinks = data.map((component, index) => (
+	const exampleLinks = examples.map((component, index) => (
 		<Preview
 			key={index}
 			title={component.title}
@@ -30,7 +30,7 @@ const Home = ({ data }) => {
 					<div className="grid gap-border">
 						{exampleLinks}
 					</div>
-				) : <Outlet data={data} id={slug} />
+				) : <Outlet examples={examples} id={slug} />
 			}
 		</>
 	);

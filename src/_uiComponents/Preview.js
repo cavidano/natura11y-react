@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import classNames from 'classnames';
+
 const Backdrop = ( props ) => {
 
     const { 
@@ -13,13 +15,19 @@ const Backdrop = ( props ) => {
 		slug = '/'
 	} = props;
 
-	let classFixed = fixedHeight !== null ? ' backdrop--fixed': '';
+	const componentClasses = classNames(
+		'backdrop',
+		{
+			'backdrop--fixed': fixedHeight !== null
+		}
+	);
+
 	let styleFixed = {'--backdrop-fixed-height': fixedHeight !== null ? `${fixedHeight}` : null };
 	
 	return (
 		<Link
 			to={`/${slug}`}
-			className={`backdrop${classFixed}`}
+			className={componentClasses}
 			style={styleFixed}>
 
 			<div className='backdrop__image'>

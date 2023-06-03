@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import classNames from 'classnames';
 
-import 'natura11y/src/scss/natura11y.scss';
+import './scss/natura11y.scss';
 
 import Header from './_uiComponents/Header';
 import Home from './_uiComponents/Home';
@@ -10,7 +10,7 @@ import Example from './_uiComponents/Example';
 
 const App = () => {
 
-	const data = [
+	const examples = [
 	
 		{
 			title: 'Accordion',
@@ -41,6 +41,10 @@ const App = () => {
 			slug: 'modal'
 		},
 		{
+			title: 'Lightbox',
+			slug: 'lightbox'
+		},
+		{
 			title: 'Navigation',
 			slug: 'navigation'
 		},
@@ -59,10 +63,10 @@ const App = () => {
 			
 			<Header />
 
-			<main className={classNames('container', 'wide')}>
+			<main className={classNames('container', 'medium')}>
 				<Routes>
-					<Route path='/' element={<Home data={data} />}>
-						<Route path=':slug' element={<Example data={data} />} />
+					<Route path='/' element={<Home examples={examples} />}>
+						<Route path=':slug' element={<Example examples={examples} />} />
 					</Route>
 				</Routes>
 			</main>
