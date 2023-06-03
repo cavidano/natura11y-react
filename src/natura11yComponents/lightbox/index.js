@@ -25,6 +25,8 @@ const Lightbox = () => {
 	const lightbox = useRef(null);
 	const lbPreviuos = useRef(null);
 	const lbNext = useRef(null);
+	const lbClose = useRef(null);
+	const lbContent = useRef(null);
 
 	useEffect(() => {
 		document.addEventListener('keydown', handleLightboxUpdate);
@@ -32,7 +34,7 @@ const Lightbox = () => {
 		return () => {
 			document.removeEventListener('keydown', handleLightboxUpdate);
 		};
-  }, [currentLB, lightboxVisible]);
+	}, [lightboxVisible ,currentLB]);
 
 	const handleLightboxOpen = (index) => {
 		setCurrentLB(index);
@@ -46,7 +48,6 @@ const Lightbox = () => {
 	};
 
 	const handleLightboxUpdate = (e) => {
-
 		switch (e.code) {
 			case 'ArrowLeft':
 				updateDirection(-1);
@@ -72,6 +73,19 @@ const Lightbox = () => {
 		setCurrentLB(newLB);
 	};
 
+	const handleCloseOutside = (event) => {
+
+		const lightboxContentClick = lbContent.current.contains(event.target);
+
+		if (
+			!lightboxContentClick
+			&& event.target !== lbPreviuos.current
+			&& event.target !== lbNext.current
+			&& event.target !== lbClose.current) {
+			handleLightboxClose();
+		}
+	};
+
 	const lightboxImages = images.map(({ src, alt, lbType }, index) => (
 		<button
 			key={index}
@@ -84,26 +98,21 @@ const Lightbox = () => {
 
 	return (
 		<>
-			<div className="grid grid--column-2 gap-2">
-				{lightboxImages}
-			</div>
-				
+			<div className='grid grid--column-2 gap-2'>{lightboxImages}</div>
+
 			<div
 				className='lightbox'
 				ref={lightbox}
 				aria-hidden={!lightboxVisible}
+				onClick={handleCloseOutside}
 			>
-
 				<div className='button-group lightbox__buttons'>
 					<button
 						ref={lbPreviuos}
 						className='button button--icon-only'
 						onClick={() => handleNextPrevious(-1)}
 					>
-						<span
-							className='icon icon-arrow-left'
-							aria-label='Previous'
-						></span>
+						<span className='icon icon-arrow-left' aria-label='Previous'></span>
 					</button>
 					<button
 						ref={lbNext}
@@ -113,15 +122,15 @@ const Lightbox = () => {
 						<span className='icon icon-arrow-right' aria-label='Next'></span>
 					</button>
 					<button
+						ref={lbClose}
 						className='button button--icon-only'
 						onClick={handleLightboxClose}
 					>
 						<span className='icon icon-close' aria-label='Close'></span>
 					</button>
-					
 				</div>
 
-				<figure className='lightbox__container'>
+				<figure className='lightbox__container' ref={lbContent}>
 					<div className='lightbox__image'>
 						{images[currentLB].lbType === 'video' ? (
 							<video controls>
@@ -138,6 +147,6 @@ const Lightbox = () => {
 			</div>
 		</>
 	);
-}
+};
 
 export default Lightbox;
