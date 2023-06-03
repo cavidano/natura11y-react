@@ -28,13 +28,13 @@ const Lightbox = () => {
 	const lbClose = useRef(null);
 	const lbContent = useRef(null);
 
-	useEffect(() => {
-		document.addEventListener('keydown', handleLightboxUpdate);
+	// useEffect(() => {
+	// 	document.addEventListener('keydown', handleLightboxUpdate);
 
-		return () => {
-			document.removeEventListener('keydown', handleLightboxUpdate);
-		};
-	}, [lightboxVisible ,currentLB]);
+	// 	return () => {
+	// 		document.removeEventListener('keydown', handleLightboxUpdate);
+	// 	};
+	// }, [lightboxVisible]);
 
 	const handleLightboxOpen = (index) => {
 		setCurrentLB(index);
@@ -48,6 +48,7 @@ const Lightbox = () => {
 	};
 
 	const handleLightboxUpdate = (e) => {
+		console.log(e.code);
 		switch (e.code) {
 			case 'ArrowLeft':
 				updateDirection(-1);
@@ -105,6 +106,7 @@ const Lightbox = () => {
 				ref={lightbox}
 				aria-hidden={!lightboxVisible}
 				onClick={handleCloseOutside}
+				onKeyDown={handleLightboxUpdate}
 			>
 				<div className='button-group lightbox__buttons'>
 					<button
