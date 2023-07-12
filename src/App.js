@@ -11,7 +11,6 @@ import Example from './_uiComponents/Example';
 const App = () => {
 
 	const examples = [
-	
 		{
 			title: 'Accordion',
 			slug: 'accordion'

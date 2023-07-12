@@ -11,6 +11,7 @@ const ButtonIconOverText = forwardRef((props, ref) => {
 	const {
 		iconHandle = 'home', // Arbitrary default value
 		iconUtilities = null,
+		textUtilities = null,
 		label = 'Home',
 		tag = 'button',
 		linkUrl = '#1',
@@ -24,10 +25,17 @@ const ButtonIconOverText = forwardRef((props, ref) => {
 		'button--icon-over-text'
 	);
 
+	const textClasses = classNames(
+        'button__text',
+        {
+            [`${textUtilities}`] : textUtilities !== null
+        }
+    );
+
 	const buttonContent = (
 		<>
 			<Icon iconHandle={iconHandle} utilities={iconUtilities} />
-			<span className='button__text'>{label}</span>
+			<span className={textClasses}>{label}</span>
 		</>
 	);
 
