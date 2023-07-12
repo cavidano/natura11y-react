@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import classNames from 'classnames';
 
-import './scss/natura11y.scss';
+import 'natura11y/src/scss/natura11y.scss';
 
 import Header from './_uiComponents/Header';
 import Home from './_uiComponents/Home';

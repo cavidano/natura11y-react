@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import ButtonIconOnly from '../button/ButtonIconOnly';
-import Button from '../button/Button';
+import Button from '../button';
 
 import { Link } from 'react-router-dom';
 

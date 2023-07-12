@@ -6,24 +6,29 @@ import { Link } from 'react-router-dom';
 
 import Icon from '../icon/Icon';
 
-const ButtonIconOnly = forwardRef((props, ref) => {
+const ButtonIconOverText = forwardRef((props, ref) => {
 
 	const {
+		iconHandle = 'home', // Arbitrary default value
+		iconUtilities = null,
+		label = 'Home',
 		tag = 'button',
-		iconHandle = 'home',
 		linkUrl = '#1',
-		utilities = null,
 		ariaLabel = null,
 		clickHandler = null,
 		ariaExpanded = null,
 	} = props;
 
 	const componentClasses = classNames(
-		'button',
-		'button--icon-only', 
-		{
-			[utilities]: utilities !== null,
-		}
+		'button', 
+		'button--icon-over-text'
+	);
+
+	const buttonContent = (
+		<>
+			<Icon iconHandle={iconHandle} utilities={iconUtilities} />
+			<span className='button__text'>{label}</span>
+		</>
 	);
 
 	return (
@@ -36,23 +41,23 @@ const ButtonIconOnly = forwardRef((props, ref) => {
 					aria-label={ariaLabel}
 					aria-expanded={ariaExpanded}
 				>
-					<Icon iconHandle={iconHandle} />
+					{buttonContent}
 				</button>
 			)}
 
 			{tag === 'link' && (
 				<Link className={componentClasses} to={linkUrl} aria-label={ariaLabel}>
-					<Icon iconHandle={iconHandle} />
+					{buttonContent}
 				</Link>
 			)}
 
 			{tag !== 'button' && tag !== 'link' && (
 				<a className={componentClasses} href={linkUrl} aria-label={ariaLabel}>
-					<Icon iconHandle={iconHandle} />
+					{buttonContent}
 				</a>
 			)}
 		</>
 	);
 });
 
-export default ButtonIconOnly;
+export default ButtonIconOverText;

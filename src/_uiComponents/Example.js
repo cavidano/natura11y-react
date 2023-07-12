@@ -1,14 +1,16 @@
 import { useParams } from 'react-router-dom';
 
-import Accordion from '../natura11yComponents/accordion/Accordion.js'
+import Accordion from '../natura11yComponents/accordion/Accordion'
 
 import AlertParent from '../natura11yComponents/alert/AlertParent';
 
-import Backdrop from '../natura11yComponents/backdrop/Backdrop.js';
+import Backdrop from '../natura11yComponents/backdrop/Backdrop';
+
+import Button from '../natura11yComponents/button';
 
 import ButtonIconOnly from '../natura11yComponents/button/ButtonIconOnly';
 
-import Button from '../natura11yComponents/button/Button';
+import ButtonIconOverText from '../natura11yComponents/button/ButtonIconOverText';
 
 import FormValidation from '../natura11yComponents/form/FormValidation';
 
@@ -20,7 +22,7 @@ import Lightbox from '../natura11yComponents/lightbox';
 
 import Tabs from '../natura11yComponents/tab/Tabs';
 
-import Table from '../natura11yComponents/table/Table.js';
+import Table from '../natura11yComponents/table/Table';
 
 import TableScroll from '../natura11yComponents/table/TableScroll';
 
@@ -91,6 +93,18 @@ const Example = ({ examples }) => {
 							<Button
 								outline={true}
 								title='Settings'
+							/>
+						</div>
+						<div className='display-flex justify-content-center margin-y-3'>
+							<ButtonIconOverText
+								iconHandle='car' 
+								label='Directions'
+								iconUtilities='border-radius-circle'
+							/>
+							<ButtonIconOverText
+								iconHandle='map-pin'
+								label='Directions to the store'
+								iconUtilities='theme-primary border-radius-circle'
 							/>
 						</div>
 					</>
