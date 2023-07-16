@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import LightboxButton from './LightboxButton';
 import Lightbox from './Lightbox';
@@ -8,12 +8,20 @@ const LightboxParent = () => {
     const [mediaArray, setMediaArray] = useState([]);
 	const [currentLB, setCurrentLB] = useState(0);
 
+    const lbPrevious = useRef(null);
+    const lbNext = useRef(null);
+    const lbClose = useRef(null);
+
     const [lightboxState, setLightboxState] = useState({
         isOpen: false,
+        type: '',
         src: '',
         caption: '',
-        type: '',
     });
+
+    const handleMount = (media) => {
+        setMediaArray((prevArray) => [...prevArray, media]);
+    };
 
     const handleClick = (src, caption, type) => {
         setLightboxState({ isOpen: true, src, caption, type });
@@ -23,51 +31,18 @@ const LightboxParent = () => {
         setLightboxState({ isOpen: false, src: '', caption: '', type: '' });
     };
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'ArrowRight') {
-            const currentIndex = mediaArray.findIndex(media => media.src === lightboxState.src);
-            const nextIndex = (currentIndex + 1) % mediaArray.length;
-            const nextMedia = mediaArray[nextIndex];
-
-            setLightboxState({
-                isOpen: true,
-                src: nextMedia.src,
-                caption: nextMedia.caption,
-                type: nextMedia.type
-            });
-        }
-
-        if (e.key === 'ArrowLeft') {
-            const currentIndex = mediaArray.findIndex(media => media.src === lightboxState.src);
-            const previousIndex = currentIndex - 1 < 0 ? mediaArray.length - 1 : currentIndex - 1;
-            const previousMedia = mediaArray[previousIndex];
-
-            setLightboxState({
-                isOpen: true,
-                src: previousMedia.src,
-                caption: previousMedia.caption,
-                type: previousMedia.type
-            });
-        }
-    };
-
-    const handleMount = (media) => {
-        setMediaArray((prevArray) => [...prevArray, media]);
-    };
-
-
 	const handleLightboxUpdate = (e) => {
-		
-        console.log(e.code);
-
 		switch (e.code) {
 			case 'ArrowLeft':
 				updateDirection(-1);
-				// lbPreviuos.current.focus();
+				lbPrevious.current.focus();
 				break;
 			case 'ArrowRight':
 				updateDirection(1);
-				// lbNext.current.focus();
+				lbNext.current.focus();
+				break;
+			case 'Escape':
+				handleClose();
 				break;
 			default:
 				return;
@@ -89,10 +64,8 @@ const LightboxParent = () => {
         
         setCurrentLB(newLB);
     };
-    
-    useEffect(() => {
-        console.log(currentLB, 'currentLB');
 
+    useEffect(() => {
         const currentMedia = mediaArray[currentLB];
 
         if (currentMedia) {
@@ -116,6 +89,7 @@ const LightboxParent = () => {
 
     return (
         <div>
+        
             <LightboxButton
                 type='image'
                 src='https://picsum.photos/id/29/1600/900'
@@ -132,7 +106,16 @@ const LightboxParent = () => {
                 onMount={handleMount}
             />
 
+            <LightboxButton
+                type='vimeo'
+                src='54802209?h=53340e8e30'
+                caption='Caption for example 2'
+                onClick={handleClick}
+                onMount={handleMount}
+            />
+
             <Lightbox
+                refs={{lbPrevious, lbNext, lbClose}}
                 isOpen={lightboxState.isOpen}
                 src={lightboxState.src}
                 caption={lightboxState.caption}
