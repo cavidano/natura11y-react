@@ -4,36 +4,7 @@ import { handleOverlayOpen, handleOverlayClose } from '../../utilities/overlay';
 
 const Lightbox = () => {
 
-  const images = [
-    {
-      src: 'https://picsum.photos/id/29/1600/900',
-      alt: 'First random image',
-      lbType: 'image',
-      lbCaption: 'First random image caption',
-    },
-    {
-      src: 'https://picsum.photos/id/287/1600/900',
-      alt: 'Second random image',
-      lbType: 'video',
-      lbSrc: '/pexels-dmitry-varennikov-5527698-3840x2160-30fps.mp4',
-      lbCaption: 'Second random image caption',
-    },
-    {
-      src: 'https://picsum.photos/id/405/1600/900',
-      alt: 'Third random image',
-      lbType: 'youtube',
-      lbSrc: 'k3ftlbnbwuc',
-      lbCaption: 'Third random image caption',
-    },
-    {
-      src: 'https://picsum.photos/id/504/1600/900',
-      alt: 'Fourth random image',
-      lbType: 'vimeo',
-      lbSrc: '54802209?h=53340e8e30',
-      lbCaption: 'Fourth random image caption',
-    },
-  ];
-
+  const [images, setImages] = useState([]);
   const [currentLB, setCurrentLB] = useState(0);
   const [lightboxVisible, setLightboxVisible] = useState(false);
 
@@ -43,12 +14,27 @@ const Lightbox = () => {
 	const lbClose = useRef(null);
 	const lbContent = useRef(null);
 
-  const handleLightboxOpen = (index) => {
-    setCurrentLB(index);
+  useEffect(() => {
+    const lightboxElements = Array.from(document.querySelectorAll('[data-lightbox]'));
+
+    const newImages = lightboxElements.map(el => ({
+      src: el.getAttribute('data-lightbox-src'),
+      alt: el.getAttribute('alt'),
+      lbType: el.getAttribute('data-lightbox'),
+      lbCaption: el.getAttribute('data-lightbox-caption'),
+    }));
+
+    setImages(newImages);
+  }, []);
+
+  const handleLightboxOpen = (event) => {
+    const newCurrentLB = images.findIndex(image => image.src === event.currentTarget.getAttribute('data-lightbox-src'));
+
+    setCurrentLB(newCurrentLB);
 		handleOverlayOpen(lightbox.current);
     setLightboxVisible(true);
   };
-
+  
   const handleLightboxClose = () => {
 		handleOverlayClose(lightbox.current);
     setLightboxVisible(false);

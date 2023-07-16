@@ -28,13 +28,13 @@ const Lightbox = () => {
 	const lbClose = useRef(null);
 	const lbContent = useRef(null);
 
-	// useEffect(() => {
-	// 	document.addEventListener('keydown', handleLightboxUpdate);
+	useEffect(() => {
+		document.addEventListener('keydown', handleLightboxUpdate);
 
-	// 	return () => {
-	// 		document.removeEventListener('keydown', handleLightboxUpdate);
-	// 	};
-	// }, [lightboxVisible]);
+		return () => {
+			document.removeEventListener('keydown', handleLightboxUpdate);
+		};
+	}, [lightboxVisible]);
 
 	const handleLightboxOpen = (index) => {
 		setCurrentLB(index);
