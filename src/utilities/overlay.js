@@ -18,9 +18,11 @@ let lastFocusedElement;
 
 export const handleOverlayOpen = (element = null) => {
 
+    console.log(element, 'handleOverlayOpen');
+
     lastFocusedElement = document.activeElement;
 
-    scrollPosition = window.pageYOffset;
+    scrollPosition = window.scrollY;
 
     rootElement.style.setProperty('--scroll-position', `-${scrollPosition}px`);
 

@@ -14,6 +14,8 @@ import { handleOverlayClose } from './overlay';
 //////////////////////////////////////////////
 
 export const getFocusableElements = (element = document) => {
+
+    console.log(element, 'getFocusableElements');
     
     const els = [
       'a[href]',

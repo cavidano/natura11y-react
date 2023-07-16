@@ -1,154 +1,216 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 
 import { handleOverlayOpen, handleOverlayClose } from '../../utilities/overlay';
 
 const Lightbox = () => {
 
-	const images = [
-		{
-			src: 'https://picsum.photos/id/29/1600/900',
-			alt: 'First random image',
-			lbType: 'image',
-			imgCaption: 'First random image caption',
-		},
-		{
-			src: 'https://picsum.photos/id/287/1600/900',
-			alt: 'Second random image',
-			lbType: 'image',
-			imgCaption: 'Second random image caption',
-		},
-	];
+  const images = [
+    {
+      src: 'https://picsum.photos/id/29/1600/900',
+      alt: 'First random image',
+      lbType: 'image',
+      lbCaption: 'First random image caption',
+    },
+    {
+      src: 'https://picsum.photos/id/287/1600/900',
+      alt: 'Second random image',
+      lbType: 'video',
+      lbSrc: '/pexels-dmitry-varennikov-5527698-3840x2160-30fps.mp4',
+      lbCaption: 'Second random image caption',
+    },
+    {
+      src: 'https://picsum.photos/id/405/1600/900',
+      alt: 'Third random image',
+      lbType: 'youtube',
+      lbSrc: 'k3ftlbnbwuc',
+      lbCaption: 'Third random image caption',
+    },
+    {
+      src: 'https://picsum.photos/id/504/1600/900',
+      alt: 'Fourth random image',
+      lbType: 'vimeo',
+      lbSrc: '54802209?h=53340e8e30',
+      lbCaption: 'Fourth random image caption',
+    },
+  ];
 
-	const [currentLB, setCurrentLB] = useState(0);
-	const [lightboxVisible, setLightboxVisible] = useState(false);
+  const [currentLB, setCurrentLB] = useState(0);
+  const [lightboxVisible, setLightboxVisible] = useState(false);
 
 	const lightbox = useRef(null);
-	const lbPreviuos = useRef(null);
+  const lbPrevious = useRef(null);
 	const lbNext = useRef(null);
 	const lbClose = useRef(null);
 	const lbContent = useRef(null);
 
-	// useEffect(() => {
-	// 	document.addEventListener('keydown', handleLightboxUpdate);
-
-	// 	return () => {
-	// 		document.removeEventListener('keydown', handleLightboxUpdate);
-	// 	};
-	// }, [lightboxVisible]);
-
-	const handleLightboxOpen = (index) => {
-		setCurrentLB(index);
+  const handleLightboxOpen = (index) => {
+    setCurrentLB(index);
 		handleOverlayOpen(lightbox.current);
-		setLightboxVisible(true);
-	};
+    setLightboxVisible(true);
+  };
 
-	const handleLightboxClose = () => {
+  const handleLightboxClose = () => {
 		handleOverlayClose(lightbox.current);
-		setLightboxVisible(false);
-	};
+    setLightboxVisible(false);
+  };
 
-	const handleLightboxUpdate = (e) => {
-		console.log(e.code);
-		switch (e.code) {
-			case 'ArrowLeft':
-				updateDirection(-1);
-				lbPreviuos.current.focus();
-				break;
-			case 'ArrowRight':
-				updateDirection(1);
-				lbNext.current.focus();
-				break;
-			default:
-				return;
-		}
-	};
+  const handleNextPrevious = (dir) => {
+    let newLB = currentLB + dir;
+    if (newLB < 0) newLB = images.length - 1;
+    else if (newLB >= images.length) newLB = 0;
+    setCurrentLB(newLB);
+  };
 
-	const handleNextPrevious = (dir) => {
-		updateDirection(dir);
-	};
+  const handleCloseOutside = (event) => {
+    if (event.target.classList.contains('lightbox')) {
+      handleLightboxClose();
+    }
+  };
 
-	const updateDirection = (dir) => {
-		let newLB = currentLB + dir;
-		if (newLB < 0) newLB = images.length - 1;
-		else if (newLB >= images.length) newLB = 0;
-		setCurrentLB(newLB);
-	};
+  useEffect(() => {
+    
+    const handleKeyPress = (event) => {
 
-	const handleCloseOutside = (event) => {
+      if (!lightboxVisible) return;
 
-		const lightboxContentClick = lbContent.current.contains(event.target);
+      switch (event.code) {
+        case 'ArrowLeft':
+          handleNextPrevious(-1);
+          lbPrevious.current.focus();
+          break;
+        case 'ArrowRight':
+          handleNextPrevious(1);
+          lbNext.current.focus();
+          break;
+        case 'Escape':
+          handleLightboxClose();
+          break;
+        default:
+          break;
+      }
+    };
 
-		if (
-			!lightboxContentClick
-			&& event.target !== lbPreviuos.current
-			&& event.target !== lbNext.current
-			&& event.target !== lbClose.current) {
-			handleLightboxClose();
-		}
-	};
+    if (lightboxVisible) {
+      document.addEventListener('keydown', handleKeyPress);
+    } else {
+      document.removeEventListener('keydown', handleKeyPress);
+    }
 
-	const lightboxImages = images.map(({ src, alt, lbType }, index) => (
-		<button
-			key={index}
-			className='lightbox-element'
-			onClick={() => handleLightboxOpen(index)}
-		>
-			<img src={src} data-lightbox={lbType} alt={alt} />
-		</button>
-	));
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [lightboxVisible, currentLB, handleNextPrevious, handleLightboxClose]);
 
-	return (
-		<>
-			<div className='grid grid--column-2 gap-2'>{lightboxImages}</div>
+  const updateLightboxContent = () => {
 
-			<div
-				className='lightbox'
-				ref={lightbox}
-				aria-hidden={!lightboxVisible}
-				onClick={handleCloseOutside}
-				onKeyDown={handleLightboxUpdate}
-			>
-				<div className='button-group lightbox__buttons'>
-					<button
-						ref={lbPreviuos}
-						className='button button--icon-only'
-						onClick={() => handleNextPrevious(-1)}
-					>
-						<span className='icon icon-arrow-left' aria-label='Previous'></span>
-					</button>
-					<button
-						ref={lbNext}
-						className='button button--icon-only'
-						onClick={() => handleNextPrevious(1)}
-					>
-						<span className='icon icon-arrow-right' aria-label='Next'></span>
-					</button>
-					<button
-						ref={lbClose}
-						className='button button--icon-only'
-						onClick={handleLightboxClose}
-					>
-						<span className='icon icon-close' aria-label='Close'></span>
-					</button>
-				</div>
+    const lbType = images[currentLB].lbType;
+    const lbSrc = images[currentLB].lbSrc;
 
-				<figure className='lightbox__container' ref={lbContent}>
-					<div className='lightbox__image'>
-						{images[currentLB].lbType === 'video' ? (
-							<video controls>
-								<source src={images[currentLB].src} type='video/mp4' />
-							</video>
-						) : (
-							<img src={images[currentLB].src} alt={images[currentLB].alt} />
-						)}
-					</div>
-					<figcaption className='lightbox__caption'>
-						{images[currentLB].imgCaption || images[currentLB].alt}
-					</figcaption>
-				</figure>
-			</div>
-		</>
-	);
+    if (lbType === 'video') {
+      return (
+        <video controls>
+          <source src={lbSrc} type='video/mp4' />
+        </video>
+      );
+    } else if (lbType === 'youtube') {
+      return (
+        <iframe
+          title='YouTube Video'
+          src={`https://www.youtube.com/embed/${lbSrc}`}
+          frameBorder='0'
+          allow='autoplay; fullscreen;'
+          allowFullScreen
+        ></iframe>
+      );
+    } else if (lbType === 'vimeo') {
+      return (
+        <iframe
+          title='Vimeo Video'
+          src={`https://player.vimeo.com/video/${lbSrc}`}
+          frameBorder='0'
+          allow='autoplay; fullscreen;'
+          allowFullScreen
+        ></iframe>
+      );
+    } else {
+      return (
+        <img src={images[currentLB].src} alt={images[currentLB].alt} />
+      );
+    }
+  };
+
+  return (
+    <Fragment>
+
+      <div className='grid grid--column-2 gap-2'>
+        {images.map(({ src, alt, lbType, lbSrc }, index) => (
+          <button
+            key={index}
+            className={`lightbox-button ${
+              currentLB === index ? 'active' : ''
+            }`}
+            onClick={() => handleLightboxOpen(index)}
+          >
+
+            <img
+              src={src}
+              data-lightbox={lbType}
+              data-lightbox-src={lbSrc ? lbSrc : null}
+              alt={alt}
+            />
+
+          </button>
+        ))}
+      </div>
+
+      <div
+        className='lightbox'
+        ref={lightbox}
+        aria-hidden={!lightboxVisible}
+        onClick={handleCloseOutside}
+      >
+        <div className='button-group lightbox__buttons'>
+          <button
+            ref={lbPrevious}
+            className='button button--icon-only lightbox__button'
+            onClick={() => handleNextPrevious(-1)}
+          >
+            <span
+              className='icon icon-arrow-left'
+              aria-label='Previous'
+            ></span>
+          </button>
+          <button
+            ref={lbNext}
+            className='button button--icon-only lightbox__button'
+            onClick={() => handleNextPrevious(1)}
+          >
+            <span
+              className='icon icon-arrow-right'
+              aria-label='Next'
+            ></span>
+          </button>
+          <button
+            ref={lbClose}
+            className='button button--icon-only lightbox__button'
+            onClick={handleLightboxClose}
+          >
+            <span className='icon icon-close' aria-label='Close'></span>
+          </button>
+        </div>
+
+        <figure className='lightbox__container' ref={lbContent}>
+          <div className='lightbox__media'>{updateLightboxContent()}</div>
+          <figcaption className='lightbox__caption'>
+            {images[currentLB].lbCaption || images[currentLB].alt}
+          </figcaption>
+        </figure>
+      </div>
+    
+    </Fragment>
+  
+  );
+
 };
 
 export default Lightbox;
